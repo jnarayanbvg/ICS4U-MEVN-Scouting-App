@@ -28,8 +28,9 @@ router.delete('/:id', async (req, res) => {
 
 
 async function loadCompsCollection() {
-    const client = await mongodb.MongoClient.connect('mongodb+srv://jnarayan:unch@rted@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority', {
-        userNewUrlParser: true
+    const client = await mongodb.MongoClient.connect('mongodb+srv://jnarayan:mongodbpass@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
     });
 
     return client.db('ScoutingApp').collection('comps');
