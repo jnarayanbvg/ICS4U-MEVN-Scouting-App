@@ -2,7 +2,7 @@
   "name": "scoutingapp",
   "version": "1.0.0",
   "description": "Scouting App ICS4U ISP",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
