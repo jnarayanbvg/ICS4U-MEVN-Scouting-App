@@ -3,7 +3,7 @@
     <h1>Your Newest FRC Competitions</h1>
     <div class="createComp">
       <label for="createComp">Add a Competition</label>
-      <input type="text" id="createComp:text" v-model="name" placeholder="New Competition">
+      <input type="text" v-model="name" placeholder="New Competition">
       <button v-on:click="createComp">Create!</button>
     </div>
     <hr>
