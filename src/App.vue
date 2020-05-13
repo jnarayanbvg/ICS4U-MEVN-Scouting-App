@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <CompComponent/>
+    <CompsComponent/>
   </div>
 </template>
 
 <script>
-import CompComponent from './components/CompComponent.vue'
+import CompsComponent from './components/CompsComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    CompComponent
+    CompsComponent
   }
 }
 </script>
