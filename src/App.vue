@@ -1,28 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <CompsComponent/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <Comps />
   </div>
 </template>
 
 <script>
-import CompsComponent from './components/CompsComponent.vue'
+import Comps from './components/Comps_Component.vue'
 
 export default {
   name: 'App',
   components: {
-    CompsComponent
+    Comps
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "./assets/css/style.css";
 </style>

@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'CompComponent',
+  name: 'Comp',
   props: ["comp", "text"]
 }
 </script>
