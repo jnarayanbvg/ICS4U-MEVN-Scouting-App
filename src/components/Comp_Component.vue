@@ -1,13 +1,13 @@
 <template>
-  <div class="container" v-on:wheel="$emit('test-event', comp.name)">
+  <div class="container_comp">
     {{ `${comp.createdAt.getDate()}/${comp.createdAt.getMonth()}/${comp.createdAt.getFullYear()}` }}
-    <p class="name">{{ comp.name }}_{{text}}</p>
+    <p class="name">{{ comp.name }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Comp',
-  props: ["comp", "text"]
+  props: ["comp"]
 }
 </script>
