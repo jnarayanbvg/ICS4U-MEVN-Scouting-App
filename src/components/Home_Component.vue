@@ -1,7 +1,9 @@
 <template>
   <div class="container_home">
-    <Comps v-bind:comps="comps" v-on:delete-comp="deleteComp" />
-    <CreateComp v-on:create-comp="createComp" />
+    <div class="row">
+      <Comps v-bind:comps="comps" v-on:delete-comp="deleteComp" id="homeComps"/>
+      <CreateComp v-on:create-comp="createComp" id="homeCreateComps" />
+    </div>
   </div>
 </template>
 

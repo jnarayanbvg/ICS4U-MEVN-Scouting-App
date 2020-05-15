@@ -13,7 +13,8 @@ class CompService {
                 resolve(
                     data.map(post => ({
                         ...post,
-                        createdAt: new Date(post.createdAt)
+                        start: new Date(post.start),
+                        end: new Date(post.end)
                     }))
                 );
             })

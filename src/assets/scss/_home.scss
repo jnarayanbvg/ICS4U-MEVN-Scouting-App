@@ -1,21 +1,42 @@
 .container {
+    &_home {
+        display: table;
+        width: 100%;
+
+        .row {
+            display: table-row;
+            width: 100%;
+
+            #homeComps {
+                display: table-cell;
+                width: 100%;
+            }
+
+            #homeCreateComps {
+                padding-top: 0px;
+                display: table-cell;
+            }
+        }
+    }
+
     &_createComp {
         $create-container: #319afc;
         $create-container-shadow: #67b6ff;
         $input-background: white;
         $input-text:#222222;
 
-        border: 2px solid lighten($create-container, 3%);
+        //border: 0px solid lighten($create-container, 3%);
         width: 248px;
-        border-radius: 16px;
+        //border-radius: 16px;
         padding: 24px 24px 24px 22px;
         background-color: $create-container;
         text-align: center;
         color: white;
-        @include box-shadow(0px, 0px, 10px, 0px, $create-container-shadow);
+        //@include box-shadow(0px, 0px, 10px, 0px, $create-container-shadow);
 
         h1 {
             text-align: center;
+            padding-top: 0px;
             margin-left: auto;
             margin-right: auto;
             font-size: 22px;
@@ -46,9 +67,9 @@
                     margin: 0;
                     width: 200px;
                     height: 32px;
-                    padding: 6px 12px;
+                    padding: 4px 12px;
                     border-radius: 6px;
-                    border-width: 0px;
+                    border: 1.5px dashed $input-background;
                     @include box-shadow(0px, 0px, 2px, 0px, $create-container-shadow);
                     background-color: $input-background;
                     color: $input-text;
@@ -58,7 +79,7 @@
             }
         }
 
-        button {
+        input[type="submit"] {
             margin-top: 20px;
             width: 200px;
             font-size: 16px;
@@ -76,6 +97,52 @@
                 background-color: $input-background;
                 color: darken($create-container, 25%);
                 font-weight: 400;    
+            }
+        }
+    }
+
+    &_comps {
+        $back-colour-primary: #e1f1ff;
+        $back-colour-secondary: #c5e3ff;
+        $back-colour-tertiary: #319afc;
+        //$back-colour-border: white;
+        text-align: center;
+
+        #compsTable {
+            width: 100%;
+            border-collapse: collapse;
+
+            thead {
+                background-color: $back-colour-tertiary;
+                
+                .compsHead {
+                    padding: 24px 0px;
+                    //border-right: 1px solid $back-colour-border;
+                    //border-bottom: 1px solid $back-colour-border;
+                    font-size: 22px;
+                    font-weight: 500;
+
+                    &:last-child {
+                        border-right-width: 0;
+                    }
+                }
+            }
+
+            .compsRow {
+                background-color: $back-colour-primary;
+
+                &:nth-child(even) {
+                    background-color: $back-colour-secondary;
+                }
+
+                .compsCell {
+                    padding: 16px;
+                    //border-right: 1px solid $back-colour-border;
+
+                    &:last-child {
+                        border-right-width: 0;
+                    }
+                }
             }
         }
     }

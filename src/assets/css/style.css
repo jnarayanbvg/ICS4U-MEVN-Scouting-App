@@ -10,20 +10,32 @@ body {
   background-color: #ffffff;
 }
 
+.container_home {
+  display: table;
+  width: 100%;
+}
+.container_home .row {
+  display: table-row;
+  width: 100%;
+}
+.container_home .row #homeComps {
+  display: table-cell;
+  width: 100%;
+}
+.container_home .row #homeCreateComps {
+  padding-top: 0px;
+  display: table-cell;
+}
 .container_createComp {
-  border: 2px solid #40a1fc;
   width: 248px;
-  border-radius: 16px;
   padding: 24px 24px 24px 22px;
   background-color: #319afc;
   text-align: center;
   color: white;
-  -webkit-box-shadow: 0px 0px 10px 0px #67b6ff;
-  -moz-box-shadow: 0px 0px 10px 0px #67b6ff;
-  box-shadow: 0px 0px 10px 0px #67b6ff;
 }
 .container_createComp h1 {
   text-align: center;
+  padding-top: 0px;
   margin-left: auto;
   margin-right: auto;
   font-size: 22px;
@@ -52,9 +64,9 @@ body {
   margin: 0;
   width: 200px;
   height: 32px;
-  padding: 6px 12px;
+  padding: 4px 12px;
   border-radius: 6px;
-  border-width: 0px;
+  border: 1.5px dashed white;
   -webkit-box-shadow: 0px 0px 2px 0px #67b6ff;
   -moz-box-shadow: 0px 0px 2px 0px #67b6ff;
   box-shadow: 0px 0px 2px 0px #67b6ff;
@@ -63,7 +75,7 @@ body {
   font-size: 14px;
   font-weight: 300;
 }
-.container_createComp button {
+.container_createComp input[type=submit] {
   margin-top: 20px;
   width: 200px;
   font-size: 16px;
@@ -80,10 +92,40 @@ body {
   transition-timing-function: ease-out, ease-out;
   transition-delay: 0s, 0s;
 }
-.container_createComp button:hover {
+.container_createComp input[type=submit]:hover {
   background-color: white;
   color: #025aab;
   font-weight: 400;
+}
+.container_comps {
+  text-align: center;
+}
+.container_comps #compsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+.container_comps #compsTable thead {
+  background-color: #319afc;
+}
+.container_comps #compsTable thead .compsHead {
+  padding: 24px 0px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.container_comps #compsTable thead .compsHead:last-child {
+  border-right-width: 0;
+}
+.container_comps #compsTable .compsRow {
+  background-color: #e1f1ff;
+}
+.container_comps #compsTable .compsRow:nth-child(even) {
+  background-color: #c5e3ff;
+}
+.container_comps #compsTable .compsRow .compsCell {
+  padding: 16px;
+}
+.container_comps #compsTable .compsRow .compsCell:last-child {
+  border-right-width: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

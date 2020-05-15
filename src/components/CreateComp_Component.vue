@@ -1,21 +1,24 @@
 <template>
   <div class="container_createComp">
     <h1>Add Competition</h1>
-    <div id="createFlexBox">
+    <form id="createFlexBox" v-on:submit.prevent="checkForm(name, start, end)">
       <div>
         <label for="createName">Competition Name</label>
-        <input type="text" id="createName" v-model="name" />
+        <input type="text" id="createName" v-model="name" required />
       </div>
       <div>
         <label for="createStart">Start Date</label>
-        <input type="date" id="createStart" v-model="start" />
+        <input type="date" id="createStart" v-model="start" required />
       </div>
       <div>
         <label for="createEnd">End Date</label>
-        <input type="date" id="createEnd" v-model="end" />
+        <input type="date" id="createEnd" v-model="end" required />
       </div>
-    </div>
-    <button v-on:click="$emit('create-comp', name, start, end)">Create Competition</button>
+      <input
+        type="submit"
+        value="Create Competition"
+      />
+    </form>
   </div>
 </template>
 
@@ -26,20 +29,31 @@ export default {
     return {
       name: "",
       start: "",
-      end: ""
+      end: "",
     };
   },
   mounted() {
-    //Set the default date values
-    let date = new Date();
-    let month =
-      date.getMonth() + 1 < 10
-        ? `0${date.getMonth() + 1}`
-        : date.getMonth() + 1;
-    let day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-    let string = `${date.getFullYear()}-${month}-${day}`;
-    this.start = string;
-    this.end = string;
+    this.setForm();
   },
+  methods: {
+    setForm() {
+      this.name = "";
+      //Set the default date values
+      let date = new Date();
+      let month =
+        date.getMonth() + 1 < 10
+          ? `0${date.getMonth() + 1}`
+          : date.getMonth() + 1;
+      let day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+      let string = `${date.getFullYear()}-${month}-${day}`;
+      this.start = string;
+      this.end = string;
+    },
+    checkForm(name, start, end) {
+      if(!document.getElementById("createFlexBox").checkValidity()) return;
+      this.$emit('create-comp', name, start, end);
+      this.setForm();
+    }
+  }
 };
 </script>
