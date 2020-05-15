@@ -24,9 +24,11 @@ class CompService {
     }
 
     //Create Comp
-    static createComp(name) {
+    static createComp(name, start, end) {
         return axios.post(url, {
-            name: name
+            name,
+            start,
+            end
         });
     }
 

@@ -1,47 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-  background-color: #eaecf0;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
 }
 
 .container_createComp {
-  border: 1px solid #d8dde7;
+  border: 2px solid #40a1fc;
+  width: 248px;
   border-radius: 16px;
-  margin: 0px 64px;
-  padding: 24px;
-  background-color: #d9deeb;
-  -webkit-box-shadow: 0px 0px 10px 0px #b6becf;
-  -moz-box-shadow: 0px 0px 10px 0px #b6becf;
-  box-shadow: 0px 0px 10px 0px #b6becf;
+  padding: 24px 24px 24px 22px;
+  background-color: #319afc;
+  text-align: center;
+  color: white;
+  -webkit-box-shadow: 0px 0px 10px 0px #67b6ff;
+  -moz-box-shadow: 0px 0px 10px 0px #67b6ff;
+  box-shadow: 0px 0px 10px 0px #67b6ff;
+}
+.container_createComp h1 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 22px;
+  font-weight: 400;
+  text-shadow: 0px 0px 2px #67b6ff;
+  height: 64px;
 }
 .container_createComp #createFlexBox {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .container_createComp #createFlexBox div {
-  width: 33.3333333333%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  height: 76px;
 }
 .container_createComp #createFlexBox div label {
   display: block;
   font-size: 16px;
-  text-shadow: 0px 0px 15px #8895b1;
-  margin-bottom: 4px;
+  text-shadow: 0px 0px -2px #67b6ff;
+  margin-bottom: 0px;
 }
 .container_createComp #createFlexBox div input {
-  width: 240px;
-  height: 24px;
-  padding: 12px;
+  vertical-align: middle;
+  margin: 0;
+  width: 200px;
+  height: 32px;
+  padding: 6px 12px;
   border-radius: 6px;
   border-width: 0px;
-  -webkit-box-shadow: 0px 0px 10px 0px #b6becf;
-  -moz-box-shadow: 0px 0px 10px 0px #b6becf;
-  box-shadow: 0px 0px 10px 0px #b6becf;
+  -webkit-box-shadow: 0px 0px 2px 0px #67b6ff;
+  -moz-box-shadow: 0px 0px 2px 0px #67b6ff;
+  box-shadow: 0px 0px 2px 0px #67b6ff;
+  background-color: white;
+  color: #222222;
+  font-size: 14px;
+  font-weight: 300;
+}
+.container_createComp button {
+  margin-top: 20px;
+  width: 200px;
+  font-size: 16px;
+  text-align: center;
+  padding: 3px 12px;
+  height: 48px;
+  border-width: 0px;
+  border-radius: 10px;
+  background-color: #025aab;
+  color: white;
+  font-weight: 300;
+  transition-property: background-color, color;
+  transition-duration: 0.15s, 0.15s;
+  transition-timing-function: ease-out, ease-out;
+  transition-delay: 0s, 0s;
+}
+.container_createComp button:hover {
+  background-color: white;
+  color: #025aab;
+  font-weight: 400;
 }
 
 /*# sourceMappingURL=style.css.map */

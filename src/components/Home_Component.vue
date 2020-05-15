@@ -1,7 +1,5 @@
 <template>
   <div class="container_home">
-    <h1>Your Newest FRC Competitions</h1>
-    <hr />
     <Comps v-bind:comps="comps" v-on:delete-comp="deleteComp" />
     <CreateComp v-on:create-comp="createComp" />
   </div>
@@ -32,8 +30,8 @@ export default {
     }
   },
   methods: {
-    async createComp(name) {
-      await CompService.createComp(name);
+    async createComp(name, start, end) {
+      await CompService.createComp(name, start, end);
       this.comps = await CompService.getComps();
     },
     async deleteComp(id) {

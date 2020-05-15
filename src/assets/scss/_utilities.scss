@@ -1,9 +1,52 @@
 @mixin box-shadow($top, $left, $blur, $size, $color) {
-    -webkit-box-shadow: $top $left $blur $size $color;
-    -moz-box-shadow: $top $left $blur $size $color;
-    box-shadow: $top $left $blur $size $color;
- }
+   -webkit-box-shadow: $top $left $blur $size $color;
+   -moz-box-shadow: $top $left $blur $size $color;
+   box-shadow: $top $left $blur $size $color;
+}
 
- @mixin text-shadow($x, $y, $blur, $color) {
-    text-shadow: $x $y $blur $color;
- }
+@mixin text-shadow($x, $y, $blur, $color) {
+   text-shadow: $x $y $blur $color;
+}
+
+@mixin transition($properties, $durations, $timings, $delays) {
+   $property-string: '';
+   @each $property in $properties {
+      @if(str-length($property-string) == 0) {
+         $property-string: '' + $property;
+      } @else {
+         $property-string: $property-string + ', ' + $property;
+      }
+   }
+
+   $duration-string: '';
+   @each $duration in $durations {
+      @if(str-length($duration-string) == 0) {
+         $duration-string: '' + $duration;
+      } @else {
+         $duration-string: $duration-string + ', ' + $duration;
+      }
+   }
+
+   $timing-string: '';
+   @each $timing in $timings {
+      @if(str-length($timing-string) == 0) {
+         $timing-string: '' + $timing;
+      } @else {
+         $timing-string: $timing-string + ', ' + $timing;
+      }
+   }
+
+   $delay-string: '';
+   @each $delay in $delays {
+      @if(str-length($delay-string) == 0) {
+         $delay-string: '' + $delay;
+      } @else {
+         $delay-string: $delay-string + ', ' + $delay;
+      }
+   }
+
+   transition-property: unquote($property-string);
+   transition-duration: unquote($duration-string);
+   transition-timing-function: unquote($timing-string);
+   transition-delay: unquote($delay-string);
+}

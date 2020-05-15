@@ -14,7 +14,8 @@ router.post('/', async (req, res) => {
     const comps = await loadCompsCollection();
     await comps.insertOne({
         name: req.body.name,
-        createdAt: new Date()
+        start: req.body.start,
+        end: req.body.end
     });
     res.status(201).send();
 });
