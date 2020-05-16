@@ -1,42 +1,39 @@
 .container {
+    $create-container: #319afc;
+    $create-container-shadow: #67b6ff;
+    $input-background: white;
+    $input-text: #222222;
+
     &_home {
-        display: table;
-        width: 100%;
+        display: flex;
 
-        .row {
-            display: table-row;
+        #homeComps {
             width: 100%;
+            margin: 16px;
+        }
 
-            #homeComps {
-                display: table-cell;
-                width: 100%;
-            }
-
-            #homeCreateComps {
-                padding-top: 0px;
-                display: table-cell;
-            }
+        #homeCreateComps {
+            padding-top: 0px;
+            margin: 16px;
         }
     }
 
     &_createComp {
-        $create-container: #319afc;
-        $create-container-shadow: #67b6ff;
-        $input-background: white;
-        $input-text:#222222;
 
         //border: 0px solid lighten($create-container, 3%);
         width: 248px;
-        //border-radius: 16px;
+        height: 100%;
+        border-radius: 20px;
         padding: 24px 24px 24px 22px;
         background-color: $create-container;
         text-align: center;
-        color: white;
+        color: $input-background;
         //@include box-shadow(0px, 0px, 10px, 0px, $create-container-shadow);
 
         h1 {
             text-align: center;
-            padding-top: 0px;
+            padding-top: 12px;
+            padding-bottom: 64px;
             margin-left: auto;
             margin-right: auto;
             font-size: 22px;
@@ -44,7 +41,7 @@
             @include text-shadow(0px, 0px, 2px, $create-container-shadow);
             height: 64px;
         }
-        
+
         #createFlexBox {
             display: flex;
             flex-direction: column;
@@ -96,7 +93,7 @@
             &:hover {
                 background-color: $input-background;
                 color: darken($create-container, 25%);
-                font-weight: 400;    
+                font-weight: 400;
             }
         }
     }
@@ -105,42 +102,72 @@
         $back-colour-primary: #e1f1ff;
         $back-colour-secondary: #c5e3ff;
         $back-colour-tertiary: #319afc;
-        //$back-colour-border: white;
+        $back-colour-border: white;
         text-align: center;
 
         #compsTable {
             width: 100%;
-            border-collapse: collapse;
+            border-spacing: 0px;
 
             thead {
                 background-color: $back-colour-tertiary;
-                
+                color: $input-background;
+
                 .compsHead {
-                    padding: 24px 0px;
-                    //border-right: 1px solid $back-colour-border;
-                    //border-bottom: 1px solid $back-colour-border;
+                    border-right: 2px solid $back-colour-border;
+                    padding: 12px;
                     font-size: 22px;
-                    font-weight: 500;
+                    font-weight: 400;
+                    @include text-shadow(0px, 0px, 2px, $create-container-shadow);
+                    width: 15%;
+
+                    &:first-child {
+                        border-top-left-radius: 20px;
+                    }
 
                     &:last-child {
+                        border-top-right-radius: 20px;
                         border-right-width: 0;
                     }
+                }
+
+                #long {
+                    width: 40%;
                 }
             }
 
             .compsRow {
                 background-color: $back-colour-primary;
+                font-size: 13px;
 
                 &:nth-child(even) {
                     background-color: $back-colour-secondary;
                 }
 
                 .compsCell {
-                    padding: 16px;
-                    //border-right: 1px solid $back-colour-border;
+                    padding: 8px;
+                    border-right: 2px solid $back-colour-border;
 
                     &:last-child {
                         border-right-width: 0;
+                    }
+
+                    br {
+                        display: block;
+                        content: "";
+                        margin-top: 8px;
+                    }
+                }
+
+                &:last-child {
+                    .compsCell {
+                        &:first-child {
+                            border-bottom-left-radius: 20px;
+                        }
+
+                        &:last-child {
+                            border-bottom-right-radius: 20px;
+                        }
                     }
                 }
             }

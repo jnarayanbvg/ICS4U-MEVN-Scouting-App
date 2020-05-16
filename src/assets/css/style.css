@@ -11,23 +11,20 @@ body {
 }
 
 .container_home {
-  display: table;
-  width: 100%;
+  display: flex;
 }
-.container_home .row {
-  display: table-row;
+.container_home #homeComps {
   width: 100%;
+  margin: 16px;
 }
-.container_home .row #homeComps {
-  display: table-cell;
-  width: 100%;
-}
-.container_home .row #homeCreateComps {
+.container_home #homeCreateComps {
   padding-top: 0px;
-  display: table-cell;
+  margin: 16px;
 }
 .container_createComp {
   width: 248px;
+  height: 100%;
+  border-radius: 20px;
   padding: 24px 24px 24px 22px;
   background-color: #319afc;
   text-align: center;
@@ -35,7 +32,8 @@ body {
 }
 .container_createComp h1 {
   text-align: center;
-  padding-top: 0px;
+  padding-top: 12px;
+  padding-bottom: 64px;
   margin-left: auto;
   margin-right: auto;
   font-size: 22px;
@@ -102,30 +100,54 @@ body {
 }
 .container_comps #compsTable {
   width: 100%;
-  border-collapse: collapse;
+  border-spacing: 0px;
 }
 .container_comps #compsTable thead {
   background-color: #319afc;
+  color: white;
 }
 .container_comps #compsTable thead .compsHead {
-  padding: 24px 0px;
+  border-right: 2px solid white;
+  padding: 12px;
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 400;
+  text-shadow: 0px 0px 2px #67b6ff;
+  width: 15%;
+}
+.container_comps #compsTable thead .compsHead:first-child {
+  border-top-left-radius: 20px;
 }
 .container_comps #compsTable thead .compsHead:last-child {
+  border-top-right-radius: 20px;
   border-right-width: 0;
+}
+.container_comps #compsTable thead #long {
+  width: 40%;
 }
 .container_comps #compsTable .compsRow {
   background-color: #e1f1ff;
+  font-size: 13px;
 }
 .container_comps #compsTable .compsRow:nth-child(even) {
   background-color: #c5e3ff;
 }
 .container_comps #compsTable .compsRow .compsCell {
-  padding: 16px;
+  padding: 8px;
+  border-right: 2px solid white;
 }
 .container_comps #compsTable .compsRow .compsCell:last-child {
   border-right-width: 0;
+}
+.container_comps #compsTable .compsRow .compsCell br {
+  display: block;
+  content: "";
+  margin-top: 8px;
+}
+.container_comps #compsTable .compsRow:last-child .compsCell:first-child {
+  border-bottom-left-radius: 20px;
+}
+.container_comps #compsTable .compsRow:last-child .compsCell:last-child {
+  border-bottom-right-radius: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
