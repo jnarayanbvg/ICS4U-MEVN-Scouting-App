@@ -14,7 +14,7 @@
         <td class="compsCell">{{ getDate(comp.start) }}  &mdash; {{ getDate(comp.end) }}</td>
         <td class="compsCell">Teams</td>
         <td class="compsCell">Scout Match</td>
-        <td class="compsCell">Delete</td>
+        <td class="compsCell compsCellDelete">Delete</td>
       </tr>
     </table>
   </div>
