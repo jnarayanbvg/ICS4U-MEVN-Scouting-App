@@ -11,7 +11,7 @@
       <tr class="compsRow" v-for="comp in comps" v-bind:key="comp._id"
         v-on:dblclick="$emit('delete-comp', comp._id)">
         <td class="compsCell">{{ comp.name }}</td>
-        <td class="compsCell">{{ getDate(comp.start) }}<br><br>{{ getDate(comp.end) }}</td>
+        <td class="compsCell">{{ getDate(comp.start) }}  &mdash; {{ getDate(comp.end) }}</td>
         <td class="compsCell">Teams</td>
         <td class="compsCell">Scout Match</td>
         <td class="compsCell">Delete</td>
@@ -25,8 +25,11 @@
     name: "Comps",
     props: ["comps"],
     methods: {
-      getDate(date) {
-        return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+      getDate(val) {
+        let date = (""+val.getDate()).padStart(2,'0');
+        let month = (""+val.getMonth()).padStart(2,'0');
+        let year = (""+val.getFullYear()).padStart(2,'0');
+        return `${date}/${month}/${year}`;
       }
     }
   };

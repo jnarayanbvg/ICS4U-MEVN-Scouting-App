@@ -7,14 +7,10 @@
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #ecf4fd;
 }
 
-.container_home {
-  display: flex;
-}
 .container_home #homeComps {
-  width: 100%;
   margin: 16px;
 }
 .container_home #homeCreateComps {
@@ -22,77 +18,72 @@ body {
   margin: 16px;
 }
 .container_createComp {
-  width: 248px;
   height: 100%;
   border-radius: 20px;
-  padding: 24px 24px 24px 22px;
-  background-color: #319afc;
+  background-color: #1e91fd;
   text-align: center;
-  color: white;
-}
-.container_createComp h1 {
-  text-align: center;
-  padding-top: 12px;
-  padding-bottom: 64px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 22px;
-  font-weight: 400;
-  text-shadow: 0px 0px 2px #67b6ff;
-  height: 64px;
+  color: #ecf4fd;
 }
 .container_createComp #createFlexBox {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 .container_createComp #createFlexBox div {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  height: 76px;
+  padding: 24px;
+  flex: 1;
+}
+.container_createComp #createFlexBox div#createName {
+  flex: 2;
+}
+.container_createComp #createFlexBox div#createName input {
+  width: 420px;
 }
 .container_createComp #createFlexBox div label {
+  padding-top: 0px;
   display: block;
   font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
   text-shadow: 0px 0px -2px #67b6ff;
-  margin-bottom: 0px;
 }
 .container_createComp #createFlexBox div input {
   vertical-align: middle;
   margin: 0;
-  width: 200px;
+  width: 148px;
   height: 32px;
-  padding: 4px 12px;
+  padding: 3px 0px;
   border-radius: 6px;
-  border: 1.5px dashed white;
+  border: 1.5px dashed #ecf4fd;
   -webkit-box-shadow: 0px 0px 2px 0px #67b6ff;
   -moz-box-shadow: 0px 0px 2px 0px #67b6ff;
   box-shadow: 0px 0px 2px 0px #67b6ff;
-  background-color: white;
+  background-color: #ecf4fd;
   color: #222222;
   font-size: 14px;
   font-weight: 300;
 }
-.container_createComp input[type=submit] {
-  margin-top: 20px;
+.container_createComp #createFlexBox div input[type=submit] {
   width: 200px;
   font-size: 16px;
   text-align: center;
-  padding: 3px 12px;
+  margin-top: 2px;
   height: 48px;
   border-width: 0px;
   border-radius: 10px;
-  background-color: #025aab;
-  color: white;
+  background-color: #01509a;
+  color: #ecf4fd;
   font-weight: 300;
   transition-property: background-color, color;
   transition-duration: 0.15s, 0.15s;
   transition-timing-function: ease-out, ease-out;
   transition-delay: 0s, 0s;
 }
-.container_createComp input[type=submit]:hover {
-  background-color: white;
-  color: #025aab;
+.container_createComp #createFlexBox div input[type=submit]:hover {
+  background-color: #ecf4fd;
+  color: #01509a;
   font-weight: 400;
 }
 .container_comps {
@@ -103,12 +94,12 @@ body {
   border-spacing: 0px;
 }
 .container_comps #compsTable thead {
-  background-color: #319afc;
-  color: white;
+  background-color: #4ba8ff;
+  color: #ecf4fd;
 }
 .container_comps #compsTable thead .compsHead {
-  border-right: 2px solid white;
-  padding: 12px;
+  border-right: 2px solid #ecf4fd;
+  padding: 8px;
   font-size: 22px;
   font-weight: 400;
   text-shadow: 0px 0px 2px #67b6ff;
@@ -125,15 +116,16 @@ body {
   width: 40%;
 }
 .container_comps #compsTable .compsRow {
-  background-color: #e1f1ff;
-  font-size: 13px;
+  background-color: #c7e5ff;
+  font-size: 14px;
 }
 .container_comps #compsTable .compsRow:nth-child(even) {
-  background-color: #c5e3ff;
+  background-color: #aed8ff;
 }
 .container_comps #compsTable .compsRow .compsCell {
-  padding: 8px;
-  border-right: 2px solid white;
+  padding: 10px;
+  border-right: 2px solid #ecf4fd;
+  border-bottom: 2px solid #ecf4fd;
 }
 .container_comps #compsTable .compsRow .compsCell:last-child {
   border-right-width: 0;
@@ -142,6 +134,9 @@ body {
   display: block;
   content: "";
   margin-top: 8px;
+}
+.container_comps #compsTable .compsRow:last-child {
+  border-bottom-width: 0;
 }
 .container_comps #compsTable .compsRow:last-child .compsCell:first-child {
   border-bottom-left-radius: 20px;

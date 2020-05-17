@@ -1,23 +1,22 @@
 <template>
   <div class="container_createComp">
-    <h1>Add Competition</h1>
+    <!-- <h1>Add Competition</h1> -->
     <form id="createFlexBox" v-on:submit.prevent="checkForm(name, start, end)">
-      <div>
+      <div id="createName">
         <label for="createName">Competition Name</label>
-        <input type="text" id="createName" v-model="name" required />
+        <input type="text" v-model="name" required />
       </div>
-      <div>
+      <div id="createStart">
         <label for="createStart">Start Date</label>
-        <input type="date" id="createStart" v-model="start" required />
+        <input type="date" v-model="start" required />
+      </div>
+      <div id="createEnd">
+        <label for="createEnd">End Date</label>
+        <input type="date" v-model="end" required />
       </div>
       <div>
-        <label for="createEnd">End Date</label>
-        <input type="date" id="createEnd" v-model="end" required />
+        <input type="submit" value="Create Competition" />
       </div>
-      <input
-        type="submit"
-        value="Create Competition"
-      />
     </form>
   </div>
 </template>

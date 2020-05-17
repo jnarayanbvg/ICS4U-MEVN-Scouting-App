@@ -1,14 +1,11 @@
 .container {
-    $create-container: #319afc;
+    $create-container: #1e91fd;
     $create-container-shadow: #67b6ff;
-    $input-background: white;
+    $input-background: $background-color;
     $input-text: #222222;
 
     &_home {
-        display: flex;
-
         #homeComps {
-            width: 100%;
             margin: 16px;
         }
 
@@ -21,50 +18,47 @@
     &_createComp {
 
         //border: 0px solid lighten($create-container, 3%);
-        width: 248px;
         height: 100%;
         border-radius: 20px;
-        padding: 24px 24px 24px 22px;
         background-color: $create-container;
         text-align: center;
         color: $input-background;
         //@include box-shadow(0px, 0px, 10px, 0px, $create-container-shadow);
 
-        h1 {
-            text-align: center;
-            padding-top: 12px;
-            padding-bottom: 64px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 22px;
-            font-weight: 400;
-            @include text-shadow(0px, 0px, 2px, $create-container-shadow);
-            height: 64px;
-        }
-
         #createFlexBox {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
 
             div {
                 margin-left: auto;
                 margin-right: auto;
                 text-align: center;
-                height: 76px;
+                padding: 24px;
+                flex: 1;
+
+                &#createName {
+                    flex: 2;
+
+                    input {
+                        width: 420px;
+                    }
+                }
 
                 label {
+                    padding-top: 0px;
                     display: block;
                     font-size: 16px;
+                    line-height: 20px;
+                    font-weight: 400;
                     @include text-shadow(0px, 0px, -2px, $create-container-shadow);
-                    margin-bottom: 0px;
                 }
 
                 input {
                     vertical-align: middle;
                     margin: 0;
-                    width: 200px;
+                    width: 148px;
                     height: 32px;
-                    padding: 4px 12px;
+                    padding: 3px 0px;
                     border-radius: 6px;
                     border: 1.5px dashed $input-background;
                     @include box-shadow(0px, 0px, 2px, 0px, $create-container-shadow);
@@ -73,36 +67,35 @@
                     font-size: 14px;
                     font-weight: 300;
                 }
-            }
-        }
 
-        input[type="submit"] {
-            margin-top: 20px;
-            width: 200px;
-            font-size: 16px;
-            text-align: center;
-            padding: 3px 12px;
-            height: 48px;
-            border-width: 0px;
-            border-radius: 10px;
-            background-color: darken($create-container, 25%);
-            color: $input-background;
-            font-weight: 300;
-            @include transition((background-color, color), (0.15s 0.15s), (ease-out ease-out), (0s 0s));
-
-            &:hover {
-                background-color: $input-background;
-                color: darken($create-container, 25%);
-                font-weight: 400;
+                input[type="submit"] {
+                    width: 200px;
+                    font-size: 16px;
+                    text-align: center;
+                    margin-top: 2px;
+                    height: 48px;
+                    border-width: 0px;
+                    border-radius: 10px;
+                    background-color: darken($create-container, 25%);
+                    color: $input-background;
+                    font-weight: 300;
+                    @include transition((background-color, color), (0.15s 0.15s), (ease-out ease-out), (0s 0s));
+        
+                    &:hover {
+                        background-color: $input-background;
+                        color: darken($create-container, 25%);
+                        font-weight: 400;
+                    }
+                }
             }
         }
     }
 
     &_comps {
-        $back-colour-primary: #e1f1ff;
-        $back-colour-secondary: #c5e3ff;
-        $back-colour-tertiary: #319afc;
-        $back-colour-border: white;
+        $back-colour-primary: #c7e5ff;
+        $back-colour-secondary: #aed8ff;
+        $back-colour-tertiary: #4ba8ff;
+        $back-colour-border: $background-color;
         text-align: center;
 
         #compsTable {
@@ -115,7 +108,7 @@
 
                 .compsHead {
                     border-right: 2px solid $back-colour-border;
-                    padding: 12px;
+                    padding: 8px;
                     font-size: 22px;
                     font-weight: 400;
                     @include text-shadow(0px, 0px, 2px, $create-container-shadow);
@@ -138,15 +131,16 @@
 
             .compsRow {
                 background-color: $back-colour-primary;
-                font-size: 13px;
+                font-size: 14px;
 
                 &:nth-child(even) {
                     background-color: $back-colour-secondary;
                 }
 
                 .compsCell {
-                    padding: 8px;
+                    padding: 10px;
                     border-right: 2px solid $back-colour-border;
+                    border-bottom: 2px solid $back-colour-border;
 
                     &:last-child {
                         border-right-width: 0;
@@ -160,6 +154,8 @@
                 }
 
                 &:last-child {
+                    border-bottom-width: 0;
+
                     .compsCell {
                         &:first-child {
                             border-bottom-left-radius: 20px;
