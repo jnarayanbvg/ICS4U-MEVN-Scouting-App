@@ -160,4 +160,75 @@ body {
   border-bottom-right-radius: 20px;
 }
 
+.container_app {
+  background-image: url("../images/space.png");
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.container_app #appTable {
+  display: table;
+}
+.container_app #appTable .row {
+  display: table-row;
+}
+.container_app #appTable .row .tab {
+  display: table-cell;
+  width: 240px;
+  vertical-align: middle;
+}
+.container_app #appTable .row .tab .flexTab {
+  display: flex;
+  flex-direction: column;
+}
+.container_app #appTable .row .tab .tabButtons {
+  margin: 4px auto;
+  width: 156px;
+  height: 64px;
+  border: 0;
+  border-radius: 8px;
+  background-color: #535353;
+  color: #ffffff;
+  font-size: 18px;
+}
+.container_app #appTable .row .tab .tabButtons.cancel {
+  margin-top: 16px;
+  width: 120px;
+  background-color: #2e2e2e;
+  font-size: 12px;
+}
+.container_app #appTable .row .tab #playfield {
+  width: 760px;
+  height: 360px;
+  background-color: #e96262;
+  border-radius: 48px;
+  opacity: 75%;
+}
+.container_app #appTable .row .tab #spaceTable {
+  display: table;
+}
+.container_app #appTable .row .tab #spaceTable #spaceTableRow {
+  display: table-row;
+}
+.container_app #appTable .row .tab #spaceTable #spaceTableRow #spaceTableCell {
+  display: table-cell;
+  color: red;
+}
+.container_app #appTable .row .tab #spaceTable #spaceTableRow #spaceTableCell .spaces {
+  font-size: 12px;
+  width: 80px;
+  height: 80px;
+  border: 0;
+  border-radius: 8px;
+  background-color: #535353;
+  color: white;
+  position: absolute;
+  text-align: center;
+  margin-left: 0;
+  margin-top: -360px;
+}
+.container_app #appTable .row .tab #spaceTable #spaceTableRow #spaceTableCell #space0, .container_app #appTable .row .tab #spaceTable #spaceTableRow #spaceTableCell #space1 {
+  top: 20px;
+}
+
 /*# sourceMappingURL=style.css.map */

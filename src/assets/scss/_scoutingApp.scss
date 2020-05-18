@@ -1,0 +1,89 @@
+@mixin spacePositions() {
+    color: red;
+    #space0, #space1 {
+        top: 20px;
+    }
+}
+
+.container {
+    &_app {
+        $red-color-light: #e96262;
+        $blue-color-light: #62bee9;
+        $button-gray-unclicked: #535353;
+        $button-text: #ffffff;
+        $cancel-black: #2e2e2e;
+
+        background-image: url('../images/space.png');
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        #appTable {
+            display: table;
+            .row {
+                display: table-row;
+                .tab {
+                    display: table-cell;
+                    width: 240px;
+                    vertical-align: middle;
+
+                    .flexTab {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .tabButtons {
+                        margin: 4px auto;
+                        width: 156px;
+                        height: 64px;
+                        border: 0;
+                        border-radius: 8px;
+                        background-color: $button-gray-unclicked;
+                        color: $button-text;
+                        font-size: 18px;
+
+                        &.cancel {
+                            margin-top: 16px;
+                            width: 120px;
+                            background-color: $cancel-black;
+                            font-size: 12px;
+                        }
+                    }
+
+                    #playfield {
+                        width: 760px;
+                        height: 360px;
+                        background-color: $red-color-light;
+                        border-radius: 48px;
+                        opacity: 75%;
+                    }
+
+                    #spaceTable {
+                        display: table;
+                        #spaceTableRow {
+                            display: table-row;
+                            #spaceTableCell {
+                                display: table-cell;
+
+                                .spaces {
+                                    font-size: 12px;
+                                    width: 80px;
+                                    height: 80px;
+                                    border: 0;
+                                    border-radius: 8px;
+                                    background-color: $button-gray-unclicked;
+                                    color: white;
+                                    position: absolute;
+                                    text-align: center;
+                                    margin-left: 0;
+                                    margin-top: -360px;
+                                }
+                                @include spacePositions();
+                            }
+                        }
+                    }
+                }                 
+            }
+        }
+    }
+}
