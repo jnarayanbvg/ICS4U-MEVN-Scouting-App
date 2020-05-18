@@ -8,13 +8,14 @@
         <th class="compsHead">Scouting</th>
         <th class="compsHead">Delete</th>
       </thead>
-      <tr class="compsRow" v-for="comp in comps" v-bind:key="comp._id"
-        v-on:dblclick="$emit('delete-comp', comp._id)">
+      <tr class="compsRow" v-for="comp in comps" v-bind:key="comp._id">
         <td class="compsCell">{{ comp.name }}</td>
-        <td class="compsCell">{{ getDate(comp.start) }}  &mdash; {{ getDate(comp.end) }}</td>
+        <td class="compsCell">
+          {{ getDate(comp.start) }} &mdash; {{ getDate(comp.end) }}
+        </td>
         <td class="compsCell">Teams</td>
         <td class="compsCell">Scout Match</td>
-        <td class="compsCell compsCellDelete">Delete</td>
+        <td class="compsCell compsCellDelete" v-on:click="$emit('delete-comp', comp._id)">Delete</td>
       </tr>
     </table>
   </div>

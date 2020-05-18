@@ -148,6 +148,7 @@ body {
 }
 .container_comps #compsTable .compsRow .compsCellDelete:hover {
   color: #ff6666;
+  cursor: pointer;
 }
 .container_comps #compsTable .compsRow:last-child {
   border-bottom-width: 0;
