@@ -60,7 +60,8 @@ button {
     &_app {
         $red-color-light: #f53a3a;
         $blue-color-light: #418ee7;
-        $button-gray-unclicked: #333333;
+        $button-gray-unclicked: #3b3b3b;
+        $button-gray-clicked: #7c7c7c;
         $button-text: #ffffff;
         $cancel-black: #161616;
 
@@ -216,7 +217,56 @@ button {
                         
                         .miscTabLabels {
                             color: white;
+                            font-size: 16px;
+                            margin-bottom: 8px;
+                        }
+
+                        #timeDefending, #defenseStrength {
+                            display: flex;
+                            flex-direction: row;
+                            margin-bottom: 16px;
+
+                            .miscButtons {
+                                $radius: 8px;
+
+                                width: 120px;
+                                height: 40px;
+                                border: 0;
+                                font-size: 14px;
+                                background-color: $button-gray-unclicked;
+                                color: white;                                
+
+                                &.first {
+                                    border-top-left-radius: $radius;
+                                    border-bottom-left-radius: $radius;
+                                    background-color: $button-gray-clicked;
+                                }
+
+                                &.last {
+                                    border-top-right-radius: $radius;
+                                    border-bottom-right-radius: $radius;;
+                                }
+                            }
+                        }
+
+                        textarea {
+                            resize: none;
+                            width: 360px;
+                            height: 80px;
+                            padding: 4px;
+                            border: 0;
+                            border-radius: 8px;
+                        }
+
+                        input[type="submit"] {
+                            width: 144px;
+                            height: 48px;
+                            border: 0;
+                            border-radius: 8px;
+                            color: white;
                             font-size: 20px;
+                            background-color: $button-gray-unclicked;
+                            margin-top: 24px;
                         }
                     }
 

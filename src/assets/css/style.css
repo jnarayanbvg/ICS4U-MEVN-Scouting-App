@@ -218,7 +218,7 @@ button {
   width: 96px;
   margin: 0px 32px;
   font-size: 15px;
-  background-color: #333333;
+  background-color: #3b3b3b;
 }
 .container_app .flexBox .topButtons#red {
   background-color: #f53a3a;
@@ -232,7 +232,7 @@ button {
   color: white;
   margin: 0px 8px;
   font-size: 15px;
-  background-color: #333333;
+  background-color: #3b3b3b;
 }
 .container_app .flexBox .bottomButtons#preload {
   background-color: #12a532;
@@ -271,7 +271,7 @@ button {
   height: 56px;
   border: 0;
   border-radius: 8px;
-  background-color: #333333;
+  background-color: #3b3b3b;
   color: #ffffff;
   font-size: 14px;
   line-height: 20px;
@@ -291,7 +291,48 @@ button {
 }
 .container_app #appTable .row .tab #miscTab .miscTabLabels {
   color: white;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.container_app #appTable .row .tab #miscTab #timeDefending, .container_app #appTable .row .tab #miscTab #defenseStrength {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+.container_app #appTable .row .tab #miscTab #timeDefending .miscButtons, .container_app #appTable .row .tab #miscTab #defenseStrength .miscButtons {
+  width: 120px;
+  height: 40px;
+  border: 0;
+  font-size: 14px;
+  background-color: #3b3b3b;
+  color: white;
+}
+.container_app #appTable .row .tab #miscTab #timeDefending .miscButtons.first, .container_app #appTable .row .tab #miscTab #defenseStrength .miscButtons.first {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: #7c7c7c;
+}
+.container_app #appTable .row .tab #miscTab #timeDefending .miscButtons.last, .container_app #appTable .row .tab #miscTab #defenseStrength .miscButtons.last {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.container_app #appTable .row .tab #miscTab textarea {
+  resize: none;
+  width: 360px;
+  height: 80px;
+  padding: 4px;
+  border: 0;
+  border-radius: 8px;
+}
+.container_app #appTable .row .tab #miscTab input[type=submit] {
+  width: 144px;
+  height: 48px;
+  border: 0;
+  border-radius: 8px;
+  color: white;
   font-size: 20px;
+  background-color: #3b3b3b;
+  margin-top: 24px;
 }
 .container_app #appTable .row .tab #playfield {
   width: 760px;
@@ -313,7 +354,7 @@ button {
   height: 80px;
   border: 0;
   border-radius: 4px;
-  background-color: #333333;
+  background-color: #3b3b3b;
   color: white;
   position: absolute;
   text-align: center;

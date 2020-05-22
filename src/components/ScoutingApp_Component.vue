@@ -74,8 +74,22 @@
         <div class="tab mid" id="field">
           <div id="miscTab">
             <span class="miscTabLabels">Time Defending</span><br>
+            <div id="timeDefending">
+              <button class="miscButtons first" id="timeDefending0">None</button>
+              <button class="miscButtons" id="timeDefending1">Little</button>
+              <button class="miscButtons" id="timeDefending2">Some</button>
+              <button class="miscButtons last" id="timeDefending3">Most</button>
+            </div>
             <span class="miscTabLabels">Defense Strength</span><br>
+            <div id="defenseStrength">
+              <button class="miscButtons first" id="defenseStrength0">None</button>
+              <button class="miscButtons" id="defenseStrength1">Weak</button>
+              <button class="miscButtons" id="defenseStrength2">Moderate</button>
+              <button class="miscButtons last" id="defenseStrength3">Strong</button>
+            </div>
             <span class="miscTabLabels">Comments</span><br>
+            <textarea id="input_comments"></textarea>
+            <input type="submit" value="Submit">
           </div>
           <div id="playfield"></div>
           <div id="spaceSet">
@@ -164,6 +178,8 @@
 </template>
 
 <script>
+import '../js/scoutingapp.js';
+
 export default {
   name: 'ScoutingApp',
   data() {
