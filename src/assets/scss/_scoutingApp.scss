@@ -181,10 +181,11 @@ button {
                         display: flex;
                         flex-direction: column;
 
-                        &.preload, &.sandstorm {
-                            display: none;
+                        &.preload, &.sandstorm, &.teleop {
+                            display: none; //TEMP
                         }
                     }
+
 
                     .tabButtons {
                         margin: 4px auto;
@@ -210,17 +211,30 @@ button {
                         }
                     }
 
+                    #miscTab {
+                        height: 360px;
+                        
+                        .miscTabLabels {
+                            color: white;
+                            font-size: 20px;
+                        }
+                    }
+
                     #playfield {
                         width: 760px;
                         height: 360px;
                         background-color: $red-color-light;
                         border-radius: 24px;
                         opacity: 75%;
+
+                        display: none; //TEMP
                     }
 
                     #spaceSet {
                         display: table;
                         position: relative;
+
+                        display: none; //TEMP
 
                         .spaces, #mapTeamNumber {
                             font-size: 12px;

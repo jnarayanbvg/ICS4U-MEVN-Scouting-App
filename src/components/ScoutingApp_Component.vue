@@ -72,6 +72,11 @@
           </div>
         </div>
         <div class="tab mid" id="field">
+          <div id="miscTab">
+            <span class="miscTabLabels">Time Defending</span><br>
+            <span class="miscTabLabels">Defense Strength</span><br>
+            <span class="miscTabLabels">Comments</span><br>
+          </div>
           <div id="playfield"></div>
           <div id="spaceSet">
 
@@ -153,7 +158,7 @@
       <button class="bottomButtons" id="preload">Preload</button>
       <button class="bottomButtons" id="sandstorm">Sandstorm</button>
       <button class="bottomButtons" id="teleop">Teleop</button>
-      <button class="bottomButtons" id="endgame">Miscellaneous</button>
+      <button class="bottomButtons" id="miscellaneous">Miscellaneous</button>
     </div>
   </div>
 </template>

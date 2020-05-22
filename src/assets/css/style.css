@@ -262,7 +262,7 @@ button {
   display: flex;
   flex-direction: column;
 }
-.container_app #appTable .row .tab .flexTab.preload, .container_app #appTable .row .tab .flexTab.sandstorm {
+.container_app #appTable .row .tab .flexTab.preload, .container_app #appTable .row .tab .flexTab.sandstorm, .container_app #appTable .row .tab .flexTab.teleop {
   display: none;
 }
 .container_app #appTable .row .tab .tabButtons {
@@ -286,16 +286,25 @@ button {
 .container_app #appTable .row .tab .tabButtonsLabels {
   font-size: 10px;
 }
+.container_app #appTable .row .tab #miscTab {
+  height: 360px;
+}
+.container_app #appTable .row .tab #miscTab .miscTabLabels {
+  color: white;
+  font-size: 20px;
+}
 .container_app #appTable .row .tab #playfield {
   width: 760px;
   height: 360px;
   background-color: #f53a3a;
   border-radius: 24px;
   opacity: 75%;
+  display: none;
 }
 .container_app #appTable .row .tab #spaceSet {
   display: table;
   position: relative;
+  display: none;
   color: red;
 }
 .container_app #appTable .row .tab #spaceSet .spaces, .container_app #appTable .row .tab #spaceSet #mapTeamNumber {
