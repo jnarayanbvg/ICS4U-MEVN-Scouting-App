@@ -1,52 +1,212 @@
-@mixin spacePositions() {
+@mixin allPositions() {
     color: red;
-    #space0, #space1 {
+
+    //Rockets
+    @for $i from 2 through 5 { #space#{$i} { display: none; }; } //Initial State
+    @for $i from 8 through 11 { #space#{$i} { display: none; }; } //Initial State
+    @include individualPosition((0 1 2 3 4 5), 20px, 0); //Top Rocket Vertical
+    @include individualPosition((6 7 8 9 10 11), 260px, 0); //Rottom Rocket Veritcal
+    @include individualPosition((0 2 4 6 8 10), 0, 20px); //Left-aligned Rockets
+    @include individualPosition((1 3 5 7 9 11), 0, 180px); //Right-aligned Rockets
+
+    //Rocket Display
+    #rocketDisplay0 {
         top: 20px;
+        left: 100px;
+     } 
+
+     #rocketDisplay1 {
+         top: 260px;
+         left: 100px; 
+     }
+
+    //Cargo Ship
+    @include individualPosition((12), 100px, 0); //Front Cargo Top Vertical
+    @include individualPosition((13), 180px, 0); //Front Cargo Bottom Vertical
+    @include individualPosition((14 16 18), 20px, 0); //Main Cargo Top Vertical
+    @include individualPosition((15 17 19), 260px, 0); //Main Cargo Bottom Vertical
+    @include individualPosition((12 13), 0, 420px); //First Cargo Column Horizontal
+    @include individualPosition((14 15), 0, 500px); //Second Cargo Column Horizontal
+    @include individualPosition((16 17), 0, 580px); //Third Cargo Column Horizontal
+    @include individualPosition((18 19), 0, 660px); //Fourth Cargo Column Horizontal
+
+     //Robot Space
+     #robotSpace {
+         top: 120px;
+         left: 40px;
+     }
+
+     //Map Team Number
+     #mapTeamNumber {
+         top: 100px;
+         left: 180px;
+     }
+}
+
+@mixin individualPosition($spaces, $top, $left) {
+    @each $space in $spaces {
+        #space#{$space} {
+            @if($top != 0) { top: $top; }
+            @if($left != 0) { left: $left; }
+        }
     }
+}
+
+button {
+    letter-spacing: 0.5px; //Kerning
 }
 
 .container {
     &_app {
-        $red-color-light: #e96262;
-        $blue-color-light: #62bee9;
-        $button-gray-unclicked: #535353;
+        $red-color-light: #f53a3a;
+        $blue-color-light: #418ee7;
+        $button-gray-unclicked: #333333;
         $button-text: #ffffff;
-        $cancel-black: #2e2e2e;
+        $cancel-black: #161616;
 
         background-image: url('../images/space.png');
         position: absolute;
         width: 100%;
         height: 100%;
 
+        #headerRow {
+            display: flex;
+            flex-direction: row;
+            vertical-align: middle;
+
+            #leftInputs, #rightInputs {
+                //width: 320px;
+                padding: 16px 16px;
+                line-height: 28px;
+                vertical-align: middle;
+                padding-top: auto;
+                padding-bottom: auto;
+
+                input {
+                    width: 120px;
+                    height: 16px;
+                }
+            }
+            .topLabels {
+                color: white;
+                display: inline-block;
+                width: 72px;
+            }
+            
+            #rightInputs {
+                text-align: right;
+
+                .topLabels {
+                    text-align: left;
+                }
+            }
+
+        }
+
+        .flexBox {
+           // width:100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center; //Vertically
+            justify-content: center; //Horizontally
+            margin: 16px auto 16px auto;
+
+            .topButtons {
+                width: 136px;
+                height: 40px;
+                border: 0;
+                border-radius: 8px;
+                color: white;
+                font-size: 13px;
+                background-color: $cancel-black;
+
+                &#flip {
+                    height: 56px;
+                    width: 96px;
+                    margin: 0px 32px;
+                    font-size: 15px;
+                    background-color: $button-gray-unclicked;
+                }
+
+                //Initial state
+                &#red {
+                    background-color: $red-color-light;
+                    font-size: 18px;
+                }
+            }
+
+            .bottomButtons {
+                width: 178px;
+                height: 48px;
+                border: 0;
+                border-radius: 8px;
+                color: white;
+                margin: 0px 8px;
+                font-size: 15px;
+                background-color: $button-gray-unclicked;
+
+                &#preload {
+                    $preload-color: #12a532;
+                    $sandstorm-color: #ce8416;
+                    $teleop-color: #1a76cc;
+                    $miscellaneous-color: #c91f1f;
+
+                    background-color: $preload-color;
+                    font-size: 24px;
+                }
+            }
+        }
+
+
         #appTable {
             display: table;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
             .row {
                 display: table-row;
                 .tab {
                     display: table-cell;
-                    width: 240px;
+                    width: 200px;
                     vertical-align: middle;
+                    
+                    .tabTitle {
+                        margin-bottom: 8px;
+                        color: white;
+                        font-size: 16px;
+                        line-height: 16px;
+                    }
 
                     .flexTab {
                         display: flex;
                         flex-direction: column;
+
+                        &.preload, &.sandstorm {
+                            display: none;
+                        }
                     }
 
                     .tabButtons {
                         margin: 4px auto;
                         width: 156px;
-                        height: 64px;
+                        height: 56px;
                         border: 0;
                         border-radius: 8px;
                         background-color: $button-gray-unclicked;
                         color: $button-text;
-                        font-size: 18px;
+                        font-size: 14px;
+                        line-height: 20px;
 
                         &.cancel {
                             margin-top: 16px;
-                            width: 120px;
+                            width: 96px;
                             background-color: $cancel-black;
                             font-size: 12px;
+                            height: 40px
+                        }
+
+                        &Labels {
+                            font-size: 10px;
                         }
                     }
 
@@ -54,33 +214,45 @@
                         width: 760px;
                         height: 360px;
                         background-color: $red-color-light;
-                        border-radius: 48px;
+                        border-radius: 24px;
                         opacity: 75%;
                     }
 
-                    #spaceTable {
+                    #spaceSet {
                         display: table;
-                        #spaceTableRow {
-                            display: table-row;
-                            #spaceTableCell {
-                                display: table-cell;
+                        position: relative;
 
-                                .spaces {
-                                    font-size: 12px;
-                                    width: 80px;
-                                    height: 80px;
-                                    border: 0;
-                                    border-radius: 8px;
-                                    background-color: $button-gray-unclicked;
-                                    color: white;
-                                    position: absolute;
-                                    text-align: center;
-                                    margin-left: 0;
-                                    margin-top: -360px;
-                                }
-                                @include spacePositions();
+                        .spaces, #mapTeamNumber {
+                            font-size: 12px;
+                            width: 80px;
+                            height: 80px;
+                            border: 0;
+                            border-radius: 4px;
+                            background-color: $button-gray-unclicked;
+                            color: white;
+                            position: absolute;
+                            text-align: center;
+                            margin-left: 0;
+                            margin-top: -360px;
+
+                            &.rocketDisplay {
+                                background-color: $cancel-black;
+                            }
+
+                            &#robotSpace {
+                                width: 120px;
+                                height: 120px;
                             }
                         }
+
+                        #mapTeamNumber {
+                            width: 240px;
+                            height: 160px;
+                            font-size: 80px;
+                            background-color: transparent;
+                        }
+
+                        @include allPositions();
                     }
                 }                 
             }
