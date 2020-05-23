@@ -1,7 +1,7 @@
 /* eslint-disable */
 //Declare state variables
 let currentMode = "preload", rocketLevel = "low";
-let habStart = -1, habLeave = -1, habClimb = -1;
+let habStart = -1, habLeave = -1, habClimb = -1; //-1 means no selection, 0 means on field/no leave, 1+ means level
 
 //Declare utility class with general use properties and functions
 class Util {
