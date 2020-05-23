@@ -183,8 +183,10 @@ button {
   padding-bottom: auto;
 }
 .container_app #headerRow #leftInputs input, .container_app #headerRow #rightInputs input {
+  padding: 2px;
+  font-size: 16px;
   width: 120px;
-  height: 16px;
+  height: 20px;
 }
 .container_app #headerRow .topLabels {
   color: white;
@@ -212,6 +214,13 @@ button {
   color: white;
   font-size: 13px;
   background-color: #161616;
+  -webkit-box-shadow: 0px 0px 16px -2px #333333;
+  -moz-box-shadow: 0px 0px 16px -2px #333333;
+  box-shadow: 0px 0px 16px -2px #333333;
+  transition-property: background-color, font-size;
+  transition-duration: 0.15s, 0.15s;
+  transition-timing-function: ease-out, ease-out;
+  transition-delay: 0s, 0s;
 }
 .container_app .flexBox .topButtons#flip {
   height: 56px;
@@ -225,17 +234,24 @@ button {
   font-size: 18px;
 }
 .container_app .flexBox .bottomButtons {
-  width: 178px;
-  height: 48px;
+  width: 200px;
+  height: 56px;
   border: 0;
   border-radius: 8px;
   color: white;
   margin: 0px 8px;
   font-size: 15px;
   background-color: #3b3b3b;
+  -webkit-box-shadow: 0px 0px 16px -2px #333333;
+  -moz-box-shadow: 0px 0px 16px -2px #333333;
+  box-shadow: 0px 0px 16px -2px #333333;
+  transition-property: background-color, font-size;
+  transition-duration: 0.15s, 0.15s;
+  transition-timing-function: ease-out, ease-out;
+  transition-delay: 0s, 0s;
 }
 .container_app .flexBox .bottomButtons#preload {
-  background-color: #12a532;
+  background-color: #21c945;
   font-size: 24px;
 }
 .container_app #appTable {
@@ -262,7 +278,7 @@ button {
   display: flex;
   flex-direction: column;
 }
-.container_app #appTable .row .tab .flexTab.preload, .container_app #appTable .row .tab .flexTab.sandstorm, .container_app #appTable .row .tab .flexTab.teleop {
+.container_app #appTable .row .tab .flexTab.sandstorm, .container_app #appTable .row .tab .flexTab.teleop {
   display: none;
 }
 .container_app #appTable .row .tab .tabButtons {
@@ -275,6 +291,13 @@ button {
   color: #ffffff;
   font-size: 14px;
   line-height: 20px;
+  -webkit-box-shadow: 0px 0px 16px -2px #333333;
+  -moz-box-shadow: 0px 0px 16px -2px #333333;
+  box-shadow: 0px 0px 16px -2px #333333;
+  transition-property: opacity, background-color, font-size;
+  transition-duration: 0.15s, 0.15s, 0.15s;
+  transition-timing-function: ease-out, ease-out, ease-out;
+  transition-delay: 0s, 0s, 0s;
 }
 .container_app #appTable .row .tab .tabButtons.cancel {
   margin-top: 16px;
@@ -282,22 +305,26 @@ button {
   background-color: #161616;
   font-size: 12px;
   height: 40px;
+  -webkit-box-shadow: 0px 0px 16px -2px #333333;
+  -moz-box-shadow: 0px 0px 16px -2px #333333;
+  box-shadow: 0px 0px 16px -2px #333333;
 }
 .container_app #appTable .row .tab .tabButtonsLabels {
   font-size: 10px;
 }
 .container_app #appTable .row .tab #miscTab {
   height: 360px;
+  display: none;
 }
 .container_app #appTable .row .tab #miscTab .miscTabLabels {
   color: white;
   font-size: 16px;
-  margin-bottom: 8px;
 }
 .container_app #appTable .row .tab #miscTab #timeDefending, .container_app #appTable .row .tab #miscTab #defenseStrength {
   display: flex;
   flex-direction: row;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  margin-top: 4px;
 }
 .container_app #appTable .row .tab #miscTab #timeDefending .miscButtons, .container_app #appTable .row .tab #miscTab #defenseStrength .miscButtons {
   width: 120px;
@@ -318,11 +345,12 @@ button {
 }
 .container_app #appTable .row .tab #miscTab textarea {
   resize: none;
-  width: 360px;
+  width: 420px;
   height: 80px;
   padding: 4px;
   border: 0;
   border-radius: 8px;
+  margin-top: 4px;
 }
 .container_app #appTable .row .tab #miscTab input[type=submit] {
   width: 144px;
@@ -332,7 +360,7 @@ button {
   color: white;
   font-size: 20px;
   background-color: #3b3b3b;
-  margin-top: 24px;
+  margin-top: 12px;
 }
 .container_app #appTable .row .tab #playfield {
   width: 760px;
@@ -340,16 +368,18 @@ button {
   background-color: #f53a3a;
   border-radius: 24px;
   opacity: 75%;
-  display: none;
+  transition-property: background-color;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
 }
 .container_app #appTable .row .tab #spaceSet {
   display: table;
   position: relative;
-  display: none;
   color: red;
 }
 .container_app #appTable .row .tab #spaceSet .spaces, .container_app #appTable .row .tab #spaceSet #mapTeamNumber {
-  font-size: 12px;
+  font-size: 14px;
   width: 80px;
   height: 80px;
   border: 0;
@@ -360,13 +390,16 @@ button {
   text-align: center;
   margin-left: 0;
   margin-top: -360px;
+  transition-property: left;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+  transition-delay: 0s;
 }
 .container_app #appTable .row .tab #spaceSet .spaces.rocketDisplay, .container_app #appTable .row .tab #spaceSet #mapTeamNumber.rocketDisplay {
   background-color: #161616;
 }
-.container_app #appTable .row .tab #spaceSet .spaces#robotSpace, .container_app #appTable .row .tab #spaceSet #mapTeamNumber#robotSpace {
-  width: 120px;
-  height: 120px;
+.container_app #appTable .row .tab #spaceSet .spaces .emptySpace, .container_app #appTable .row .tab #spaceSet #mapTeamNumber .emptySpace {
+  height: 16px;
 }
 .container_app #appTable .row .tab #spaceSet #mapTeamNumber {
   width: 240px;
@@ -525,10 +558,6 @@ button {
 }
 .container_app #appTable .row .tab #spaceSet #space19 {
   left: 660px;
-}
-.container_app #appTable .row .tab #spaceSet #robotSpace {
-  top: 120px;
-  left: 40px;
 }
 .container_app #appTable .row .tab #spaceSet #mapTeamNumber {
   top: 100px;

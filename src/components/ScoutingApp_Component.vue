@@ -6,9 +6,9 @@
         <p class="topLabels">Match: </p><input type="number" id="input_matchNumber">
       </div>
       <div class="flexBox">
-        <button class="topButtons" id="red">Red Alliance</button>
-        <button class="topButtons" id="flip">Flip<br>Field</button>
-        <button class="topButtons" id="blue">Blue Alliance</button>
+        <button class="topButtons" id="red" v-on:click="js.setFieldColor('red');">Red Alliance</button>
+        <button class="topButtons" id="flip" v-on:click="js.flipSides();">Flip<br>Field</button>
+        <button class="topButtons" id="blue" v-on:click="js.setFieldColor('blue');">Blue Alliance</button>
       </div>
       <div id="rightInputs">
         <p class="topLabels">Scout: </p><input type="text" id="input_scoutName"><br>
@@ -20,53 +20,53 @@
         <div class="tab left">
           <div class="flexTab preload">
             <p class="tabTitle">HAB Preload</p>
-            <button class="tabButtons">
+            <button class="tabButtons habStart" id="habStart1" v-on:click="js.setHAB(1);">
               Started Level 1
             </button>
-            <button class="tabButtons">
+            <button class="tabButtons habStart" id="habStart2" v-on:click="js.setHAB(2);">
               Started Level 2
             </button>
-            <button class="tabButtons cancel">
+            <button class="tabButtons cancel" id="habStartCancel" v-on:click="js.setHAB(-1);">
               Cancel
             </button>
           </div>
           <div class="flexTab sandstorm">
             <p class="tabTitle">HAB Activity</p>
-            <button class="tabButtons">
+            <button class="tabButtons habLeave" id="habLeave0" v-on:click="js.setHAB(0);">
               On HAB<br>
               <span class="tabButtonsLabels">(In Sandstorm)</span>
             </button>
-            <button class="tabButtons">
+            <button class="tabButtons habLeave" id="habLeave1" v-on:click="js.setHAB(1);">
               Left Level 1<br>
               <span class="tabButtonsLabels">(In Sandstorm)</span>
             </button>
-            <button class="tabButtons">
+            <button class="tabButtons habLeave" id="habLeave2" v-on:click="js.setHAB(2);">
               Left Level 2<br>
               <span class="tabButtonsLabels">(In Sandstorm)</span>
             </button>
-            <button class="tabButtons cancel">
+            <button class="tabButtons cancel" id="habLeaveCancel" v-on:click="js.setHAB(-1);">
               Cancel
             </button>
           </div>
           <div class="flexTab teleop">
             <p class="tabTitle">HAB Activity</p>
-            <button class="tabButtons">
+            <button class="tabButtons habClimb" id="habClimb0" v-on:click="js.setHAB(0);">
               On Field<br>
               <span class="tabButtonsLabels">(In Engame)</span>
             </button>
-            <button class="tabButtons">
+            <button class="tabButtons habClimb" id="habClimb1" v-on:click="js.setHAB(1);">
               Climbed Level 1<br>
               <span class="tabButtonsLabels">(In Engame)</span>
             </button>
-            <button class="tabButtons">
+            <button class="tabButtons habClimb" id="habClimb2" v-on:click="js.setHAB(2);">
               Climbed Level 2<br>
               <span class="tabButtonsLabels">(In Engame)</span>
             </button>
-            <button class="tabButtons">
+            <button class="tabButtons habClimb" id="habClimb3" v-on:click="js.setHAB(3);">
               Climbed Level 3<br>
               <span class="tabButtonsLabels">(In Engame)</span>
             </button>
-            <button class="tabButtons cancel">
+            <button class="tabButtons cancel" id="habClimbCancel" v-on:click="js.setHAB(-1);">
               Cancel
             </button>
           </div>
@@ -101,7 +101,7 @@
             <button class="spaces" id="space3">3</button>
             <button class="spaces" id="space4">4</button>
             <button class="spaces" id="space5">5</button>
-            <button class="spaces rocketDisplay" id="rocketDisplay0">00</button>
+            <button class="spaces rocketDisplay" id="rocketDisplay0" v-on:click="js.switchRocketLevel();">Low<div class="emptySpace"></div>Level</button>
 
             <!-- Bottom Rocket -->
             <button class="spaces" id="space6">6</button>
@@ -110,7 +110,7 @@
             <button class="spaces" id="space9">9</button>
             <button class="spaces" id="space10">10</button>
             <button class="spaces" id="space11">11</button>
-            <button class="spaces rocketDisplay" id="rocketDisplay1">01</button>
+            <button class="spaces rocketDisplay" id="rocketDisplay1" v-on:click="js.switchRocketLevel();">Low<div class="emptySpace"></div>Level</button>
 
             <!-- Cargo Ship -->
             <button class="spaces" id="space12">12</button>
@@ -121,9 +121,6 @@
             <button class="spaces" id="space17">17</button>
             <button class="spaces" id="space18">18</button>
             <button class="spaces" id="space19">19</button>
-
-            <!-- Robot Space -->
-            <button class="spaces" id="robotSpace">Robot</button>
 
             <!-- Map Team Number -->
             <button id="mapTeamNumber">0</button>
@@ -169,21 +166,22 @@
       </div>
     </div>
     <div class="flexBox">
-      <button class="bottomButtons" id="preload">Preload</button>
-      <button class="bottomButtons" id="sandstorm">Sandstorm</button>
-      <button class="bottomButtons" id="teleop">Teleop</button>
-      <button class="bottomButtons" id="miscellaneous">Miscellaneous</button>
+      <button class="bottomButtons" id="preload" v-on:click="js.switchMode('preload');">Preload</button>
+      <button class="bottomButtons" id="sandstorm" v-on:click="js.switchMode('sandstorm');">Sandstorm</button>
+      <button class="bottomButtons" id="teleop" v-on:click="js.switchMode('teleop');">Teleop</button>
+      <button class="bottomButtons" id="miscellaneous" v-on:click="js.switchMode('miscellaneous');">Miscellaneous</button>
     </div>
   </div>
 </template>
 
 <script>
-import '../js/scoutingapp.js';
+import js from '../js/scoutingapp.js';
 
 export default {
   name: 'ScoutingApp',
   data() {
     return {
+      js //Object with all js functions
     }
   }
 }

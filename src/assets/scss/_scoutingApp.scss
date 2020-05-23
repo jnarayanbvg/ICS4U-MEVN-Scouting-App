@@ -1,13 +1,13 @@
-@mixin allPositions() {
+@mixin all-positions() {
     color: red;
 
     //Rockets
     @for $i from 2 through 5 { #space#{$i} { display: none; }; } //Initial State
     @for $i from 8 through 11 { #space#{$i} { display: none; }; } //Initial State
-    @include individualPosition((0 1 2 3 4 5), 20px, 0); //Top Rocket Vertical
-    @include individualPosition((6 7 8 9 10 11), 260px, 0); //Rottom Rocket Veritcal
-    @include individualPosition((0 2 4 6 8 10), 0, 20px); //Left-aligned Rockets
-    @include individualPosition((1 3 5 7 9 11), 0, 180px); //Right-aligned Rockets
+    @include individual-position((0 1 2 3 4 5), 20px, 0); //Top Rocket Vertical
+    @include individual-position((6 7 8 9 10 11), 260px, 0); //Rottom Rocket Veritcal
+    @include individual-position((0 2 4 6 8 10), 0, 20px); //Left-aligned Rockets
+    @include individual-position((1 3 5 7 9 11), 0, 180px); //Right-aligned Rockets
 
     //Rocket Display
     #rocketDisplay0 {
@@ -21,20 +21,14 @@
      }
 
     //Cargo Ship
-    @include individualPosition((12), 100px, 0); //Front Cargo Top Vertical
-    @include individualPosition((13), 180px, 0); //Front Cargo Bottom Vertical
-    @include individualPosition((14 16 18), 20px, 0); //Main Cargo Top Vertical
-    @include individualPosition((15 17 19), 260px, 0); //Main Cargo Bottom Vertical
-    @include individualPosition((12 13), 0, 420px); //First Cargo Column Horizontal
-    @include individualPosition((14 15), 0, 500px); //Second Cargo Column Horizontal
-    @include individualPosition((16 17), 0, 580px); //Third Cargo Column Horizontal
-    @include individualPosition((18 19), 0, 660px); //Fourth Cargo Column Horizontal
-
-     //Robot Space
-     #robotSpace {
-         top: 120px;
-         left: 40px;
-     }
+    @include individual-position((12), 100px, 0); //Front Cargo Top Vertical
+    @include individual-position((13), 180px, 0); //Front Cargo Bottom Vertical
+    @include individual-position((14 16 18), 20px, 0); //Main Cargo Top Vertical
+    @include individual-position((15 17 19), 260px, 0); //Main Cargo Bottom Vertical
+    @include individual-position((12 13), 0, 420px); //First Cargo Column Horizontal
+    @include individual-position((14 15), 0, 500px); //Second Cargo Column Horizontal
+    @include individual-position((16 17), 0, 580px); //Third Cargo Column Horizontal
+    @include individual-position((18 19), 0, 660px); //Fourth Cargo Column Horizontal
 
      //Map Team Number
      #mapTeamNumber {
@@ -43,7 +37,7 @@
      }
 }
 
-@mixin individualPosition($spaces, $top, $left) {
+@mixin individual-position($spaces, $top, $left) {
     @each $space in $spaces {
         #space#{$space} {
             @if($top != 0) { top: $top; }
@@ -51,6 +45,9 @@
         }
     }
 }
+
+
+
 
 button {
     letter-spacing: 0.5px; //Kerning
@@ -64,6 +61,7 @@ button {
         $button-gray-clicked: #7c7c7c;
         $button-text: #ffffff;
         $cancel-black: #161616;
+        $shadow-black: #333333;
 
         background-image: url('../images/space.png');
         position: absolute;
@@ -84,8 +82,10 @@ button {
                 padding-bottom: auto;
 
                 input {
+                    padding: 2px;
+                    font-size: 16px;
                     width: 120px;
-                    height: 16px;
+                    height: 20px;
                 }
             }
             .topLabels {
@@ -121,6 +121,9 @@ button {
                 font-size: 13px;
                 background-color: $cancel-black;
 
+                @include box-shadow(0px, 0px, 16px, -2px, $shadow-black);
+                @include transition((background-color font-size), (0.15s 0.15s), (ease-out ease-out), (0s 0s));
+
                 &#flip {
                     height: 56px;
                     width: 96px;
@@ -137,8 +140,8 @@ button {
             }
 
             .bottomButtons {
-                width: 178px;
-                height: 48px;
+                width: 200px;
+                height: 56px;
                 border: 0;
                 border-radius: 8px;
                 color: white;
@@ -146,8 +149,11 @@ button {
                 font-size: 15px;
                 background-color: $button-gray-unclicked;
 
+                @include box-shadow(0px, 0px, 16px, -2px, $shadow-black);
+                @include transition((background-color font-size), (0.15s 0.15s), (ease-out ease-out), (0s 0s));
+
                 &#preload {
-                    $preload-color: #12a532;
+                    $preload-color: #21c945;
                     $sandstorm-color: #ce8416;
                     $teleop-color: #1a76cc;
                     $miscellaneous-color: #c91f1f;
@@ -182,8 +188,8 @@ button {
                         display: flex;
                         flex-direction: column;
 
-                        &.preload, &.sandstorm, &.teleop {
-                            display: none; //TEMP
+                        &.sandstorm, &.teleop {
+                            display: none;
                         }
                     }
 
@@ -199,12 +205,17 @@ button {
                         font-size: 14px;
                         line-height: 20px;
 
+                        @include box-shadow(0px, 0px, 16px, -2px, $shadow-black);
+                        @include transition((opacity background-color font-size), (0.15s 0.15s 0.15s), (ease-out ease-out ease-out), (0s 0s 0s));
+
                         &.cancel {
                             margin-top: 16px;
                             width: 96px;
                             background-color: $cancel-black;
                             font-size: 12px;
-                            height: 40px
+                            height: 40px;
+
+                            @include box-shadow(0px, 0px, 16px, -2px, $shadow-black);
                         }
 
                         &Labels {
@@ -214,17 +225,18 @@ button {
 
                     #miscTab {
                         height: 360px;
+                        display: none;
                         
                         .miscTabLabels {
                             color: white;
                             font-size: 16px;
-                            margin-bottom: 8px;
                         }
 
                         #timeDefending, #defenseStrength {
                             display: flex;
                             flex-direction: row;
-                            margin-bottom: 16px;
+                            margin-bottom: 20px;
+                            margin-top: 4px;
 
                             .miscButtons {
                                 $radius: 8px;
@@ -251,11 +263,12 @@ button {
 
                         textarea {
                             resize: none;
-                            width: 360px;
+                            width: 420px;
                             height: 80px;
                             padding: 4px;
                             border: 0;
                             border-radius: 8px;
+                            margin-top: 4px;
                         }
 
                         input[type="submit"] {
@@ -266,7 +279,7 @@ button {
                             color: white;
                             font-size: 20px;
                             background-color: $button-gray-unclicked;
-                            margin-top: 24px;
+                            margin-top: 12px;
                         }
                     }
 
@@ -276,18 +289,15 @@ button {
                         background-color: $red-color-light;
                         border-radius: 24px;
                         opacity: 75%;
-
-                        display: none; //TEMP
+                        @include transition((background-color), (0.15s), (linear), (0s));
                     }
 
                     #spaceSet {
                         display: table;
                         position: relative;
 
-                        display: none; //TEMP
-
                         .spaces, #mapTeamNumber {
-                            font-size: 12px;
+                            font-size: 14px;
                             width: 80px;
                             height: 80px;
                             border: 0;
@@ -299,14 +309,15 @@ button {
                             margin-left: 0;
                             margin-top: -360px;
 
+                            @include transition((left), (0.5s), (ease-out), (0s));
+
                             &.rocketDisplay {
                                 background-color: $cancel-black;
                             }
 
-                            &#robotSpace {
-                                width: 120px;
-                                height: 120px;
-                            }
+                            .emptySpace {
+                                height: 16px;
+                             }
                         }
 
                         #mapTeamNumber {
@@ -316,7 +327,7 @@ button {
                             background-color: transparent;
                         }
 
-                        @include allPositions();
+                        @include all-positions();
                     }
                 }                 
             }
