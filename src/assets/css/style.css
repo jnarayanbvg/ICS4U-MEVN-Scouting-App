@@ -78,7 +78,7 @@ body {
   font-weight: 300;
   transition-property: background-color, color;
   transition-duration: 0.15s, 0.15s;
-  transition-timing-function: ease-out, ease-out;
+  transition-timing-function: ease, ease;
   transition-delay: 0s, 0s;
 }
 .container_createComp #createFlexBox div input[type=submit]:hover {
@@ -130,7 +130,7 @@ body {
   font-weight: 300;
   transition-property: background-color, color;
   transition-duration: 0.15s, 0.15s;
-  transition-timing-function: ease-out, ease-out;
+  transition-timing-function: ease, ease;
   transition-delay: 0s, 0s;
 }
 .container_comps #compsTable .compsRow .compsCell:last-child {
@@ -219,7 +219,7 @@ button {
   box-shadow: 0px 0px 16px -2px #333333;
   transition-property: background-color, font-size;
   transition-duration: 0.15s, 0.15s;
-  transition-timing-function: ease-out, ease-out;
+  transition-timing-function: ease, ease;
   transition-delay: 0s, 0s;
 }
 .container_app .flexBox .topButtons#flip {
@@ -247,7 +247,7 @@ button {
   box-shadow: 0px 0px 16px -2px #333333;
   transition-property: background-color, font-size;
   transition-duration: 0.15s, 0.15s;
-  transition-timing-function: ease-out, ease-out;
+  transition-timing-function: ease, ease;
   transition-delay: 0s, 0s;
 }
 .container_app .flexBox .bottomButtons#preload {
@@ -296,7 +296,7 @@ button {
   box-shadow: 0px 0px 16px -2px #333333;
   transition-property: opacity, background-color, font-size;
   transition-duration: 0.15s, 0.15s, 0.15s;
-  transition-timing-function: ease-out, ease-out, ease-out;
+  transition-timing-function: ease, ease, ease;
   transition-delay: 0s, 0s, 0s;
 }
 .container_app #appTable .row .tab .tabButtons.cancel {
@@ -379,7 +379,7 @@ button {
   color: red;
 }
 .container_app #appTable .row .tab #spaceSet .spaces, .container_app #appTable .row .tab #spaceSet #mapTeamNumber {
-  font-size: 14px;
+  font-size: 13px;
   width: 80px;
   height: 80px;
   border: 0;
@@ -390,16 +390,16 @@ button {
   text-align: center;
   margin-left: 0;
   margin-top: -360px;
-  transition-property: left;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-out;
-  transition-delay: 0s;
+  transition-property: left, background-image;
+  transition-duration: 0.5s, 0.15s;
+  transition-timing-function: ease, ease;
+  transition-delay: 0s, 0s;
 }
 .container_app #appTable .row .tab #spaceSet .spaces.rocketDisplay, .container_app #appTable .row .tab #spaceSet #mapTeamNumber.rocketDisplay {
   background-color: #161616;
 }
 .container_app #appTable .row .tab #spaceSet .spaces .emptySpace, .container_app #appTable .row .tab #spaceSet #mapTeamNumber .emptySpace {
-  height: 16px;
+  height: 18px;
 }
 .container_app #appTable .row .tab #spaceSet #mapTeamNumber {
   width: 240px;

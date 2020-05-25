@@ -1,7 +1,22 @@
 /* eslint-disable */
+window.addEventListener('DOMContentLoaded', () => {
+    initApp();
+});
+
+function initApp() {
+    Util.initSpaces();
+}
+
+
+
 //Declare state variables
 let currentMode = "preload", rocketLevel = "low";
 let habStart = -1, habLeave = -1, habClimb = -1; //-1 means no selection, 0 means on field/no leave, 1+ means level
+let sandstormCargo = 0, sandstormPanel = 0, shipCargo = 0, shipPanel = 0, lowCargo = 0, lowPanel = 0, midCargo = 0, midPanel = 0, highCargo = 0, highPanel = 0;
+let cargoFloor = 0, cargoHuman = 0, panelFloor = 0, panelHuman = 0;
+let defenseTime = 0, defenseStrength = 0;
+let allianceColor = "red";
+let currentItem = "";
 
 //Declare utility class with general use properties and functions
 class Util {
@@ -16,6 +31,11 @@ class Util {
     static teleopColor = "#1a76cc";
     static miscellaneousColor = "#c91f1f";
 
+    static notScored = Util.buttonGrayUnclicked;
+    static scored = "#10b834";
+    static spaces = [];
+    
+
     static getId(id) {
         return document.getElementById(id);
     }
@@ -26,6 +46,10 @@ class Util {
 
     static getCSS(elem, prop) {
         return window.getComputedStyle(elem)[prop];
+    }
+
+    static getItem() {
+        return currentItem.slice(0,5);
     }
 
     static disableButton(button, type) {
@@ -87,13 +111,110 @@ class Util {
         }
     }
 
+    static isEnabled(button, type) {
+        if(type == "cancel") {
+            return button.style.fontSize == "16px";
+        }
+    }
+
+    //For the rocket
     static enableSpaces(arr) {
         arr.forEach(val => Util.getId("space"+val).style.display = "block");
     }
 
+    //For the rocket
     static disableSpaces(arr) {
         arr.forEach(val => Util.getId("space"+val).style.display = "none");
     }
+
+
+
+    static initSpaces() {
+        for(let i = 0; i < 20; i++) {
+            this.spaces[i] = new Space("space"+i);
+        }
+    }
+
+    static enableHolding() {
+        this.spaces.forEach(space => space.enableHolding());
+    }
+
+    static disableHolding() {
+        this.spaces.forEach(space => space.disableHolding());
+    }
+
+    static score(num) {
+        this.spaces[num].score();
+    }
+}
+
+class Space {
+    cargoScored = false;
+    panelScored = false;
+    cargoWhen = "";
+    panelWhen = "";
+    item;
+
+    constructor(id) {
+        this.item = Util.getId(id);
+    }
+
+    enableHolding() {
+        if(currentMode == "preload") return;
+        
+        if((Util.getItem() == "Cargo" && this.cargoScored) || (Util.getItem() == "Panel" && this.panelScored)) {
+            this.item.innerHTML = "Scored";
+        } else {
+            this.item.innerHTML = "Empty";
+        }
+
+        this.setColor();
+    }
+
+    disableHolding() {
+        let cargoMessage = "Cargo: ", panelMessage = "Panel: ";
+        cargoMessage += this.cargoScored ? "✔" : "✖"; 
+        panelMessage += this.panelScored ? "✔" : "✖"; 
+
+        this.item.innerHTML = cargoMessage + '<div class="emptySpace"></div>' + panelMessage;
+   
+        this.setColor();
+    }
+
+    score() {
+        if(this.item.innerHTML == "Empty") {
+            if(Util.getItem() == "Cargo") {
+                this.cargoScored = true;
+                this.cargoWhen = currentMode;
+            } else {
+                this.panelScored = true;
+                this.panelWhen = currentMode;
+            }
+            setItem("");
+        }
+    }
+    
+    setColor() {
+        if(this.item.innerHTML == "Empty") {
+            this.item.style.backgroundImage = "-webkit-linear-gradient(top,"+Util.notScored+","+Util.notScored+" 50%,"+Util.notScored+" 50%,"+Util.notScored+" 100%)";
+        } else if(this.item.innerHTML == "Scored") {
+            this.item.style.backgroundImage = "-webkit-linear-gradient(top,"+Util.scored+","+Util.scored+" 50%,"+Util.scored+" 50%,"+Util.scored+" 100%)";
+        } else {
+            if(this.cargoScored && this.panelScored) {
+                this.item.style.backgroundImage = "-webkit-linear-gradient(top,"+Util.scored+","+Util.scored+" 50%,"+Util.scored+" 50%,"+Util.scored+" 100%)";
+            } else if(this.cargoScored) {
+                this.item.style.backgroundImage = "-webkit-linear-gradient(top,"+Util.scored+","+Util.scored+" 50%,"+Util.notScored+" 50%,"+Util.notScored+" 100%)";
+            } else if(this.panelScored) {
+                this.item.style.backgroundImage = "-webkit-linear-gradient(top,"+Util.notScored+","+Util.notScored+" 50%,"+Util.scored+" 50%,"+Util.scored+" 100%)";
+            } else {
+                this.item.style.backgroundImage = "-webkit-linear-gradient(top,"+Util.notScored+","+Util.notScored+" 50%,"+Util.notScored+" 50%,"+Util.notScored+" 100%)";
+            }
+        }
+    }
+}
+
+function score(num) {
+    Util.score(num);
 }
 
 
@@ -167,10 +288,55 @@ function setHAB(level) {
             if(habStart == 2) Util.disableButton(Util.getId("habLeave1"), "full");
         }
     }
+}
 
-    console.log("s" + habStart);
-    console.log("l" + habLeave);
-    console.log("c" + habClimb);
+function setItem(item) {
+    let lookFor = "";
+    switch(currentMode) {
+        case "preload":
+            lookFor = "itemPreload";
+            break;
+        default: 
+            lookFor = "itemMain";
+            break;
+    }
+
+    if(currentItem == "" && item != "") {
+        //Check for invalid click
+        if(Util.getCSS(Util.getId(lookFor+item), "opacity") == 0) return;
+
+        let buttons = Util.getClass(lookFor);
+        buttons.forEach(button => Util.disableButton(button, "full"));
+        Util.enableButton(Util.getId(lookFor+item), "tab");
+        Util.enableButton(Util.getId(lookFor+"Cancel"), "cancel");
+        currentItem = item;
+        //Edit the appearance of the spaces
+        Util.enableHolding();
+
+        //Handle preload to main game logic
+        if(currentMode == "preload") {
+            let buttons = Util.getClass("itemMain");
+            buttons.forEach(button => Util.disableButton(button, "full"));
+            if(item == "Cargo") Util.enableButton(Util.getId("itemMainCargoFloor"), "tab");
+            else Util.enableButton(Util.getId("itemMainPanelFloor"), "tab");
+            Util.enableButton(Util.getId("itemMainCancel"), "cancel");
+        }
+    }
+    if(currentItem != "" && item == "") {
+        if(Util.isEnabled(Util.getId(lookFor+"Cancel"), "cancel")) {
+            let buttons = Util.getClass("itemPreload");
+            buttons.forEach(button => Util.disableButton(button, "tab"));
+            buttons.forEach(button => Util.enableButton(button, "full"));
+            Util.disableButton(Util.getId("itemPreloadCancel"), "cancel");
+            buttons = Util.getClass("itemMain");
+            buttons.forEach(button => Util.disableButton(button, "tab"));
+            buttons.forEach(button => Util.enableButton(button, "full"));
+            Util.disableButton(Util.getId("itemMainCancel"), "cancel");
+            currentItem = "";
+            //Edit the appearance of the spaces
+            Util.disableHolding();
+        }
+    }
 }
 
 function switchRocketLevel() {
@@ -223,12 +389,15 @@ function switchMode(newMode) {
     //Enable certain screen items per mode
     if(currentMode == "preload") {
         preload.forEach(item => item.style.display = "block");
+        Util.disableHolding();
     }
     if(currentMode == "sandstorm") {
         sandstorm.forEach(item => item.style.display = "block");
+        if(currentItem != "") Util.enableHolding();
     }
     if(currentMode == "teleop") {
         teleop.forEach(item => item.style.display = "block");
+        if(currentItem != "") Util.enableHolding();
     }
     if(currentMode == "miscellaneous") {
         Util.getId("miscTab").style.display = "block";
@@ -247,7 +416,9 @@ const js = {
     setFieldColor,
     flipSides,
     setHAB,
+    setItem,
     switchRocketLevel,
+    score,
     switchMode
 }
 

@@ -79,7 +79,7 @@
                     background-color: darken($create-container, 25%);
                     color: $input-background;
                     font-weight: 300;
-                    @include transition((background-color, color), (0.15s 0.15s), (ease-out ease-out), (0s 0s));
+                    @include transition((background-color, color), (0.15s 0.15s), (ease ease), (0s 0s));
         
                     &:hover {
                         background-color: $input-background;
@@ -145,7 +145,7 @@
                     border-right: 2px solid $back-colour-border;
                     border-bottom: 2px solid $back-colour-border;
                     font-weight: 300;
-                    @include transition((background-color, color), (0.15s 0.15s), (ease-out ease-out), (0s 0s));
+                    @include transition((background-color, color), (0.15s 0.15s), (ease ease), (0s 0s));
 
                     &:last-child {
                         border-right-width: 0;
