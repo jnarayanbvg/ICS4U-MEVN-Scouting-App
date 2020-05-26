@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,6 +8,13 @@
 
 body {
   background-color: #ecf4fd;
+}
+
+a {
+  text-decoration: none;
+}
+a, a:visited, a:active, a:hover {
+  color: inherit;
 }
 
 .container_home #homeComps {
@@ -118,7 +125,7 @@ body {
 }
 .container_comps #compsTable .compsRow {
   background-color: #c7e5ff;
-  font-size: 14px;
+  font-size: 16px;
 }
 .container_comps #compsTable .compsRow:nth-child(even) {
   background-color: #aed8ff;
@@ -127,7 +134,7 @@ body {
   padding: 10px;
   border-right: 2px solid #ecf4fd;
   border-bottom: 2px solid #ecf4fd;
-  font-weight: 300;
+  font-weight: 400;
   transition-property: background-color, color;
   transition-duration: 0.15s, 0.15s;
   transition-timing-function: ease, ease;
@@ -144,7 +151,7 @@ body {
 .container_comps #compsTable .compsRow .compsCell:hover {
   background-color: #ecf4fd;
   color: #4ba8ff;
-  font-weight: 500;
+  font-weight: 600;
 }
 .container_comps #compsTable .compsRow .compsCellDelete:hover {
   color: #ff6666;
@@ -176,6 +183,7 @@ button {
   vertical-align: middle;
 }
 .container_app #headerRow #leftInputs, .container_app #headerRow #rightInputs {
+  width: 100%;
   padding: 16px 16px;
   line-height: 28px;
   vertical-align: middle;
@@ -188,7 +196,11 @@ button {
   width: 120px;
   height: 20px;
 }
-.container_app #headerRow .topLabels {
+.container_app #headerRow #leftInputs #competitionId, .container_app #headerRow #rightInputs #competitionId {
+  margin-left: 40px;
+  width: 80%;
+}
+.container_app #headerRow .topLabels, .container_app #headerRow #competitionId {
   color: white;
   display: inline-block;
   width: 72px;

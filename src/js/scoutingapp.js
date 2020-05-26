@@ -445,7 +445,8 @@ const js = {
     switchRocketLevel,
     score,
     switchScale,
-    switchMode
+    switchMode,
+    Util
 }
 
 export default js;

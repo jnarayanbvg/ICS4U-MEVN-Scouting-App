@@ -134,17 +134,16 @@
 
             .compsRow {
                 background-color: $back-colour-primary;
-                font-size: 14px;
+                font-size: 16px;
 
                 &:nth-child(even) {
                     background-color: $back-colour-secondary;
                 }
-
                 .compsCell {
                     padding: 10px;
                     border-right: 2px solid $back-colour-border;
                     border-bottom: 2px solid $back-colour-border;
-                    font-weight: 300;
+                    font-weight: 400;
                     @include transition((background-color, color), (0.15s 0.15s), (ease ease), (0s 0s));
 
                     &:last-child {
@@ -160,7 +159,7 @@
                     &:hover {
                         background-color: $hover-colour;
                         color: $back-colour-tertiary;
-                        font-weight: 500;
+                        font-weight: 600;
                     }
 
                     &Delete:hover { 

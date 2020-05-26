@@ -1,17 +1,12 @@
 <template>
   <div id="app">
-    <ScoutingApp />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ScoutingApp from './components/ScoutingApp_Component.vue'
-
 export default {
-  name: 'App',
-  components: {
-    ScoutingApp
-  }
+  name: 'App'
 }
 </script>
 

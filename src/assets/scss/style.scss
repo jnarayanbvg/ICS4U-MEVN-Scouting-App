@@ -12,5 +12,12 @@ body {
     background-color: $background-color;
 }
 
+a {
+    text-decoration: none;
+    &, &:visited, &:active, &:hover {
+        color: inherit;
+    }
+}
+
 @import 'home';
 @import 'scoutingApp';

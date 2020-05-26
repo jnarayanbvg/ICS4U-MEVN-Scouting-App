@@ -14,7 +14,7 @@
           {{ getDate(comp.start) }} &mdash; {{ getDate(comp.end) }}
         </td>
         <td class="compsCell">Teams</td>
-        <td class="compsCell">Scout Match</td>
+        <td class="compsCell"><router-link :to="{ name: 'scouting', params: { competition: comp._id }}">Scout Match</router-link></td>
         <td class="compsCell compsCellDelete" v-on:click="$emit('delete-comp', comp._id)">Delete</td>
       </tr>
     </table>

@@ -2,7 +2,7 @@
   <div class="container_app">
     <div id="headerRow">
       <div id="leftInputs">
-        <p class="topLabels">Competition: </p><br>
+        <p class="topLabels">Competition: </p><span id="competitionId"></span><br>
         <p class="topLabels">Match: </p><input type="number" id="input_matchNumber">
       </div>
       <div class="flexBox">
@@ -181,8 +181,20 @@ export default {
   name: 'ScoutingApp',
   data() {
     return {
+      comp: {},
       js //Object with all js functions
     }
+  },
+  created() {
+    if(this.$route.params.competition == undefined) {
+      alert("Please click a valid scouting app link from the home page!");
+      this.$router.push({name: 'home'});
+    }
+    let uri = `api/comps/${this.$route.params.competition}`;
+    this.axios.get(uri).then(response => {
+      this.comp = response.data;
+      js.Util.getId('competitionId').innerHTML = this.comp.name;
+    });
   }
 }
 </script>

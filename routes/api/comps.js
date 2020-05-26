@@ -9,6 +9,12 @@ router.get('/', async (req, res) => {
     res.send(await comps.find({}).toArray());
 });
 
+//Get One Comp
+router.get('/:id', async (req, res) => {
+    const comps = await loadCompsCollection();
+    res.send(await comps.findOne({_id: new mongodb.ObjectID(req.params.id)}));
+});
+
 // Add Comp
 router.post('/', async (req, res) => {
     const comps = await loadCompsCollection();
