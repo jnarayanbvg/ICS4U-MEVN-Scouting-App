@@ -333,11 +333,16 @@ button {
   font-size: 14px;
   background-color: #3b3b3b;
   color: white;
+  transition-property: background-color, font-size;
+  transition-duration: 0.15s, 0.15s;
+  transition-timing-function: ease, ease;
+  transition-delay: 0s, 0s;
 }
 .container_app #appTable .row .tab #miscTab #timeDefending .miscButtons.first, .container_app #appTable .row .tab #miscTab #defenseStrength .miscButtons.first {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   background-color: #7c7c7c;
+  font-size: 16px;
 }
 .container_app #appTable .row .tab #miscTab #timeDefending .miscButtons.last, .container_app #appTable .row .tab #miscTab #defenseStrength .miscButtons.last {
   border-top-right-radius: 8px;

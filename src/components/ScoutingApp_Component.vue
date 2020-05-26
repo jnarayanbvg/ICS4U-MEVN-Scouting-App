@@ -75,17 +75,17 @@
           <div id="miscTab">
             <span class="miscTabLabels">Time Defending</span><br>
             <div id="timeDefending">
-              <button class="miscButtons first" id="timeDefending0">None</button>
-              <button class="miscButtons" id="timeDefending1">Little</button>
-              <button class="miscButtons" id="timeDefending2">Some</button>
-              <button class="miscButtons last" id="timeDefending3">Most</button>
+              <button class="miscButtons timeDefending first" id="timeDefending0" v-on:click="js.switchScale('timeDefending', 0);">None</button>
+              <button class="miscButtons timeDefending" id="timeDefending1" v-on:click="js.switchScale('timeDefending', 1);">Little</button>
+              <button class="miscButtons timeDefending" id="timeDefending2" v-on:click="js.switchScale('timeDefending', 2);">Some</button>
+              <button class="miscButtons timeDefending last" id="timeDefending3" v-on:click="js.switchScale('timeDefending', 3);">Most</button>
             </div>
             <span class="miscTabLabels">Defense Strength</span><br>
             <div id="defenseStrength">
-              <button class="miscButtons first" id="defenseStrength0">None</button>
-              <button class="miscButtons" id="defenseStrength1">Weak</button>
-              <button class="miscButtons" id="defenseStrength2">Moderate</button>
-              <button class="miscButtons last" id="defenseStrength3">Strong</button>
+              <button class="miscButtons defenseStrength first" id="defenseStrength0" v-on:click="js.switchScale('defenseStrength', 0);">None</button>
+              <button class="miscButtons defenseStrength" id="defenseStrength1" v-on:click="js.switchScale('defenseStrength', 1);">Weak</button>
+              <button class="miscButtons defenseStrength" id="defenseStrength2" v-on:click="js.switchScale('defenseStrength', 2);">Moderate</button>
+              <button class="miscButtons defenseStrength last" id="defenseStrength3" v-on:click="js.switchScale('defenseStrength', 3);">Strong</button>
             </div>
             <span class="miscTabLabels">Comments</span><br>
             <textarea id="input_comments"></textarea>

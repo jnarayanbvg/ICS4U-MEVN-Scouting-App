@@ -246,12 +246,16 @@ button {
                                 border: 0;
                                 font-size: 14px;
                                 background-color: $button-gray-unclicked;
-                                color: white;                                
+                                color: white;  
+                                
+                                @include transition((background-color font-size), (0.15s 0.15s), (ease ease), (0s 0s));
+
 
                                 &.first {
                                     border-top-left-radius: $radius;
                                     border-bottom-left-radius: $radius;
                                     background-color: $button-gray-clicked;
+                                    font-size: 16px;
                                 }
 
                                 &.last {

@@ -14,7 +14,7 @@ let currentMode = "preload", rocketLevel = "low";
 let habStart = -1, habLeave = -1, habClimb = -1; //-1 means no selection, 0 means on field/no leave, 1+ means level
 let sandstormCargo = 0, sandstormPanel = 0, shipCargo = 0, shipPanel = 0, lowCargo = 0, lowPanel = 0, midCargo = 0, midPanel = 0, highCargo = 0, highPanel = 0;
 let cargoFloor = 0, cargoHuman = 0, panelFloor = 0, panelHuman = 0;
-let defenseTime = 0, defenseStrength = 0;
+let timeDefending = 0, defenseStrength = 0;
 let allianceColor = "red";
 let currentItem = "";
 
@@ -151,12 +151,12 @@ class Util {
 class Space {
     cargoScored = false;
     panelScored = false;
-    cargoWhen = "";
-    panelWhen = "";
     item;
+    num;
 
     constructor(id) {
         this.item = Util.getId(id);
+        this.num = parseInt(id.slice(5));
     }
 
     enableHolding() {
@@ -185,12 +185,24 @@ class Space {
         if(this.item.innerHTML == "Empty") {
             if(Util.getItem() == "Cargo") {
                 this.cargoScored = true;
-                this.cargoWhen = currentMode;
+
+                if(this.num == 0 || this.num == 1 || this.num == 6 || this.num == 7) lowCargo++;
+                else if(this.num == 2 || this.num == 3 || this.num == 8 || this.num == 9) midCargo++;
+                else if(this.num == 4 || this.num == 5 || this.num == 10 || this.num == 11) highCargo++;
+                else shipCargo++;
+                if(currentMode == "sandstorm") sandstormCargo++;
             } else {
                 this.panelScored = true;
-                this.panelWhen = currentMode;
+
+                if(this.num == 0 || this.num == 1 || this.num == 6 || this.num == 7) lowPanel++;
+                else if(this.num == 2 || this.num == 3 || this.num == 8 || this.num == 9) midPanel++;
+                else if(this.num == 4 || this.num == 5 || this.num == 10 || this.num == 11) highPanel++;
+                else shipPanel++;
+                if(currentMode == "sandstorm") sandstormPanel++;
             }
             setItem("");
+
+            console.log(lowCargo + " " + lowPanel + " " + midCargo + " " + midPanel + " " + highCargo + " " + highPanel + " " + shipCargo + " " + shipPanel + " ");
         }
     }
     
@@ -224,6 +236,7 @@ function setFieldColor(color) {
     Util.getId("playfield").style.backgroundColor = Util[color+"ColorLight"];
     Util.disableButton(Util.getId(alt), alt);
     Util.enableButton(Util.getId(color), color);
+    allianceColor = alt;
 }
 
 function flipSides() {
@@ -312,6 +325,11 @@ function setItem(item) {
         currentItem = item;
         //Edit the appearance of the spaces
         Util.enableHolding();
+        //Add to the appropriate pickup variable
+        if(currentMode != "preload") {
+            let pickup = item.slice(0,1).toLowerCase() + item.slice(1);
+            eval(pickup + "++");
+        }
 
         //Handle preload to main game logic
         if(currentMode == "preload") {
@@ -362,6 +380,13 @@ function switchRocketLevel() {
             Util.enableSpaces([4, 5, 10, 11]);
             break;
     }
+}
+
+function switchScale(type, value) {
+    let buttons = Util.getClass(type);
+    buttons.forEach(button => Util.disableButton(button, "tab"));
+    Util.enableButton(Util.getId(type+value), "tab");
+    eval(type + " = " + value);
 }
 
 function switchMode(newMode) {
@@ -419,6 +444,7 @@ const js = {
     setItem,
     switchRocketLevel,
     score,
+    switchScale,
     switchMode
 }
 
