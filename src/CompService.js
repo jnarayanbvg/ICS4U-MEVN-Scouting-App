@@ -11,10 +11,10 @@ class CompService {
             axios.get(url).then((res) => {
                 const data = res.data;
                 resolve(
-                    data.map(post => ({
-                        ...post,
-                        start: new Date(post.start),
-                        end: new Date(post.end)
+                    data.map(comp => ({
+                        ...comp,
+                        start: new Date(comp.start),
+                        end: new Date(comp.end)
                     }))
                 );
             })

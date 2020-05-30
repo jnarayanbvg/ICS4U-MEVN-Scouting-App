@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function initApp() {
+    Util.initButtons();
     Util.initSpaces();
 }
 
@@ -35,6 +36,9 @@ class Util {
     static scored = "#10b834";
     static spaces = [];
     
+    static getVar(variable) {
+        return eval(variable);
+    }
 
     static getId(id) {
         return document.getElementById(id);
@@ -50,6 +54,13 @@ class Util {
 
     static getItem() {
         return currentItem.slice(0,5);
+    }
+
+    static initButtons() {
+        //Sets all buttons to type="button" to avoid always submitting
+        let buttons = document.getElementsByTagName("button");
+        buttons.forEach(button => button.type = "button");
+        // console.log(buttons);
     }
 
     static disableButton(button, type) {
@@ -201,8 +212,6 @@ class Space {
                 if(currentMode == "sandstorm") sandstormPanel++;
             }
             setItem("");
-
-            console.log(lowCargo + " " + lowPanel + " " + midCargo + " " + midPanel + " " + highCargo + " " + highPanel + " " + shipCargo + " " + shipPanel + " ");
         }
     }
     
@@ -236,7 +245,7 @@ function setFieldColor(color) {
     Util.getId("playfield").style.backgroundColor = Util[color+"ColorLight"];
     Util.disableButton(Util.getId(alt), alt);
     Util.enableButton(Util.getId(color), color);
-    allianceColor = alt;
+    allianceColor = color;
 }
 
 function flipSides() {
@@ -250,6 +259,10 @@ function flipSides() {
         let curr = Number((Util.getCSS(button, "left")).slice(0, -2));
         button.style.left = (maxVal-curr)+"px";
     }
+}
+
+function setMapTeamNumber() {
+    Util.getId("mapTeamNumber").innerHTML = Util.getId("input_teamNumber").value;
 }
 
 function setHAB(level) {
@@ -432,7 +445,27 @@ function switchMode(newMode) {
     }
 }
 
+// function getInputs() {
+//     let arr = ["allianceColor", 
+//         "habStart", "habLeave", "habClimb", 
+//         "sandstormCargo", "sandstormPanel", 
+//         "shipCargo", "shipPanel", "lowCargo", "lowPanel", "midCargo", "midPanel", "highCargo", "highPanel",
+//         "cargoFloor", "cargoHuman", "panelFloor", "panelHuman", 
+//         "timeDefending", "defenseStrength"];
+//     arr.forEach(val => {
+//         Util.getId("input_"+val).value = eval(val);
+//     });
+//     let obj = {
+//         allianceColor, 
+//         habStart, habLeave, habClimb, 
+//         sandstormCargo, sandstormPanel, 
+//         shipCargo, shipPanel, lowCargo, lowPanel, midCargo, midPanel, highCargo, highPanel,
+//         cargoFloor, cargoHuman, panelFloor, panelHuman, 
+//         timeDefending, defenseStrength
+//     }
 
+//     return obj;
+// } 
 
 
 
@@ -440,6 +473,7 @@ function switchMode(newMode) {
 const js = {
     setFieldColor,
     flipSides,
+    setMapTeamNumber,
     setHAB,
     setItem,
     switchRocketLevel,

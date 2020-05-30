@@ -198,7 +198,7 @@ button {
 }
 .container_app #headerRow #leftInputs #competitionId, .container_app #headerRow #rightInputs #competitionId {
   margin-left: 40px;
-  width: 80%;
+  width: 60%;
 }
 .container_app #headerRow .topLabels, .container_app #headerRow #competitionId {
   color: white;
