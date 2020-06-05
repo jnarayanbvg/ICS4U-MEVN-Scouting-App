@@ -435,6 +435,7 @@ function switchMode(newMode) {
 
 //Export the usable js functions
 const js = {
+    initApp,
     setFieldColor,
     flipSides,
     setMapTeamNumber,

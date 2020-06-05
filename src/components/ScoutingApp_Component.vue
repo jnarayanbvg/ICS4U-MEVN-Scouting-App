@@ -251,7 +251,7 @@ export default {
     });
   },
   mounted() {
-    js.Util.initApp();
+    js.initApp();
   },
   methods: {
     async checkForm() {
