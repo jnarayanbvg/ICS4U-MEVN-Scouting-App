@@ -174,8 +174,11 @@ class Space {
 
     disableHolding() {
         let cargoMessage = "Cargo: ", panelMessage = "Panel: ";
-        cargoMessage += this.cargoScored ? "✔" : "✖"; 
-        panelMessage += this.panelScored ? "✔" : "✖"; 
+        //cargoMessage += this.cargoScored ? "✔" : "✖"; 
+        //panelMessage += this.panelScored ? "✔" : "✖"; 
+        console.log(this);
+        console.log(this.cargoScored);
+        console.log(this.panelScored);
 
         this.item.innerHTML = cargoMessage + '<div class="emptySpace"></div>' + panelMessage;
    
