@@ -40,7 +40,7 @@ export default {
       //Set the default date values
       let date = new Date();
       let month =
-        date.getMonth() + 1 < 10
+        date.getMonth() < 9 //Month is always offset by 1, so January is 0
           ? `0${date.getMonth() + 1}`
           : date.getMonth() + 1;
       let day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
