@@ -4,12 +4,23 @@
     $input-background: $background-color;
     $input-text: #222222;
 
-    &_home {
-        #homeComps {
+    &_main {
+        #mainTitle, #mainSub {
+            margin: 12px 24px 0px 24px;
+            color: $create-container;
+            font-size: 32px;
+
+            &#mainSub {
+                margin-top: 8px;
+                font-size: 20px;
+            }
+        }
+
+        #mainComps {
             margin: 16px;
         }
 
-        #homeCreateComps {
+        #mainCreateComps {
             padding-top: 0px;
             margin: 16px;
         }

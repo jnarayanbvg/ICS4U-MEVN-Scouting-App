@@ -1,7 +1,9 @@
 <template>
-  <div class="container_home">
-    <Comps v-bind:comps="comps" v-on:delete-comp="deleteComp" id="homeComps" :key="comps.length" /> <!-- The key will force a rerendering every time a comp is deleted/added -- fixes the roudned edges glitching out -->
-    <CreateComp v-on:create-comp="createComp" id="homeCreateComps" />
+  <div class="container_main">
+    <p id="mainTitle">Hi, Welcome to the 2019 FRC Deep Space Scouting App!</p>
+    <p id="mainSub">From here, you can view add all your team's season competition and record and manage all your team's scouting data!</p>
+    <Comps v-bind:comps="comps" v-on:delete-comp="deleteComp" id="mainComps" :key="comps.length" /> <!-- The key will force a rerendering every time a comp is deleted/added -- fixes the roudned edges glitching out -->
+    <CreateComp v-on:create-comp="createComp" id="mainCreateComps" />
   </div>
 </template>
 
@@ -18,15 +20,14 @@ export default {
   },
   data() {
     return {
-      comps: [],
-      error: ''
+      comps: []
     }
   },
   async created() {
     try {
       this.comps = await CompService.getComps();
     } catch(err) {
-      this.error = err.message;
+      alert("Error: " + err.message);
     }
   },
   methods: {

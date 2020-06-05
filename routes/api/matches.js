@@ -9,6 +9,12 @@ router.get('/', async (req, res) => {
     res.send(await matches.find({}).toArray());
 });
 
+// Get Matches By Comp
+router.get('/:comp', async (req, res) => {
+    const matches = await loadMatchesCollection();
+    res.send(await matches.find({competition: req.params.comp}).toArray());
+});
+
 // Add Match
 router.post('/', async (req, res) => {
     const matches = await loadMatchesCollection();

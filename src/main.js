@@ -13,6 +13,7 @@ Vue.config.productionTip = false;
 
 //Establish all routes with components
 import Home from './components/Home_Component.vue';
+import Teams from './components/Teams_Component.vue';
 import ScoutingApp from './components/ScoutingApp_Component.vue';
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
       name: 'home',
       path: '',
       component: Home
+  },
+  {
+    name: 'teams',
+    path: '/teams::competition?',
+    component: Teams
   },
   {
     name: 'scouting',

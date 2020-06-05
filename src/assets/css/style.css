@@ -17,10 +17,19 @@ a, a:visited, a:active, a:hover {
   color: inherit;
 }
 
-.container_home #homeComps {
+.container_main #mainTitle, .container_main #mainSub {
+  margin: 12px 24px 0px 24px;
+  color: #1e91fd;
+  font-size: 32px;
+}
+.container_main #mainTitle#mainSub, .container_main #mainSub#mainSub {
+  margin-top: 8px;
+  font-size: 20px;
+}
+.container_main #mainComps {
   margin: 16px;
 }
-.container_home #homeCreateComps {
+.container_main #mainCreateComps {
   padding-top: 0px;
   margin: 16px;
 }

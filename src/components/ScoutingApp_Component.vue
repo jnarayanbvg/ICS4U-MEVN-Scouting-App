@@ -201,6 +201,7 @@
 
 <script>
 import js from '../js/scoutingapp.js';
+import CompService from '../CompService.js'
 import MatchService from '../MatchService.js'
 
 export default {
@@ -238,17 +239,18 @@ export default {
       js //Object with all js functions
     }
   },
-  created() {
-    if(this.$route.params.competition == undefined) {
+  async created() {
+    //Figure out the name of the current competition
+    try {
+      this.comp = await CompService.getOneComp(this.$route.params.competition);
+      if(this.comp.name == undefined) throw "No competition with this id exists.";
+      js.Util.getId('competitionId').innerHTML = this.comp.name;
+      this.vals.competition = this.comp._id;
+    } catch(err) {
+      console.log(err);
       alert("Please click a valid scouting app link from the home page!");
       this.$router.push({name: 'home'});
     }
-    let uri = `api/comps/${this.$route.params.competition}`;
-    this.axios.get(uri).then(response => {
-      this.comp = response.data;
-      js.Util.getId('competitionId').innerHTML = this.comp.name;
-      this.vals.competition = this.comp._id;
-    });
   },
   mounted() {
     js.initApp();
@@ -262,7 +264,6 @@ export default {
         "cargoFloor", "cargoHuman", "panelFloor", "panelHuman", 
         "timeDefending", "defenseStrength"];
       arr.forEach(val => this.vals[val] = js.Util.getVar(val));
-      console.log(this.vals);
 
       //Input correction logic - a robot must have played defense at least a bit if their defense was rated
       if(this.vals.timeDefending > 0) this.vals.defenseStrength = Math.max(this.vals.defenseStrength, 1);

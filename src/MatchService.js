@@ -5,10 +5,27 @@ import axios from 'axios';
 const url = 'api/matches/';
 
 class MatchService {
-    //Get Comps
+    //Get Matches
     static getMatches() {
         return new Promise ((resolve,reject) => {
             axios.get(url).then((res) => {
+                const data = res.data;
+                resolve(
+                    data.map(match => ({
+                        match
+                    }))
+                );
+            })
+            .catch((err)=> {
+                reject(err);
+            })
+        });
+    }
+
+    //Get Matches By Comp
+    static getMatchesByComp(comp) {
+        return new Promise ((resolve,reject) => {
+            axios.get(url+comp).then((res) => {
                 const data = res.data;
                 resolve(
                     data.map(match => ({
