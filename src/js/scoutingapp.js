@@ -4,11 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function initApp() {
-    Util.initButtons();
     Util.initSpaces();
 }
-
-
 
 //Declare state variables
 let currentMode = "preload", rocketLevel = "low";
@@ -54,13 +51,6 @@ class Util {
 
     static getItem() {
         return currentItem.slice(0,5);
-    }
-
-    static initButtons() {
-        //Sets all buttons to type="button" to avoid always submitting
-        let buttons = document.getElementsByTagName("button");
-        buttons.forEach(button => button.type = "button");
-        // console.log(buttons);
     }
 
     static disableButton(button, type) {
@@ -444,28 +434,6 @@ function switchMode(newMode) {
         Util.getId("spaceSet").style.display = "table";
     }
 }
-
-// function getInputs() {
-//     let arr = ["allianceColor", 
-//         "habStart", "habLeave", "habClimb", 
-//         "sandstormCargo", "sandstormPanel", 
-//         "shipCargo", "shipPanel", "lowCargo", "lowPanel", "midCargo", "midPanel", "highCargo", "highPanel",
-//         "cargoFloor", "cargoHuman", "panelFloor", "panelHuman", 
-//         "timeDefending", "defenseStrength"];
-//     arr.forEach(val => {
-//         Util.getId("input_"+val).value = eval(val);
-//     });
-//     let obj = {
-//         allianceColor, 
-//         habStart, habLeave, habClimb, 
-//         sandstormCargo, sandstormPanel, 
-//         shipCargo, shipPanel, lowCargo, lowPanel, midCargo, midPanel, highCargo, highPanel,
-//         cargoFloor, cargoHuman, panelFloor, panelHuman, 
-//         timeDefending, defenseStrength
-//     }
-
-//     return obj;
-// } 
 
 
 
