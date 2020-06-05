@@ -1,4 +1,7 @@
 /* eslint-disable */
+function initApp() {
+    Util.initSpaces();
+}
 
 //Declare state variables
 let currentMode = "preload", rocketLevel = "low";
