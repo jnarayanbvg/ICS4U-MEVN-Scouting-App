@@ -297,7 +297,7 @@ button {
                         height: 360px;
                         background-color: $red-color-light;
                         border-radius: 24px;
-                        opacity: 75%;
+                        //opacity: 100;
                         @include transition((background-color), (0.15s), (linear), (0s));
                     }
 
