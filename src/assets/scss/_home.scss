@@ -34,15 +34,6 @@
                 margin-right: auto;
                 text-align: center;
                 padding: 24px;
-                flex: 1;
-
-                &#createName {
-                    flex: 2;
-
-                    input {
-                        width: 420px;
-                    }
-                }
 
                 label {
                     padding-top: 0px;
@@ -56,9 +47,9 @@
                 input {
                     vertical-align: middle;
                     margin: 0;
-                    width: 148px;
+                    width: 480px;
                     height: 32px;
-                    padding: 3px 0px;
+                    padding: 0px 4px;
                     border-radius: 6px;
                     border: 1.5px dashed $input-background;
                     @include box-shadow(0px, 0px, 2px, 0px, $create-container-shadow);
@@ -69,7 +60,7 @@
                 }
 
                 input[type="submit"] {
-                    width: 200px;
+                    width: 280px;
                     font-size: 16px;
                     text-align: center;
                     margin-top: 2px;

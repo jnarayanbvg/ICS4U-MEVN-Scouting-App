@@ -40,13 +40,6 @@ a, a:visited, a:active, a:hover {
   margin-right: auto;
   text-align: center;
   padding: 24px;
-  flex: 1;
-}
-.container_createComp #createFlexBox div#createName {
-  flex: 2;
-}
-.container_createComp #createFlexBox div#createName input {
-  width: 420px;
 }
 .container_createComp #createFlexBox div label {
   padding-top: 0px;
@@ -59,9 +52,9 @@ a, a:visited, a:active, a:hover {
 .container_createComp #createFlexBox div input {
   vertical-align: middle;
   margin: 0;
-  width: 148px;
+  width: 480px;
   height: 32px;
-  padding: 3px 0px;
+  padding: 0px 4px;
   border-radius: 6px;
   border: 1.5px dashed #ecf4fd;
   -webkit-box-shadow: 0px 0px 2px 0px #67b6ff;
@@ -73,7 +66,7 @@ a, a:visited, a:active, a:hover {
   font-weight: 300;
 }
 .container_createComp #createFlexBox div input[type=submit] {
-  width: 200px;
+  width: 280px;
   font-size: 16px;
   text-align: center;
   margin-top: 2px;

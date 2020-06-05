@@ -12,9 +12,7 @@ class CompService {
                 const data = res.data;
                 resolve(
                     data.map(comp => ({
-                        ...comp,
-                        start: new Date(comp.start),
-                        end: new Date(comp.end)
+                        ...comp
                     }))
                 );
             })
@@ -25,11 +23,9 @@ class CompService {
     }
 
     //Create Comp
-    static createComp(name, start, end) {
+    static createComp(name) {
         return axios.post(url, {
-            name,
-            start,
-            end
+            name
         });
     }
 

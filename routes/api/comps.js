@@ -19,9 +19,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const comps = await loadCompsCollection();
     await comps.insertOne({
-        name: req.body.name,
-        start: req.body.start,
-        end: req.body.end
+        name: req.body.name
     });
     res.status(201).send();
 });

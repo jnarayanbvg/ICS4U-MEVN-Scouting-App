@@ -1,6 +1,6 @@
 <template>
   <div class="container_home">
-    <Comps v-bind:comps="comps" v-on:delete-comp="deleteComp" id="homeComps" />
+    <Comps v-bind:comps="comps" v-on:delete-comp="deleteComp" id="homeComps" :key="comps.length" /> <!-- The key will force a rerendering every time a comp is deleted/added -- fixes the roudned edges glitching out -->
     <CreateComp v-on:create-comp="createComp" id="homeCreateComps" />
   </div>
 </template>
@@ -30,8 +30,8 @@ export default {
     }
   },
   methods: {
-    async createComp(name, start, end) {
-      await CompService.createComp(name, start, end);
+    async createComp(name) {
+      await CompService.createComp(name);
       this.comps = await CompService.getComps();
     },
     async deleteComp(id) {
