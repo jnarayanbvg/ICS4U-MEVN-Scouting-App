@@ -250,6 +250,9 @@ export default {
       this.vals.competition = this.comp._id;
     });
   },
+  mounted() {
+    js.Util.initApp();
+  },
   methods: {
     async checkForm() {
       let arr = ["allianceColor", 

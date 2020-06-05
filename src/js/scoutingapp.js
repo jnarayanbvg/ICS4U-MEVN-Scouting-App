@@ -1,11 +1,4 @@
 /* eslint-disable */
-window.addEventListener('DOMContentLoaded', () => {
-    initApp();
-});
-
-function initApp() {
-    Util.initSpaces();
-}
 
 //Declare state variables
 let currentMode = "preload", rocketLevel = "low";
