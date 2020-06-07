@@ -7,12 +7,25 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     const matches = await loadMatchesCollection();
     res.send(await matches.find({}).toArray());
+    res.status(200).send();
 });
 
 // Get Matches By Comp
 router.get('/:comp', async (req, res) => {
     const matches = await loadMatchesCollection();
     res.send(await matches.find({competition: req.params.comp}).toArray());
+    res.status(200).send();
+});
+
+//Get Matches By Comp and Team
+router.get('/:comp/:team', async (req, res) => {
+    const matches = await loadMatchesCollection();
+    let int = parseInt(req.params.team);
+    if(Number.isNaN(int)) res.status(400).send(); //Invalid tam number
+    else {
+        res.send(await matches.find({competition: req.params.comp, teamNumber: parseInt(req.params.team)}).toArray());
+        res.status(200).send();
+    }
 });
 
 // Add Match

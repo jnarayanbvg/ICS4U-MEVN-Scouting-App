@@ -38,6 +38,13 @@ class CompService {
         });
     }
 
+    //Update Comp
+    static updateComp(id, name) {
+        return axios.post(url+id, {
+            name
+        });
+    }
+
     //Delete Comp
     static deleteComp(id) {
         return axios.delete(`${url}${id}`);

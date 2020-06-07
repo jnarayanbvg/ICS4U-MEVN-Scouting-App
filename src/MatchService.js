@@ -39,6 +39,23 @@ class MatchService {
         });
     }
 
+    //Get Matches By Comp and Team
+    static getMatchesByTeam(comp, team) {
+        return new Promise ((resolve, reject) => {
+            axios.get(url+comp+"/"+team).then((res) => {
+                const data = res.data;
+                resolve(
+                    data.map(match => ({
+                        match
+                    }))
+                );
+            })
+            .catch((err)=> {
+                reject(err);
+            })
+        });
+    }
+
     //Create Match
     static createMatch(competition,
         matchNumber,

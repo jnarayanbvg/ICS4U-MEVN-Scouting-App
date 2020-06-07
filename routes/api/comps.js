@@ -7,12 +7,14 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     const comps = await loadCompsCollection();
     res.send(await comps.find({}).toArray());
+    res.status(200).send();
 });
 
 //Get One Comp
 router.get('/:id', async (req, res) => {
     const comps = await loadCompsCollection();
     res.send(await comps.findOne({_id: new mongodb.ObjectID(req.params.id)}));
+    res.status(200).send();
 });
 
 // Add Comp
@@ -21,6 +23,16 @@ router.post('/', async (req, res) => {
     await comps.insertOne({
         name: req.body.name
     });
+    res.status(201).send();
+});
+
+// Update Comp
+router.post('/:id', async (req, res) => {
+    const comps = await loadCompsCollection();
+    await comps.findOneAndUpdate(
+        { _id: new mongodb.ObjectID(req.params.id) },
+        { $set: { name: req.body.name } }
+    );
     res.status(201).send();
 });
 

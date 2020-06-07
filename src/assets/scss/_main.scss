@@ -1,6 +1,7 @@
 .container {
     $create-container: #1e91fd;
     $create-container-shadow: #67b6ff;
+    $create-container-submit: darken($create-container, 25%);
     $input-background: $background-color;
     $input-text: #222222;
 
@@ -62,11 +63,11 @@
                     height: 32px;
                     padding: 0px 4px;
                     border-radius: 6px;
-                    border: 1.5px dashed $input-background;
+                    border: 0;
                     @include box-shadow(0px, 0px, 2px, 0px, $create-container-shadow);
                     background-color: $input-background;
                     color: $input-text;
-                    font-size: 14px;
+                    font-size: 16px;
                     font-weight: 300;
                 }
 
@@ -78,10 +79,10 @@
                     height: 48px;
                     border-width: 0px;
                     border-radius: 10px;
-                    background-color: darken($create-container, 25%);
+                    background-color: $create-container-submit;
                     color: $input-background;
                     font-weight: 300;
-                    @include transition((background-color, color), (0.15s 0.15s), (ease ease), (0s 0s));
+                    @include transition((background-color, color), (0.25s 0.25s), (ease ease), (0s 0s));
         
                     &:hover {
                         background-color: $input-background;
@@ -142,11 +143,11 @@
                     background-color: $back-colour-secondary;
                 }
                 .compsCell {
-                    padding: 10px;
+                    padding: 0px;
                     border-right: 2px solid $back-colour-border;
                     border-bottom: 2px solid $back-colour-border;
                     font-weight: 400;
-                    @include transition((background-color, color), (0.15s 0.15s), (ease ease), (0s 0s));
+                    @include transition((background-color, color), (0.25s 0.25s), (ease ease), (0s 0s));
 
                     &:last-child {
                         border-right-width: 0;
@@ -167,6 +168,55 @@
                     &Delete:hover { 
                         color: $delete-colour;
                         cursor: pointer;
+                    }
+
+                    .compName {
+                        display: flex;
+
+                        &Show {
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            cursor: pointer;
+                            width: 80%;
+                            display: inline-block
+                        }
+
+                        &Edit {
+                            border: 0;
+                            padding: 4px;
+                            width: 80%;
+                            height: 32px;
+                            margin-top: 6px;
+                            margin-bottom: 6px;
+                            color: $input-text;
+                            font-size: 16px;
+                            font-weight: 300;
+                            border-radius: 6px;
+                            border: 0;
+                        }
+
+                        &Check {
+                            background-color: transparent;
+                            color: $create-container;
+                            margin-left: 8px;
+                            font-size: 18px;
+                            vertical-align: middle;
+                            border: 0;
+                            border-radius: 6px;
+                            height: 32px;
+                            width: 32px;
+                            @include transition((background-color, color), (0.25s 0.25s), (ease ease), (0s 0s));
+
+                            &:hover {
+                                cursor: pointer;
+                                background-color: $create-container;
+                                color: $input-background;
+                            }
+
+                            &.hidden {
+                                display: none;
+                            }
+                        }
                     }
                 }
 

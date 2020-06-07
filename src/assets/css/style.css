@@ -65,13 +65,13 @@ a, a:visited, a:active, a:hover {
   height: 32px;
   padding: 0px 4px;
   border-radius: 6px;
-  border: 1.5px dashed #ecf4fd;
+  border: 0;
   -webkit-box-shadow: 0px 0px 2px 0px #67b6ff;
   -moz-box-shadow: 0px 0px 2px 0px #67b6ff;
   box-shadow: 0px 0px 2px 0px #67b6ff;
   background-color: #ecf4fd;
   color: #222222;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 300;
 }
 .container_createComp #createFlexBox div input[type=submit] {
@@ -86,7 +86,7 @@ a, a:visited, a:active, a:hover {
   color: #ecf4fd;
   font-weight: 300;
   transition-property: background-color, color;
-  transition-duration: 0.15s, 0.15s;
+  transition-duration: 0.25s, 0.25s;
   transition-timing-function: ease, ease;
   transition-delay: 0s, 0s;
 }
@@ -133,12 +133,12 @@ a, a:visited, a:active, a:hover {
   background-color: #aed8ff;
 }
 .container_comps #compsTable .compsRow .compsCell {
-  padding: 10px;
+  padding: 0px;
   border-right: 2px solid #ecf4fd;
   border-bottom: 2px solid #ecf4fd;
   font-weight: 400;
   transition-property: background-color, color;
-  transition-duration: 0.15s, 0.15s;
+  transition-duration: 0.25s, 0.25s;
   transition-timing-function: ease, ease;
   transition-delay: 0s, 0s;
 }
@@ -158,6 +158,52 @@ a, a:visited, a:active, a:hover {
 .container_comps #compsTable .compsRow .compsCellDelete:hover {
   color: #ff6666;
   cursor: pointer;
+}
+.container_comps #compsTable .compsRow .compsCell .compName {
+  display: flex;
+}
+.container_comps #compsTable .compsRow .compsCell .compNameShow {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 80%;
+  display: inline-block;
+}
+.container_comps #compsTable .compsRow .compsCell .compNameEdit {
+  border: 0;
+  padding: 4px;
+  width: 80%;
+  height: 32px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  color: #222222;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 6px;
+  border: 0;
+}
+.container_comps #compsTable .compsRow .compsCell .compNameCheck {
+  background-color: transparent;
+  color: #1e91fd;
+  margin-left: 8px;
+  font-size: 18px;
+  vertical-align: middle;
+  border: 0;
+  border-radius: 6px;
+  height: 32px;
+  width: 32px;
+  transition-property: background-color, color;
+  transition-duration: 0.25s, 0.25s;
+  transition-timing-function: ease, ease;
+  transition-delay: 0s, 0s;
+}
+.container_comps #compsTable .compsRow .compsCell .compNameCheck:hover {
+  cursor: pointer;
+  background-color: #1e91fd;
+  color: #ecf4fd;
+}
+.container_comps #compsTable .compsRow .compsCell .compNameCheck.hidden {
+  display: none;
 }
 .container_comps #compsTable .compsRow:last-child {
   border-bottom-width: 0;
