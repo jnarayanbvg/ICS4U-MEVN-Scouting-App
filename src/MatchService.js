@@ -12,8 +12,9 @@ class MatchService {
             axios.get(url).then((res) => {
                 const data = res.data;
                 resolve(
-                    data.map(match => ({
-                        match
+                    data.map(obj => ({
+                        ...obj,
+                        match: obj.match //Without this, it returns an array of objects, each with a match property which contains all data --> this returns the match property
                     }))
                 );
             })
@@ -29,8 +30,9 @@ class MatchService {
             axios.get(url+comp).then((res) => {
                 const data = res.data;
                 resolve(
-                    data.map(match => ({
-                        match
+                    data.map(obj => ({
+                        ...obj,
+                        match: obj.match //Without this, it returns an array of objects, each with a match property which contains all data --> this returns the match property
                     }))
                 );
             })
@@ -46,8 +48,9 @@ class MatchService {
             axios.get(url+comp+"/"+team).then((res) => {
                 const data = res.data;
                 resolve(
-                    data.map(match => ({
-                        match
+                    data.map(obj => ({
+                        ...obj,
+                        match: obj.match //Without this, it returns an array of objects, each with a match property which contains all data --> this returns the match property
                     }))
                 );
             })

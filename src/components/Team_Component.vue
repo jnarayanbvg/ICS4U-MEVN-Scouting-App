@@ -6,13 +6,26 @@
     <div class="container_match">
       <table id="matchTable">
         <thead>
-          <th class="matchHead">Competition Name</th>
-          <th class="matchHead">Teams</th>
-          <th class="matchHead">Scouting</th>
-          <th class="matchHead">Delete</th>
+          <th class="matchHead">Match<div class="matchSpace"></div>Number</th>
+          <th class="matchHead">HAB<div class="matchSpace"></div>Leave</th>
+          <th class="matchHead">Sandstorm</th>
+          <th class="matchHead">Floor<div class="matchSpace"></div>Pickup</th>
+          <th class="matchHead">Human<div class="matchSpace"></div>Pickup</th>
+          <th class="matchHead">Ship<div class="matchSpace"></div>Cargo</th>
+          <th class="matchHead">Ship<div class="matchSpace"></div>Panel</th>
+          <th class="matchHead">Rocket<div class="matchSpace"></div>Cargo</th>
+          <th class="matchHead">Rocket<div class="matchSpace"></div>Panel</th>
+          <th class="matchHead">Time<div class="matchSpace"></div>Defending</th>
+          <th class="matchHead">Defense<div class="matchSpace"></div>Strength</th>
+          <th class="matchHead">HAB<div class="matchSpace"></div>Climb</th>
+          <th class="matchHead matchComments">Comments</th>
+          <th class="matchHead matchScout">Scout</th>
         </thead>
-        <Match></Match>
-        
+        <tbody>
+          <tr class="matchRow" v-for="match in matches" :key="match._id + keyRender">
+            <Match v-bind:match="match" v-bind:exclude="'allianceColor teamNumber'"></Match>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
@@ -32,7 +45,8 @@ export default {
     return {
       comp: {},
       matches: [],
-      team: ""
+      team: "",
+      keyRender: 0
     }
   },
   async created() {

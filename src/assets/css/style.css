@@ -230,7 +230,6 @@ a, a:visited, a:active, a:hover {
   padding: 8px;
   font-size: 16px;
   font-weight: 400;
-  width: 15%;
   border-bottom: 2px solid #ecf4fd;
 }
 .container_match #matchTable thead .matchHead:first-child {
@@ -239,6 +238,12 @@ a, a:visited, a:active, a:hover {
 .container_match #matchTable thead .matchHead:last-child {
   border-top-right-radius: 20px;
   border-right-width: 0;
+}
+.container_match #matchTable thead .matchHead.matchComments {
+  width: 20%;
+}
+.container_match #matchTable thead .matchHead.matchScout {
+  width: 10%;
 }
 
 button {

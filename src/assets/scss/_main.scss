@@ -261,7 +261,6 @@
                     font-size: 16px;
                     font-weight: 400;
                     //@include text-shadow(0px, 0px, 2px, $create-container-shadow);
-                    width: 15%;
                     border-bottom: 2px solid $match-colour-border;
 
                     &:first-child {
@@ -271,6 +270,14 @@
                     &:last-child {
                         border-top-right-radius: 20px;
                         border-right-width: 0;
+                    }
+
+                    &.matchComments {
+                        width: 20%;
+                    }
+
+                    &.matchScout {
+                        width: 10%;
                     }
                 }
             }
