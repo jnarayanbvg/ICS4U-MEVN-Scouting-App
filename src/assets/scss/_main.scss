@@ -99,13 +99,16 @@
     $back-colour-tertiary: #4ba8ff;
     $back-colour-border: $background-color;
 
-    $match-colour-primary: #cbc7ff;
-    $match-colour-secondary: #b6b2f3;
-    $match-colour-tertiary: #9892e6;
+    $match-colour-primary: #e0dffc;
+    $match-colour-secondary: #dbd8fc;
+    $match-colour-tertiary: #afabe4;
     $match-colour-border: $background-color;
 
     $hover-colour: $background-color;
     $delete-colour: #ff6666;
+
+    $alliance-red: #f0abab;
+    $alliance-blue: #a0bbf5;
 
     &_comps {
         text-align: center;
@@ -278,6 +281,55 @@
 
                     &.matchScout {
                         width: 10%;
+                    }
+                }
+            }
+
+            .matchRow {
+                background-color: $match-colour-primary;
+                font-size: 16px;
+
+                &:nth-child(even) {
+                    background-color: $match-colour-secondary;
+                }
+                .matchCell {
+                    padding: 0px;
+                    border-right: 2px solid $match-colour-border;
+                    border-bottom: 2px solid $match-colour-border;
+                    font-weight: 400;
+
+                    &:last-child {
+                        border-right-width: 0;
+                    }
+
+                    br {
+                        display: block;
+                        content: "";
+                        margin-top: 8px;
+                    }
+
+                    &.red {
+                        background-color: $alliance-red;
+                        color: $background-color;
+                    }
+
+                    &.blue {
+                        background-color: $alliance-blue;
+                        color: $background-color;
+                    }
+                }
+
+                &:last-child {
+                    border-bottom-width: 0;
+
+                    .matchCell {
+                        &:first-child {
+                            border-bottom-left-radius: 20px;
+                        }
+
+                        &:last-child {
+                            border-bottom-right-radius: 20px;
+                        }
                     }
                 }
             }

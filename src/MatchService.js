@@ -45,7 +45,25 @@ class MatchService {
     //Get Matches By Comp and Team
     static getMatchesByTeam(comp, team) {
         return new Promise ((resolve, reject) => {
-            axios.get(url+comp+"/"+team).then((res) => {
+            axios.get(url+comp+"/team/"+team).then((res) => {
+                const data = res.data;
+                resolve(
+                    data.map(obj => ({
+                        ...obj,
+                        match: obj.match //Without this, it returns an array of objects, each with a match property which contains all data --> this returns the match property
+                    }))
+                );
+            })
+            .catch((err)=> {
+                reject(err);
+            })
+        });
+    }
+
+    //Get Matches By Comp and Match
+    static getMatchesByMatch(comp, team) {
+        return new Promise ((resolve, reject) => {
+            axios.get(url+comp+"/team/"+team).then((res) => {
                 const data = res.data;
                 resolve(
                     data.map(obj => ({

@@ -222,7 +222,7 @@ a, a:visited, a:active, a:hover {
   border-spacing: 0px;
 }
 .container_match #matchTable thead {
-  background-color: #9892e6;
+  background-color: #afabe4;
   color: #ecf4fd;
 }
 .container_match #matchTable thead .matchHead {
@@ -244,6 +244,44 @@ a, a:visited, a:active, a:hover {
 }
 .container_match #matchTable thead .matchHead.matchScout {
   width: 10%;
+}
+.container_match #matchTable .matchRow {
+  background-color: #e0dffc;
+  font-size: 16px;
+}
+.container_match #matchTable .matchRow:nth-child(even) {
+  background-color: #dbd8fc;
+}
+.container_match #matchTable .matchRow .matchCell {
+  padding: 0px;
+  border-right: 2px solid #ecf4fd;
+  border-bottom: 2px solid #ecf4fd;
+  font-weight: 400;
+}
+.container_match #matchTable .matchRow .matchCell:last-child {
+  border-right-width: 0;
+}
+.container_match #matchTable .matchRow .matchCell br {
+  display: block;
+  content: "";
+  margin-top: 8px;
+}
+.container_match #matchTable .matchRow .matchCell.red {
+  background-color: #f0abab;
+  color: #ecf4fd;
+}
+.container_match #matchTable .matchRow .matchCell.blue {
+  background-color: #a0bbf5;
+  color: #ecf4fd;
+}
+.container_match #matchTable .matchRow:last-child {
+  border-bottom-width: 0;
+}
+.container_match #matchTable .matchRow:last-child .matchCell:first-child {
+  border-bottom-left-radius: 20px;
+}
+.container_match #matchTable .matchRow:last-child .matchCell:last-child {
+  border-bottom-right-radius: 20px;
 }
 
 button {

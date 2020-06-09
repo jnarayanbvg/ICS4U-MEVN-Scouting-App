@@ -38,7 +38,7 @@ export default {
     }
 
     //Removes duplicates to get just a list of all teams who have played at this comp
-    let matchesTeams = this.matches.map(obs => obs.match.teamNumber); //An observer object adds an extra layer between the array and the team, so I have to get around that
+    let matchesTeams = this.matches.map(match => match.teamNumber);
     matchesTeams.forEach(elem => {
       if(!this.teams.includes(elem)) this.teams.push(elem);
     });
