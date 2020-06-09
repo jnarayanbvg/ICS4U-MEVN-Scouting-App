@@ -1,6 +1,7 @@
 /* eslint-disable */ 
 
 import axios from 'axios';
+import mongoose from 'mongoose';
 
 const url = 'api/matches/';
 
@@ -113,6 +114,8 @@ class MatchService {
 
     //Delete Match
     static deleteMatch(id) {
+        if(!mongoose.Types.ObjectId.isValid(id)) reject(); //Make sure the string is a possible id before checking if it exists
+
         return axios.delete(`${url}${id}`);
     }
 }

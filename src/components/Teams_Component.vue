@@ -24,9 +24,7 @@ export default {
     //Figure out the name of the current competition
     try {
       this.comp = await CompService.getOneComp(this.$route.params.competition);
-      if(this.comp.name == undefined) throw "No competition with this id exists.";
-      //document.getElementById('competitionId').innerHTML = this.comp.name;
-      //this.vals.competition = this.comp._id;
+      if(this.comp.name == undefined || this.comp.name == "") throw "No competition with this id exists.";
     } catch(err) {
       console.log(err);
       alert("Please click a valid teams link from the home page!");
@@ -39,6 +37,7 @@ export default {
       alert("Error: " + err.message);
     }
 
+    //Removes duplicates to get just a list of all teams who have played at this comp
     let matchesTeams = this.matches.map(obs => obs.match.teamNumber); //An observer object adds an extra layer between the array and the team, so I have to get around that
     matchesTeams.forEach(elem => {
       if(!this.teams.includes(elem)) this.teams.push(elem);

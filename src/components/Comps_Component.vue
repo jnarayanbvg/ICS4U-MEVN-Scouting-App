@@ -7,12 +7,14 @@
         <th class="compsHead">Scouting</th>
         <th class="compsHead">Delete</th>
       </thead>
-      <tr class="compsRow" v-for="comp in comps" :key="comp._id + keyRender"> <!-- Weird hack - must have key use a v-for-defined variable AND a variable controlled by me to force updates -->
-        <td class="compsCell compName" :id="`compName-${comp._id}`"><div :id="`compNameShow-${comp._id}`" class="compNameShow" v-on:click="switchToEdit(comp._id);">{{ comp.name }}</div><button v-on:click="pushUpdatedComp(comp._id);" :id="`compNameCheck-${comp._id}`" class="compNameCheck hidden">✔</button></td>
-        <td class="compsCell"><router-link :to="{ name: 'teams', params: { competition: comp._id }}">Teams</router-link></td>
-        <td class="compsCell"><router-link :to="{ name: 'scouting', params: { competition: comp._id }}">Scout Match</router-link></td>
-        <td class="compsCell compsCellDelete" v-on:click="$emit('delete-comp', comp._id)">Delete</td>
-      </tr>
+      <tbody>
+        <tr class="compsRow" v-for="comp in comps" :key="comp._id + keyRender"> <!-- Weird hack - must have key use a v-for-defined variable AND a variable controlled by me to force updates -->
+          <td class="compsCell compName" :id="`compName-${comp._id}`"><div :id="`compNameShow-${comp._id}`" class="compNameShow" v-on:click="switchToEdit(comp._id);">{{ comp.name }}</div><button v-on:click="pushUpdatedComp(comp._id);" :id="`compNameCheck-${comp._id}`" class="compNameCheck hidden">✔</button></td>
+          <router-link tag="td" class="compsCell" :to="{ name: 'teams', params: { competition: comp._id }}">Teams</router-link>
+          <router-link tag="td" class="compsCell" :to="{ name: 'scouting', params: { competition: comp._id }}">Scout Match</router-link>
+          <td class="compsCell compsCellDelete" v-on:click="$emit('delete-comp', comp._id)">Delete</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -20,7 +22,7 @@
 <script>
 
 export default {
-  name: "Comps",
+  name: 'Comps',
   props: ["comps"],
   data() {
     return {

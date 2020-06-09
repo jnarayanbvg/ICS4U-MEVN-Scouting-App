@@ -64,8 +64,9 @@ router.post('/', async (req, res) => {
 // Delete Match
 router.delete('/:id', async (req, res) => {
     const matches = await loadMatchesCollection();
-    await matches.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
-    res.status(200).send();
+    let result = await matches.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
+    if(result.deletedCount>0) res.status(200).send();
+    else res.status(204).send(); //No content found
 });
 
 

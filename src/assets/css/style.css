@@ -26,7 +26,7 @@ a, a:visited, a:active, a:hover {
   margin-top: 8px;
   font-size: 20px;
 }
-.container_main #mainComps {
+.container_main #mainComps, .container_main .container_match {
   margin: 16px;
 }
 .container_main #mainCreateComps {
@@ -154,10 +154,10 @@ a, a:visited, a:active, a:hover {
   background-color: #ecf4fd;
   color: #4ba8ff;
   font-weight: 600;
+  cursor: pointer;
 }
 .container_comps #compsTable .compsRow .compsCellDelete:hover {
   color: #ff6666;
-  cursor: pointer;
 }
 .container_comps #compsTable .compsRow .compsCell .compName {
   display: flex;
@@ -213,6 +213,32 @@ a, a:visited, a:active, a:hover {
 }
 .container_comps #compsTable .compsRow:last-child .compsCell:last-child {
   border-bottom-right-radius: 20px;
+}
+.container_match {
+  text-align: center;
+}
+.container_match #matchTable {
+  width: 100%;
+  border-spacing: 0px;
+}
+.container_match #matchTable thead {
+  background-color: #9892e6;
+  color: #ecf4fd;
+}
+.container_match #matchTable thead .matchHead {
+  border-right: 2px solid #ecf4fd;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 15%;
+  border-bottom: 2px solid #ecf4fd;
+}
+.container_match #matchTable thead .matchHead:first-child {
+  border-top-left-radius: 20px;
+}
+.container_match #matchTable thead .matchHead:last-child {
+  border-top-right-radius: 20px;
+  border-right-width: 0;
 }
 
 button {
