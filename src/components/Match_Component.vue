@@ -4,7 +4,7 @@
     <p id="mainSub">@ {{comp.name}}</p>
     
     <div class="container_match">
-      <Matches v-bind:matches="matches" v-bind:exclude="'matchNumber'" v-bind:sortable="false"></Matches>
+      <Matches v-bind:matches="matches" v-bind:exclude="'matchNumber'" v-bind:comp="comp"></Matches>
     </div>
   </div>
 </template>

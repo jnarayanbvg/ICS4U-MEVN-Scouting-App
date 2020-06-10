@@ -253,7 +253,7 @@ a, a:visited, a:active, a:hover {
   background-color: #dbd8fc;
 }
 .container_match #matchTable .matchRow .matchCell {
-  padding: 0px;
+  padding: 4px 0px;
   border-right: 2px solid #ecf4fd;
   border-bottom: 2px solid #ecf4fd;
   font-weight: 400;

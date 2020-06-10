@@ -12,6 +12,8 @@ const comps = require('./routes/api/comps');
 app.use('/api/comps', comps);
 const matches = require('./routes/api/matches');
 app.use('/api/matches', matches);
+const averages = require('./routes/api/averages');
+app.use('/api/averages', averages);
 
 // Handle production
 if(process.env.NODE_ENV === 'production') {

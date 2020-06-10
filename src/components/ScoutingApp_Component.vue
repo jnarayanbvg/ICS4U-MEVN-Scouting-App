@@ -297,7 +297,8 @@ export default {
         this.vals.scoutName
       );
       
-      this.$router.push({ name: 'home' });
+      //Redirect to the team's page so it can calculate an accurate average
+      this.$router.push({ name: 'team', params: { competition: this.vals.competition, team: Math.max(0, this.vals.teamNumber) }});
     }
   }
 }
