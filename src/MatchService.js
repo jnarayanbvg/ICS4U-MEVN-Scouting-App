@@ -61,9 +61,9 @@ class MatchService {
     }
 
     //Get Matches By Comp and Match
-    static getMatchesByMatch(comp, team) {
+    static getMatchesByMatch(comp, match) {
         return new Promise ((resolve, reject) => {
-            axios.get(url+comp+"/team/"+team).then((res) => {
+            axios.get(url+comp+"/match/"+match).then((res) => {
                 const data = res.data;
                 resolve(
                     data.map(obj => ({

@@ -31,14 +31,12 @@ router.get('/:comp/team/:team', async (req, res) => {
 //Get Matches By Comp and Match
 router.get('/:comp/match/:match', async (req, res) => {
     const matches = await loadMatchesCollection();
-    let int = parseInt("1");
-    res.send("Hi");
-    res.status(200).send();
-    // if(Number.isNaN(int)) res.status(400).send(); //Invalid match number
-    // else {
-    //     res.send(await matches.find({competition: req.params.comp, matchNumber: parseInt(req.params.match)}).toArray());
-    //     res.status(200).send();
-    // }
+    let int = parseInt(req.params.match);
+    if(Number.isNaN(int)) res.status(400).send(); //Invalid team number
+    else {
+        res.send(await matches.find({competition: req.params.comp, matchNumber: parseInt(req.params.match)}).toArray());
+        res.status(200).send();
+    }
 });
 
 // Add Match

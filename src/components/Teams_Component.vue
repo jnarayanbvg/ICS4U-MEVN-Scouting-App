@@ -42,7 +42,6 @@ export default {
     matchesTeams.forEach(elem => {
       if(!this.teams.includes(elem)) this.teams.push(elem);
     });
-    console.log(this.teams);
   }
 }
 </script>

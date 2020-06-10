@@ -308,14 +308,35 @@
                         margin-top: 8px;
                     }
 
+                    &.matchMatch:hover, &.matchTeam:hover {
+                        background-color: $hover-colour;
+                        color: $match-colour-tertiary;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+
                     &.red {
                         background-color: $alliance-red;
                         color: $background-color;
+
+                        &:hover {
+                            background-color: $hover-colour;
+                            color: $alliance-red;
+                            font-weight: 600;
+                            cursor: pointer;
+                        }
                     }
 
                     &.blue {
                         background-color: $alliance-blue;
                         color: $background-color;
+
+                        &:hover {
+                            background-color: $hover-colour;
+                            color: $alliance-blue;
+                            font-weight: 600;
+                            cursor: pointer;
+                        }
                     }
                 }
 

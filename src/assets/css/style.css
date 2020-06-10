@@ -266,13 +266,31 @@ a, a:visited, a:active, a:hover {
   content: "";
   margin-top: 8px;
 }
+.container_match #matchTable .matchRow .matchCell.matchMatch:hover, .container_match #matchTable .matchRow .matchCell.matchTeam:hover {
+  background-color: #ecf4fd;
+  color: #afabe4;
+  font-weight: 600;
+  cursor: pointer;
+}
 .container_match #matchTable .matchRow .matchCell.red {
   background-color: #f0abab;
   color: #ecf4fd;
 }
+.container_match #matchTable .matchRow .matchCell.red:hover {
+  background-color: #ecf4fd;
+  color: #f0abab;
+  font-weight: 600;
+  cursor: pointer;
+}
 .container_match #matchTable .matchRow .matchCell.blue {
   background-color: #a0bbf5;
   color: #ecf4fd;
+}
+.container_match #matchTable .matchRow .matchCell.blue:hover {
+  background-color: #ecf4fd;
+  color: #a0bbf5;
+  font-weight: 600;
+  cursor: pointer;
 }
 .container_match #matchTable .matchRow:last-child {
   border-bottom-width: 0;

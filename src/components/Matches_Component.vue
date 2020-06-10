@@ -19,7 +19,7 @@
     </thead>
     <tbody>
       <tr class="matchRow" v-for="match in matches" :key="match._id + keyRender">
-        <td class="matchCell" v-bind:class="{ red: onRed(match), blue: onBlue(match) }" v-if="include('teamNumber')">{{ match.teamNumber }}</td>
+        <td class="matchCell" v-bind:class="{ red: onRed(match), blue: onBlue(match), matchTeam: !include('allianceColor') }" v-if="include('teamNumber')">{{ match.teamNumber }}</td>
         <td class="matchCell" v-if="include('matchNumber')">{{ match.matchNumber }}</td>
         <td class="matchCell">{{ match.habLeave }}</td>
         <td class="matchCell">{{ match.sandstormCargo }} C<div class="matchSpace"></div>{{ match.sandstormPanel }} P</td>

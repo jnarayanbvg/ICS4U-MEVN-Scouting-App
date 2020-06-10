@@ -29,8 +29,6 @@ export default {
     } catch(err) {
       alert("Error: " + err.message);
     }
-
-    console.log(this.comps);
   },
   methods: {
     async createComp(name) {

@@ -1,10 +1,10 @@
 <template>
   <div class="container_main">
-    <p id="mainTitle">Team {{this.team}}</p>
+    <p id="mainTitle">Match {{this.match}}</p>
     <p id="mainSub">@ {{comp.name}}</p>
     
     <div class="container_match">
-      <Matches v-bind:matches="matches" v-bind:exclude="'allianceColor teamNumber'" v-bind:sortable="false"></Matches>
+      <Matches v-bind:matches="matches" v-bind:exclude="'matchNumber'" v-bind:sortable="false"></Matches>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import MatchService from '../MatchService.js'
 import Matches from './Matches_Component.vue'
 
 export default {
-  name: 'Team',
+  name: 'Match',
   components: {
     Matches
   },
@@ -23,7 +23,7 @@ export default {
     return {
       comp: {},
       matches: [],
-      team: ""
+      match: ""
     }
   },
   async created() {
@@ -37,10 +37,10 @@ export default {
       this.$router.push({name: 'home'});
     }
 
-    this.team = this.$route.params.team;
+    this.match = this.$route.params.match;
 
     try {
-      this.matches = await MatchService.getMatchesByTeam(this.comp._id, this.team);
+      this.matches = await MatchService.getMatchesByMatch(this.comp._id, this.match);
     } catch(err) {
       alert("Error: " + err.message);
     }
