@@ -23,33 +23,52 @@ const routes = [
       // Main landing page with access to each competition
       name: 'home',
       path: '',
-      component: Home
+      component: Home,
+      meta: {
+        title: '2019 Scouting App'
+      }
   },
   {
     // Competition page displaying all attending team averages
     name: 'teams',
     path: '/teams::competition?',
-    component: Teams
+    component: Teams,
+    meta: {
+      title: 'Teams'
+    }    
   },
   {
     // Competition page displaying all matches for a specific team
     name: 'team',
     path: '/team::competition?::team?',
-    component: Team
+    component: Team,
+    meta: {
+      title: 'Team'
+    }
   },
   {
     // Competition page displaying all data from a specific match
     name: 'match',
     path: '/match::competition?::match?',
-    component: Match
+    component: Match,
+    meta: {
+      title: 'Match'
+    }
   },
   {
     // Scouting page to gather information for a team at a match at a competition
     name: 'scouting',
     path: '/scouting::competition?',
-    component: ScoutingApp
+    component: ScoutingApp,
+    meta: {
+      title: 'Scouting App'
+    }
   }
 ];
 
+/* eslint-disable */
 const router = new VueRouter({ mode: 'history', routes: routes});
+router.afterEach((to, from, next) => {
+  document.title = to.meta.title || '2019 Scouting App';
+});
 new Vue(Vue.util.extend({ router }, App)).$mount('#app');
