@@ -8,7 +8,11 @@
 </template>
 
 <script>
+
+      /* eslint-disable */
 import CompService from '../CompService.js'
+import MatchService from '../MatchService.js'
+import AverageService from '../AverageService.js'
 import Comps from './Comps_Component.vue'
 import CreateComp from './CreateComp_Component.vue'
 
@@ -40,8 +44,21 @@ export default {
       this.comps = await CompService.getComps();
     },
     async deleteComp(id) {
-      await CompService.deleteComp(id);
-      this.comps = await CompService.getComps();
+      //Get comp name
+      let name = this.comps.find(comp => comp._id == id).name;
+
+      if(confirm(`Are you sure you want to delete ${name} and all associated match data and team averages?`) && confirm(`This action cannot be undone. Are you certain?`)) {
+        await CompService.deleteComp(id);
+        this.comps = await CompService.getComps();
+
+        //Also delete all associated information -- this is the only way to actually erase that information
+        await MatchService.deleteMatchesByComp(id);
+        await AverageService.deleteAveragesByComp(id);
+        
+        alert(`All competition, match, and average data for ${name} has been deleted`);
+      } else {
+        alert("Maneuver aborted.");
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="container_main">
-    <p id="mainTitle">Teams</p>
+    <p id="mainTitle">Team Averages</p>
     <button id="linkMatch" class="topLinks" v-on:mouseover="checkValid()" v-on:click="redirect();">Match <input type="text" id="matchRedirect" v-on:change="checkValid()"></button>
     <router-link tag="button" :to="{ name: 'home' }" id="linkHome" class="topLinks valid">Home</router-link>
     <p id="mainSub">@ {{comp.name}}</p>
