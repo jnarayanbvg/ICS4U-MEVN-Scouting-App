@@ -76,6 +76,8 @@ export default {
       alert("Error: " + err.message);
     }
 
+    this.matches.sort((a,b) => a.matchNumber - b.matchNumber); //Ascending order of matches
+
     // With matches, calculate an up-to-date set of averages for the team, accounting for general scoring capabilities
     // as well as specific defense properties
     let habLeave = this.matches.reduce((acc, match) => acc += match.habLeave, 0);

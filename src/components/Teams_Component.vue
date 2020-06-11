@@ -67,6 +67,8 @@ export default {
       alert("Error: " + err.message);
     }
 
+    this.averages.sort((a,b) => a.teamNumber - b.teamNumber); //Ascending order of team numbers
+
     // Map all averages to an array understandable by the Matches component
     this.averages.map(avg => {
       //Account for divide by zero exceptions -- just make it a very high value so the number gets rounded off to zero

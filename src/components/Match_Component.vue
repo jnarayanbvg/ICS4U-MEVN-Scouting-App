@@ -68,6 +68,8 @@ export default {
     } catch(err) {
       alert("Error: " + err.message);
     }
+
+    this.matches.sort((a,b) => b.allianceColor.localeCompare(a.allianceColor)); //Red teams then blue teams
   },
   methods: {
     //Check if match redirect input value is valid
