@@ -1,11 +1,12 @@
-/* eslint-disable */ 
+// Simple Web Service Call Handler for Averages
 
+/* eslint-disable */ 
 import axios from 'axios';
-import mongoose from 'mongoose';
 
 const url = 'api/averages/';
 
 class AverageService {
+
     //Get Averages
     static getAverages() {
         return new Promise ((resolve,reject) => {
@@ -22,7 +23,7 @@ class AverageService {
     //Get Averages By Comp
     static getAveragesByComp(comp) {
         return new Promise ((resolve,reject) => {
-            axios.get(url+comp).then((res) => {
+            axios.get(`${url}${comp}`).then((res) => {
                 const data = res.data;
                 resolve(data);
             })
@@ -35,7 +36,7 @@ class AverageService {
     //Get Averages By Comp and Team
     static getAveragesByTeam(comp, team) {
         return new Promise ((resolve, reject) => {
-            axios.get(url+comp+"/team/"+team).then((res) => {
+            axios.get(`${url}${comp}/team/${team}`).then((res) => {
                 const data = res.data;
                 resolve(data);
             })
@@ -99,6 +100,7 @@ class AverageService {
     static deleteAveragesByComp(comp) {
         return axios.delete(`${url}${comp}`);
     }
+
 }
 
 export default AverageService;

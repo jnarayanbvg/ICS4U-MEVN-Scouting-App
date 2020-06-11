@@ -1,3 +1,5 @@
+// Simple Web Service Call Handler for Comps
+
 /* eslint-disable */ 
 import axios from 'axios';
 import mongoose from 'mongoose';
@@ -5,6 +7,7 @@ import mongoose from 'mongoose';
 const url = 'api/comps/';
 
 class CompService {
+    
     //Get Comps
     static getComps() {
         return new Promise ((resolve,reject) => {
@@ -23,7 +26,7 @@ class CompService {
         return new Promise ((resolve,reject) => {
             if(!mongoose.Types.ObjectId.isValid(id)) reject(); //Make sure the string is a possible id before checking if it exists
 
-            axios.get(url+id).then((res) => {
+            axios.get(`${url}${id}`).then((res) => {
                 const data = res.data;
                 resolve(data);
             })
@@ -44,7 +47,7 @@ class CompService {
     static updateComp(id, name) {
         if(!mongoose.Types.ObjectId.isValid(id)) reject(); //Make sure the string is a possible id before checking if it exists
 
-        return axios.post(url+id, {
+        return axios.post(`${url}${id}`, {
             name
         });
     }
@@ -55,6 +58,7 @@ class CompService {
 
         return axios.delete(`${url}${id}`);
     }
+
 }
 
 export default CompService;

@@ -3,7 +3,7 @@ const mongodb = require('mongodb');
 
 const router = express.Router();
 
-// Get Averages
+// Get Averages -- Mostly for testing purposes
 router.get('/', async (req, res) => {
     const averages = await loadAveragesCollection();
     res.send(await averages.find({}).toArray());
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
     res.status(201).send();
 });
 
-// Delete Averages By Comp
+// Delete Averages By Comp -- Scouting apps don't typically necessitate deleting a single average
 router.delete('/:comp', async (req, res) => {
     const averages = await loadAveragesCollection();
     let result = await averages.deleteMany({ competition: req.params.comp });
@@ -70,7 +70,7 @@ router.delete('/:comp', async (req, res) => {
     else res.status(204).send(); //No content found
 });
 
-
+// Helper method to access the database
 async function loadAveragesCollection() {
     const client = await mongodb.MongoClient.connect('mongodb+srv://jnarayan:mongodbpass@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority', {
         useNewUrlParser: true,
@@ -79,6 +79,5 @@ async function loadAveragesCollection() {
 
     return client.db('ScoutingApp').collection('averages');
 }
-
 
 module.exports = router;

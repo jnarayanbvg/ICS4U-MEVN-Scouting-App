@@ -3,14 +3,14 @@ const mongodb = require('mongodb');
 
 const router = express.Router();
 
-// Get Matches
+// Get Matches -- Mostly for testing purposes
 router.get('/', async (req, res) => {
     const matches = await loadMatchesCollection();
     res.send(await matches.find({}).toArray());
     res.status(200).send();
 });
 
-// Get Matches By Comp
+// Get Matches By Comp -- Mostly for testing purposes
 router.get('/:comp', async (req, res) => {
     const matches = await loadMatchesCollection();
     res.send(await matches.find({competition: req.params.comp}).toArray());
@@ -71,15 +71,15 @@ router.post('/', async (req, res) => {
     res.status(201).send();
 });
 
-// Delete Match
-router.delete('/:id', async (req, res) => {
+// Delete Matches By Comp -- Scouting apps don't typically necessitate deleting a single match
+router.delete('/:comp', async (req, res) => {
     const matches = await loadMatchesCollection();
-    let result = await matches.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
+    let result = await matches.deleteMany({ competition: req.params.comp });
     if(result.deletedCount>0) res.status(200).send();
     else res.status(204).send(); //No content found
 });
 
-
+// Helper method to access the database
 async function loadMatchesCollection() {
     const client = await mongodb.MongoClient.connect('mongodb+srv://jnarayan:mongodbpass@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority', {
         useNewUrlParser: true,
@@ -88,6 +88,5 @@ async function loadMatchesCollection() {
 
     return client.db('ScoutingApp').collection('matches');
 }
-
 
 module.exports = router;

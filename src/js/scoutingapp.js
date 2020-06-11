@@ -3,7 +3,7 @@ function initApp() {
     Util.initSpaces();
 }
 
-//Declare state variables
+// Declare state variables
 let currentMode = "preload", rocketLevel = "low";
 let habStart = -1, habLeave = -1, habClimb = -1; //-1 means no selection, 0 means on field/no leave, 1+ means level
 let sandstormCargo = 0, sandstormPanel = 0, shipCargo = 0, shipPanel = 0, lowCargo = 0, lowPanel = 0, midCargo = 0, midPanel = 0, highCargo = 0, highPanel = 0;
@@ -12,7 +12,7 @@ let timeDefending = 0, defenseStrength = 0;
 let allianceColor = "red";
 let currentItem = "";
 
-//Declare utility class with general use properties and functions
+// Declare utility class with general use properties and functions
 class Util {
     static redColorLight = "#f53a3a";
     static blueColorLight = "#418ee7";
@@ -145,6 +145,7 @@ class Util {
     }
 }
 
+// Write class to describe the state of each individual score space on the cargo ship and rocket
 class Space {
     cargoScored = false;
     panelScored = false;
@@ -220,12 +221,10 @@ class Space {
     }
 }
 
-function score(num) {
-    Util.score(num);
-}
 
+/// Declare general and user-/button-accessible functions
 
-//Declare general and user-/button-accessible functions
+// Switching field color
 function setFieldColor(color) {
     let alt = color == "red" ? "blue" : "red";
     Util.getId("playfield").style.backgroundColor = Util[color+"ColorLight"];
@@ -234,6 +233,7 @@ function setFieldColor(color) {
     allianceColor = color;
 }
 
+// Moving all field components to mirrored position
 function flipSides() {
     let spaces = Util.getClass("spaces");
     spaces.forEach(space => flipItem(space));
@@ -247,10 +247,12 @@ function flipSides() {
     }
 }
 
+// Make user-inputted team appear in the field display
 function setMapTeamNumber() {
     Util.getId("mapTeamNumber").innerHTML = Util.getId("input_teamNumber").value;
 }
 
+// Set HAB state variables for preload, sandstorm, and teleop
 function setHAB(level) {
     let lookFor = "";
     switch(currentMode) {
@@ -302,6 +304,7 @@ function setHAB(level) {
     }
 }
 
+// Handle item preloading, picking up, and dropping
 function setItem(item) {
     let lookFor = "";
     switch(currentMode) {
@@ -356,6 +359,7 @@ function setItem(item) {
     }
 }
 
+// Enable and disable correct rocket spaces for cycling displayed rocket level
 function switchRocketLevel() {
     let len = rocketLevel.length;
     rocketLevel = rocketLevel == "low" ? "mid" : rocketLevel == "mid" ? "high" : "low";
@@ -381,6 +385,12 @@ function switchRocketLevel() {
     }
 }
 
+// Declare more easily accessible scoring method for implementing in component
+function score(num) {
+    Util.score(num);
+}
+
+// Change the state of semantic-differential scales on miscallenous screen
 function switchScale(type, value) {
     let buttons = Util.getClass(type);
     buttons.forEach(button => Util.disableButton(button, "tab"));
@@ -388,6 +398,7 @@ function switchScale(type, value) {
     eval(type + " = " + value);
 }
 
+// Handle mode-switching functionality at bottom of the screen as match progresses
 function switchMode(newMode) {
     currentMode = newMode;
 
@@ -433,7 +444,7 @@ function switchMode(newMode) {
 
 
 
-//Export the usable js functions
+//Export the usable js functions as an easily accessible object
 const js = {
     initApp,
     setFieldColor,

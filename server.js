@@ -8,6 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// Bring in all api routes
 const comps = require('./routes/api/comps');
 app.use('/api/comps', comps);
 const matches = require('./routes/api/matches');

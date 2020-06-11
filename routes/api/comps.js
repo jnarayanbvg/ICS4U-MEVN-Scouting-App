@@ -44,7 +44,7 @@ router.delete('/:id', async (req, res) => {
     else res.status(204).send(); //No content found
 });
 
-
+// Helper method to access the database
 async function loadCompsCollection() {
     const client = await mongodb.MongoClient.connect('mongodb+srv://jnarayan:mongodbpass@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority', {
         useNewUrlParser: true,
@@ -53,6 +53,5 @@ async function loadCompsCollection() {
 
     return client.db('ScoutingApp').collection('comps');
 }
-
 
 module.exports = router;

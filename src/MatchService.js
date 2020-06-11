@@ -1,11 +1,12 @@
-/* eslint-disable */ 
+// Simple Web Service Call Handler for Comps
 
+/* eslint-disable */ 
 import axios from 'axios';
-import mongoose from 'mongoose';
 
 const url = 'api/matches/';
 
 class MatchService {
+
     //Get Matches
     static getMatches() {
         return new Promise ((resolve,reject) => {
@@ -63,7 +64,7 @@ class MatchService {
     //Get Matches By Comp and Match
     static getMatchesByMatch(comp, match) {
         return new Promise ((resolve, reject) => {
-            axios.get(url+comp+"/match/"+match).then((res) => {
+            axios.get(`${url}${comp}/match/${match}`).then((res) => {
                 const data = res.data;
                 resolve(
                     data.map(obj => ({
@@ -131,12 +132,11 @@ class MatchService {
         });
     }
 
-    //Delete Match
-    static deleteMatch(id) {
-        if(!mongoose.Types.ObjectId.isValid(id)) reject(); //Make sure the string is a possible id before checking if it exists
-
-        return axios.delete(`${url}${id}`);
+    //Delete Matches By Comp
+    static deleteMatchesByComp(comp) {
+        return axios.delete(`${url}${comp}`);
     }
+
 }
 
 export default MatchService;

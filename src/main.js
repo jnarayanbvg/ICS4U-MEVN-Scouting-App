@@ -20,32 +20,36 @@ import ScoutingApp from './components/ScoutingApp_Component.vue';
 
 const routes = [
   {
+      // Main landing page with access to each competition
       name: 'home',
       path: '',
       component: Home
   },
   {
+    // Competition page displaying all attending team averages
     name: 'teams',
     path: '/teams::competition?',
     component: Teams
   },
   {
+    // Competition page displaying all matches for a specific team
     name: 'team',
     path: '/team::competition?::team?',
     component: Team
   },
   {
+    // Competition page displaying all data from a specific match
     name: 'match',
     path: '/match::competition?::match?',
     component: Match
   },
   {
+    // Scouting page to gather information for a team at a match at a competition
     name: 'scouting',
     path: '/scouting::competition?',
     component: ScoutingApp
   }
 ];
-
 
 const router = new VueRouter({ mode: 'history', routes: routes});
 new Vue(Vue.util.extend({ router }, App)).$mount('#app');
