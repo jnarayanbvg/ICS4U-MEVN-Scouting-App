@@ -47,7 +47,6 @@ router.post('/', async (req, res) => {
         matchNumber: req.body.matchNumber,
         teamNumber: req.body.teamNumber,
         allianceColor: req.body.allianceColor,
-        habStart: req.body.habStart,
         habLeave: req.body.habLeave,
         habClimb: req.body.habClimb,
         sandstormCargo: req.body.sandstormCargo,

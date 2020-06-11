@@ -17,14 +17,90 @@ a, a:visited, a:active, a:hover {
   color: inherit;
 }
 
-.container_main #mainTitle, .container_main #mainSub {
+.container_main #mainTitle, .container_main #mainSub, .container_main #loading {
   margin: 12px 24px 0px 24px;
   color: #1e91fd;
   font-size: 32px;
 }
-.container_main #mainTitle#mainSub, .container_main #mainSub#mainSub {
+.container_main #mainTitle#mainSub, .container_main #mainSub#mainSub, .container_main #loading#mainSub {
   margin-top: 8px;
   font-size: 20px;
+}
+.container_main #subFlex {
+  display: flex;
+}
+.container_main #subFlex #mainSub {
+  float: left;
+}
+.container_main #subFlex #loading {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  margin-top: 8px;
+  font-size: 20px;
+}
+.container_main #subFlex #loading img {
+  margin-left: 8px;
+  width: 26px;
+  height: 26px;
+  vertical-align: text-top;
+  filter: saturate(1.6);
+}
+.container_main #subFlex #loading #padCheck {
+  display: inline-block;
+  margin-left: 12px;
+  margin-right: 8px;
+  transform: scaleX(1.5);
+}
+.container_main .topLinks {
+  width: 120px;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 2px;
+  height: 44px;
+  border-width: 0px;
+  border-radius: 10px;
+  background-color: #4ba8ff;
+  color: #ecf4fd;
+  font-weight: 300;
+  position: absolute;
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: 0.25s, 0.25s;
+  transition-timing-function: ease, ease;
+  transition-delay: 0s, 0s;
+}
+.container_main .topLinks#linkMatch {
+  width: 172px;
+  top: 12px;
+  right: 168px;
+  cursor: default;
+}
+.container_main .topLinks#linkMatch input {
+  vertical-align: middle;
+  margin: 0;
+  width: 52px;
+  height: 24px;
+  padding: 0px 4px;
+  border-radius: 6px;
+  border: 0;
+  -webkit-box-shadow: 0px 0px 2px 0px #67b6ff;
+  -moz-box-shadow: 0px 0px 2px 0px #67b6ff;
+  box-shadow: 0px 0px 2px 0px #67b6ff;
+  background-color: #ecf4fd;
+  color: #222222;
+  font-size: 20px;
+  font-weight: 300;
+  margin-left: 12px;
+}
+.container_main .topLinks.valid:hover {
+  background-color: #c7e5ff;
+  color: #4ba8ff;
+  font-weight: 400;
+}
+.container_main .topLinks#linkTeams, .container_main .topLinks#linkHome {
+  top: 12px;
+  right: 24px;
 }
 .container_main #mainComps, .container_main .container_match {
   margin: 16px;
@@ -85,6 +161,7 @@ a, a:visited, a:active, a:hover {
   background-color: #01509a;
   color: #ecf4fd;
   font-weight: 300;
+  cursor: pointer;
   transition-property: background-color, color;
   transition-duration: 0.25s, 0.25s;
   transition-timing-function: ease, ease;

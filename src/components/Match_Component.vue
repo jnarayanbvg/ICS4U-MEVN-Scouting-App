@@ -1,6 +1,8 @@
 <template>
   <div class="container_main">
     <p id="mainTitle">Match {{this.match}}</p>
+    <button id="linkMatch" class="topLinks" v-on:mouseover="checkValid()" v-on:click="redirect();">Match <input type="text" id="matchRedirect" v-on:change="checkValid()"></button>
+    <router-link tag="button" :to="{ name: 'teams', params: { competition: comp._id }}" id="linkTeams" class="topLinks valid">Teams</router-link>
     <p id="mainSub">@ {{comp.name}}</p>
     
     <div class="container_match">
@@ -43,6 +45,38 @@ export default {
       this.matches = await MatchService.getMatchesByMatch(this.comp._id, this.match);
     } catch(err) {
       alert("Error: " + err.message);
+    }
+  },
+  methods: {
+    checkValid() { 
+      // Check valid is called twice because the v-on:change doesn't detect if the field is emptied and the v-on:mousehover doesn't immediately update until moused off then over again
+      // Basically, it tries to update as frequetly as possible for a better user experience
+
+      let input = document.getElementById('matchRedirect');
+      let button = document.getElementById('linkMatch');
+      if(input == null || button == null) return; //DOM not loaded
+      try {
+        if(input.value != "" && parseInt(input.value) > 0) {
+          button.className = "topLinks valid";
+        } else {
+          button.className = "topLinks";
+        }
+      } catch(err) {
+        alert("Error in match redirect input field: " + err.message);
+      }
+    },
+
+    redirect() {
+      let input = document.getElementById('matchRedirect');
+      let button = document.getElementById('linkMatch');
+      if(input == null || button == null) return; //DOM not loaded
+      try {
+        if(button.className == "topLinks valid") {
+          this.$router.push({name: 'match', params: { competition: this.comp._id, match: parseInt(input.value) }});
+        }
+      } catch(err) {
+        alert("Error in redirecting to match: " + err.message);
+      }
     }
   }
 }

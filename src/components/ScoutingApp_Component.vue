@@ -93,7 +93,6 @@
 
               <!-- All hidden inputs -->
               <input type="hidden" id="input_allianceColor" name="allianceColor" v-model="vals.allianceColor">
-              <input type="hidden" id="input_habStart" name="habStart" v-model="vals.habStart">
               <input type="hidden" id="input_habLeave" name="habLeave" v-model="vals.habLeave">
               <input type="hidden" id="input_habClimb" name="habClimb" v-model="vals.habClimb">
               <input type="hidden" id="input_sandstormCargo" name="sandstormCargo" v-model="vals.sandstormCargo">
@@ -214,7 +213,6 @@ export default {
         matchNumber: 0,
         teamNumber: 0,
         allianceColor: "red",
-        habStart: 0,
         habLeave: 0,
         habClimb: 0,
         sandstormCargo: 0,
@@ -258,7 +256,7 @@ export default {
   methods: {
     async checkForm() {
       let arr = ["allianceColor", 
-        "habStart", "habLeave", "habClimb", 
+        "habLeave", "habClimb", 
         "sandstormCargo", "sandstormPanel", 
         "shipCargo", "shipPanel", "lowCargo", "lowPanel", "midCargo", "midPanel", "highCargo", "highPanel",
         "cargoFloor", "cargoHuman", "panelFloor", "panelHuman", 
@@ -274,7 +272,6 @@ export default {
         Math.max(0, this.vals.matchNumber),
         Math.max(0, this.vals.teamNumber),
         this.vals.allianceColor,
-        Math.max(0, this.vals.habStart),
         Math.max(0, this.vals.habLeave),
         Math.max(0, this.vals.habClimb),
         this.vals.sandstormCargo,

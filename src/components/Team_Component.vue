@@ -1,8 +1,13 @@
 <template>
   <div class="container_main">
     <p id="mainTitle">Team {{this.team}}</p>
-    <p id="mainSub">@ {{comp.name}}</p>
-    
+    <button id="linkMatch" class="topLinks" v-on:mouseover="checkValid()" v-on:click="redirect();">Match <input type="text" id="matchRedirect" v-on:change="checkValid()"></button>
+    <router-link tag="button" :to="{ name: 'teams', params: { competition: comp._id }}" id="linkTeams" class="topLinks valid">Teams</router-link>
+    <div id="subFlex">
+      <p id="mainSub">@ {{comp.name}}</p>
+      <div id="loading">Calculating Average <img src="../assets/images/loading.gif"></div>
+    </div>
+
     <div class="container_match">
       <Matches v-bind:matches="matches" v-bind:exclude="'allianceColor teamNumber'" v-bind:comp="comp"></Matches>
     </div>
@@ -91,8 +96,43 @@ export default {
         defenseStrength,
         matchCount,
         defenseCount);
+
+      // Display that average is calculated
+      let message = document.getElementById("loading");
+      if(message !== null) message.innerHTML = "Average Calculated <div id='padCheck'>✓</div>"; //In case they redirected off the page -- this command will still be run because of the async property
     } catch(err) {
       alert("Error: " + err.message);
+    }
+  },
+  methods: {
+    checkValid() { 
+      // Check valid is called twice because the v-on:change doesn't detect if the field is emptied and the v-on:mousehover doesn't immediately update until moused off then over again
+      // Basically, it tries to update as frequetly as possible for a better user experience
+
+      let input = document.getElementById('matchRedirect');
+      let button = document.getElementById('linkMatch');
+      if(input == null || button == null) return; //DOM not loaded
+      try {
+        if(input.value != "" && parseInt(input.value) > 0) {
+          button.className = "topLinks valid";
+        } else {
+          button.className = "topLinks";
+        }
+      } catch(err) {
+        alert("Error in match redirect input field: " + err.message);
+      }
+    },
+    redirect() {
+      let input = document.getElementById('matchRedirect');
+      let button = document.getElementById('linkMatch');
+      if(input == null || button == null) return; //DOM not loaded
+      try {
+        if(button.className == "topLinks valid") {
+          this.$router.push({name: 'match', params: { competition: this.comp._id, match: parseInt(input.value) }});
+        }
+      } catch(err) {
+        alert("Error in redirecting to match: " + err.message);
+      }
     }
   }
 }
