@@ -1,6 +1,38 @@
 /* eslint-disable */
 function initApp() {
     Util.initSpaces();
+    initVars();
+}
+
+//Inits Vars when scouting app is clicked from the home page, otherwise it uses var states from last time the page was opened
+function initVars() {
+    currentMode = "preload";
+    rocketLevel = "low";
+    habStart = -1;
+    habLeave = -1;
+    habClimb = -1;
+
+    sandstormCargo = 0;
+    sandstormPanel = 0;
+    shipCargo = 0;
+    shipPanel = 0;
+    lowCargo = 0;
+    lowPanel = 0;
+    midCargo = 0;
+    midPanel = 0;
+    highCargo = 0;
+    highPanel = 0;
+
+    cargoFloor = 0;
+    cargoHuman = 0;
+    panelFloor = 0;
+    panelHuman = 0;
+
+    timeDefending = 0;
+    defenseStrength = 0;
+
+    allianceColor = "red";
+    currentItem = "";
 }
 
 // Declare state variables
@@ -279,6 +311,7 @@ function setHAB(level) {
 
         let buttons = Util.getClass(lookFor);
         buttons.forEach(button => Util.disableButton(button, "full"));
+        console.log(buttons);
         Util.enableButton(Util.getId(lookFor+level), "tab");
         Util.enableButton(Util.getId(lookFor+"Cancel"), "cancel");
         eval(lookFor + " = " + level);
