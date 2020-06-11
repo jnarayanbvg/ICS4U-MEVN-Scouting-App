@@ -1,12 +1,33 @@
+<!-- Match Component - Show all match data for a specific match for a specific competition -->
+
 <template>
   <div class="container_main">
-    <p id="mainTitle">Match {{this.match}}</p>
-    <button id="linkMatch" class="topLinks" v-on:mouseover="checkValid()" v-on:click="redirect();">Match <input type="text" id="matchRedirect" v-on:change="checkValid()"></button>
-    <router-link tag="button" :to="{ name: 'teams', params: { competition: comp._id }}" id="linkTeams" class="topLinks valid">Teams</router-link>
-    <p id="mainSub">@ {{comp.name}}</p>
-    
+    <!-- Handle strategy-side page navigation -->
+    <p id="mainTitle">Match {{ this.match }}</p>
+    <button
+      id="linkMatch"
+      class="topLinks"
+      v-on:mouseover="checkValid()"
+      v-on:click="redirect()"
+    >
+      Match <input type="text" id="matchRedirect" v-on:change="checkValid()" />
+    </button>
+    <router-link
+      tag="button"
+      :to="{ name: 'teams', params: { competition: comp._id } }"
+      id="linkTeams"
+      class="topLinks valid"
+      >Teams</router-link
+    >
+    <p id="mainSub">@ {{ comp.name }}</p>
+
+    <!-- Matches Component displays all given match data -->
     <div class="container_match">
-      <Matches v-bind:matches="matches" v-bind:exclude="'matchNumber'" v-bind:comp="comp"></Matches>
+      <Matches
+        v-bind:matches="matches"
+        v-bind:exclude="'matchNumber'"
+        v-bind:comp="comp"
+      ></Matches>
     </div>
   </div>
 </template>
@@ -29,7 +50,7 @@ export default {
     }
   },
   async created() {
-    //Figure out the name of the current competition
+    // Figure out the name of the current competition
     try {
       this.comp = await CompService.getOneComp(this.$route.params.competition);
       if(this.comp.name == undefined) throw "No competition with this id exists.";
@@ -41,6 +62,7 @@ export default {
 
     this.match = this.$route.params.match;
 
+    // Load matches
     try {
       this.matches = await MatchService.getMatchesByMatch(this.comp._id, this.match);
     } catch(err) {
@@ -48,6 +70,7 @@ export default {
     }
   },
   methods: {
+    //Check if match redirect input value is valid
     checkValid() { 
       // Check valid is called twice because the v-on:change doesn't detect if the field is emptied and the v-on:mousehover doesn't immediately update until moused off then over again
       // Basically, it tries to update as frequetly as possible for a better user experience
@@ -66,6 +89,7 @@ export default {
       }
     },
 
+    // Direct user to correct match page upon clicking button
     redirect() {
       let input = document.getElementById('matchRedirect');
       let button = document.getElementById('linkMatch');

@@ -1,15 +1,39 @@
+<!-- Team Component - Show all match data for a specific team for a specific competition -->
+
 <template>
   <div class="container_main">
-    <p id="mainTitle">Team {{this.team}}</p>
-    <button id="linkMatch" class="topLinks" v-on:mouseover="checkValid()" v-on:click="redirect();">Match <input type="text" id="matchRedirect" v-on:change="checkValid()"></button>
-    <router-link tag="button" :to="{ name: 'teams', params: { competition: comp._id }}" id="linkTeams" class="topLinks valid">Teams</router-link>
+    <!-- Handle strategy-side page navigation -->
+    <p id="mainTitle">Team {{ this.team }}</p>
+    <button
+      id="linkMatch"
+      class="topLinks"
+      v-on:mouseover="checkValid()"
+      v-on:click="redirect()"
+    >
+      Match <input type="text" id="matchRedirect" v-on:change="checkValid()" />
+    </button>
+    <router-link
+      tag="button"
+      :to="{ name: 'teams', params: { competition: comp._id } }"
+      id="linkTeams"
+      class="topLinks valid"
+      >Teams</router-link
+    >
     <div id="subFlex">
-      <p id="mainSub">@ {{comp.name}}</p>
-      <div id="loading">Calculating Average <img src="../assets/images/loading.gif"></div>
+      <p id="mainSub">@ {{ comp.name }}</p>
+      <div id="loading">
+        Calculating Average <img src="../assets/images/loading.gif" />
+        <!-- Visual indicator for when the average has been calculated -->
+      </div>
     </div>
 
+    <!-- Matches Component displays all given match data -->
     <div class="container_match">
-      <Matches v-bind:matches="matches" v-bind:exclude="'allianceColor teamNumber'" v-bind:comp="comp"></Matches>
+      <Matches
+        v-bind:matches="matches"
+        v-bind:exclude="'allianceColor teamNumber'"
+        v-bind:comp="comp"
+      ></Matches>
     </div>
   </div>
 </template>
@@ -33,7 +57,7 @@ export default {
     }
   },
   async created() {
-    //Figure out the name of the current competition
+    // Figure out the name of the current competition
     try {
       this.comp = await CompService.getOneComp(this.$route.params.competition);
       if(this.comp.name == undefined) throw "No competition with this id exists.";
@@ -45,13 +69,15 @@ export default {
 
     this.team = this.$route.params.team;
 
+    // Load matches
     try {
       this.matches = await MatchService.getMatchesByTeam(this.comp._id, this.team);
     } catch(err) {
       alert("Error: " + err.message);
     }
 
-    //With matches, calculate averages
+    // With matches, calculate an up-to-date set of averages for the team, accounting for general scoring capabilities
+    // as well as specific defense properties
     let habLeave = this.matches.reduce((acc, match) => acc += match.habLeave, 0);
     let habClimb = this.matches.reduce((acc, match) => acc += match.habClimb, 0);
     let sandstormCargo = this.matches.reduce((acc, match) => acc += match.sandstormCargo, 0);
@@ -73,6 +99,7 @@ export default {
     let matchCount = this.matches.length;
     let defenseCount = this.matches.reduce((acc, match) => acc += (match.timeDefending>0) ? 1 : 0, 0);
 
+    // Upsert this average to the database
     try {
       await AverageService.upsertAverage(this.comp._id, 
         parseInt(this.team),
@@ -97,7 +124,7 @@ export default {
         matchCount,
         defenseCount);
 
-      // Display that average is calculated
+      // Display to the user that average has been calculated
       let message = document.getElementById("loading");
       if(message !== null) message.innerHTML = "Average Calculated <div id='padCheck'>✓</div>"; //In case they redirected off the page -- this command will still be run because of the async property
     } catch(err) {
@@ -105,6 +132,7 @@ export default {
     }
   },
   methods: {
+    //Check if match redirect input value is valid
     checkValid() { 
       // Check valid is called twice because the v-on:change doesn't detect if the field is emptied and the v-on:mousehover doesn't immediately update until moused off then over again
       // Basically, it tries to update as frequetly as possible for a better user experience
@@ -122,6 +150,8 @@ export default {
         alert("Error in match redirect input field: " + err.message);
       }
     },
+
+    // Direct user to correct match page upon clicking button
     redirect() {
       let input = document.getElementById('matchRedirect');
       let button = document.getElementById('linkMatch');

@@ -1,12 +1,33 @@
+<!-- Teams Component - Show all teams averages for a specific competition -->
+
 <template>
   <div class="container_main">
+    <!-- Handle strategy-side page navigation -->
     <p id="mainTitle">Team Averages</p>
-    <button id="linkMatch" class="topLinks" v-on:mouseover="checkValid()" v-on:click="redirect();">Match <input type="text" id="matchRedirect" v-on:change="checkValid()"></button>
-    <router-link tag="button" :to="{ name: 'home' }" id="linkHome" class="topLinks valid">Home</router-link>
-    <p id="mainSub">@ {{comp.name}}</p>
+    <button
+      id="linkMatch"
+      class="topLinks"
+      v-on:mouseover="checkValid()"
+      v-on:click="redirect()"
+    >
+      Match <input type="text" id="matchRedirect" v-on:change="checkValid()" />
+    </button>
+    <router-link
+      tag="button"
+      :to="{ name: 'home' }"
+      id="linkHome"
+      class="topLinks valid"
+      >Home</router-link
+    >
+    <p id="mainSub">@ {{ comp.name }}</p>
 
+    <!-- Matches Component displays all given match data (appropriated to display averages) -->
     <div class="container_match">
-      <Matches v-bind:matches="averages" v-bind:exclude="'allianceColor matchNumber comments scout'" v-bind:comp="comp"></Matches>
+      <Matches
+        v-bind:matches="averages"
+        v-bind:exclude="'allianceColor matchNumber comments scout'"
+        v-bind:comp="comp"
+      ></Matches>
     </div>
   </div>
 </template>
@@ -29,7 +50,7 @@ export default {
     }
   },
   async created() {
-    //Figure out the name of the current competition
+    // Figure out the name of the current competition
     try {
       this.comp = await CompService.getOneComp(this.$route.params.competition);
       if(this.comp.name == undefined || this.comp.name == "") throw "No competition with this id exists.";
@@ -39,12 +60,14 @@ export default {
       this.$router.push({name: 'home'});
     }
 
+    // Load all averages
     try {
       this.averages = await AverageService.getAveragesByComp(this.comp._id);
     } catch(err) {
       alert("Error: " + err.message);
     }
 
+    // Map all averages to an array understandable by the Matches component
     this.averages.map(avg => {
       //Account for divide by zero exceptions -- just make it a very high value so the number gets rounded off to zero
       if(avg.matchCount == 0) avg.matchCount = Number.MAX_SAFE_INTEGER;
@@ -70,11 +93,13 @@ export default {
       avg.defenseStrength = toInt(avg.defenseStrength / avg.defenseCount);
     });
 
+    // Helper method for converting long float values to shorter values (not actually ints)
     function toInt(val) {
       return parseFloat(val.toFixed(2));
     }
   },
   methods: {
+    //Check if match redirect input value is valid
     checkValid() { 
       // Check valid is called twice because the v-on:change doesn't detect if the field is emptied and the v-on:mousehover doesn't immediately update until moused off then over again
       // Basically, it tries to update as frequetly as possible for a better user experience
@@ -93,6 +118,7 @@ export default {
       }
     },
 
+    // Direct user to correct match page upon clicking button
     redirect() {
       let input = document.getElementById('matchRedirect');
       let button = document.getElementById('linkMatch');

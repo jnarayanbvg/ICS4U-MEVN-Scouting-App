@@ -1,3 +1,5 @@
+<!-- Matches Component - Display all given match data -->
+
 <template>
   <table id="matchTable">
     <thead>
@@ -19,28 +21,86 @@
     </thead>
     <tbody>
       <tr class="matchRow" v-for="match in matches" :key="match._id + keyRender">
-        <router-link tag="td" :to="{ name: 'team', params: { competition: comp._id, team: match.teamNumber }}" class="matchCell" v-bind:class="{ red: onRed(match), blue: onBlue(match), matchTeam: !include('allianceColor') }" v-if="include('teamNumber')">{{ match.teamNumber }}</router-link>
-        <router-link tag="td" :to="{ name: 'match', params: { competition: comp._id, match: match.matchNumber }}" class="matchCell matchMatch" v-if="include('matchNumber')">{{ match.matchNumber }}</router-link>
+        <router-link
+          tag="td"
+          :to="{
+            name: 'team',
+            params: { competition: comp._id, team: match.teamNumber },
+          }"
+          class="matchCell"
+          v-bind:class="{
+            red: onRed(match),
+            blue: onBlue(match),
+            matchTeam: !include('allianceColor'),
+          }"
+          v-if="include('teamNumber')"
+          >{{ match.teamNumber }}</router-link
+        >
+        <router-link
+          tag="td"
+          :to="{
+            name: 'match',
+            params: { competition: comp._id, match: match.matchNumber },
+          }"
+          class="matchCell matchMatch"
+          v-if="include('matchNumber')"
+          >{{ match.matchNumber }}</router-link
+        >
         <td class="matchCell">{{ match.habLeave }}</td>
-        <td class="matchCell">{{ match.sandstormCargo }} C<div class="matchSpace"></div>{{ match.sandstormPanel }} P</td>
-        <td class="matchCell">{{ match.cargoFloor }} C<div class="matchSpace"></div>{{ match.panelFloor }} P</td>
-        <td class="matchCell">{{ match.cargoHuman }} C<div class="matchSpace"></div>{{ match.panelHuman }} P</td>
+        <td class="matchCell">
+          {{ match.sandstormCargo }} C
+          <div class="matchSpace"></div>
+          {{ match.sandstormPanel }} P
+        </td>
+        <td class="matchCell">
+          {{ match.cargoFloor }} C
+          <div class="matchSpace"></div>
+          {{ match.panelFloor }} P
+        </td>
+        <td class="matchCell">
+          {{ match.cargoHuman }} C
+          <div class="matchSpace"></div>
+          {{ match.panelHuman }} P
+        </td>
         <td class="matchCell">{{ match.shipCargo }}</td>
         <td class="matchCell">{{ match.shipPanel }}</td>
-        <td class="matchCell">{{ match.highCargo }}<div class="matchSpace"></div>{{ match.midCargo }}<div class="matchSpace"></div>{{ match.lowCargo }}</td>
-        <td class="matchCell">{{ match.highPanel }}<div class="matchSpace"></div>{{ match.midPanel }}<div class="matchSpace"></div>{{ match.lowPanel }}</td>
-        <td class="matchCell">{{ match.timeDefending }}<div class="matchSpace"></div>{{ getTimeDefending(match.timeDefending) }}</td>
-        <td class="matchCell">{{ match.defenseStrength }}<div class="matchSpace"></div>{{ getDefenseStrength(match.defenseStrength) }}</td>
+        <td class="matchCell">
+          {{ match.highCargo }}
+          <div class="matchSpace"></div>
+          {{ match.midCargo }}
+          <div class="matchSpace"></div>
+          {{ match.lowCargo }}
+        </td>
+        <td class="matchCell">
+          {{ match.highPanel }}
+          <div class="matchSpace"></div>
+          {{ match.midPanel }}
+          <div class="matchSpace"></div>
+          {{ match.lowPanel }}
+        </td>
+        <td class="matchCell">
+          {{ match.timeDefending }}
+          <div class="matchSpace"></div>
+          {{ getTimeDefending(match.timeDefending) }}
+        </td>
+        <td class="matchCell">
+          {{ match.defenseStrength }}
+          <div class="matchSpace"></div>
+          {{ getDefenseStrength(match.defenseStrength) }}
+        </td>
         <td class="matchCell">{{ match.habClimb }}</td>
-        <td class="matchCell matchComments" v-if="include('comments')">{{ match.comments }}</td>
-        <td class="matchCell matchScout" v-if="include('scout')">{{ match.scoutName }}</td>
+        <td class="matchCell matchComments" v-if="include('comments')">
+          {{ match.comments }}
+        </td>
+        <td class="matchCell matchScout" v-if="include('scout')">
+          {{ match.scoutName }}
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-
 export default {
   name: 'Match',
   props: ['matches', 'exclude', 'comp'],
@@ -50,6 +110,7 @@ export default {
     }
   },
   methods: {
+    // Check if component should display a specific field
     include(arg) {
       return !this.exclude.includes(arg);
     },
@@ -59,6 +120,7 @@ export default {
     onBlue(match) {
       return this.include('allianceColor') && match.allianceColor == 'blue';
     },
+    // Convert number value to semantic differential rating
     getTimeDefending(val) {
       switch(Math.floor(val+0.5)) {
         case 0: return "None";
@@ -67,6 +129,7 @@ export default {
         default: return "Most";
       }
     },
+    // Convert number value to semantic differential rating
     getDefenseStrength(val) {
       switch(Math.floor(val+0.5)) {
         case 0: return "None";

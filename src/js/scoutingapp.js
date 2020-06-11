@@ -50,7 +50,7 @@ class Util {
     }
 
     static disableButton(button, type) {
-        //Applicable for most buttons
+        // Applicable for most buttons
         button.style.backgroundColor = this.buttonGrayUnclicked;
 
         if(type == "bottom") {
@@ -114,32 +114,34 @@ class Util {
         }
     }
 
-    //For the rocket
+    // For the rocket
     static enableSpaces(arr) {
         arr.forEach(val => Util.getId("space"+val).style.display = "block");
     }
 
-    //For the rocket
+    // For the rocket
     static disableSpaces(arr) {
         arr.forEach(val => Util.getId("space"+val).style.display = "none");
     }
-
-
-
+    
+    // Generate space objects for each scorespace on the field
     static initSpaces() {
         for(let i = 0; i < 20; i++) {
             this.spaces[i] = new Space("space"+i);
         }
     }
 
+    // Change spaces when an object is held
     static enableHolding() {
         this.spaces.forEach(space => space.enableHolding());
     }
 
+    // Change spaces when an object is dropped
     static disableHolding() {
         this.spaces.forEach(space => space.disableHolding());
     }
 
+    // Interpret scoring on a space
     static score(num) {
         this.spaces[num].score();
     }
@@ -157,6 +159,7 @@ class Space {
         this.num = parseInt(id.slice(5));
     }
 
+    // When an item is picked up, display a different message
     enableHolding() {
         if(currentMode == "preload") return;
         
@@ -169,6 +172,7 @@ class Space {
         this.setColor();
     }
 
+    // When an object is dropped, display a different message
     disableHolding() {
         let cargoMessage = "Cargo: ", panelMessage = "Panel: ";
         cargoMessage += this.cargoScored ? "✔" : "✖"; 
@@ -179,6 +183,7 @@ class Space {
         this.setColor();
     }
 
+    // Check if able to score on the current space and then act accordingly
     score() {
         if(this.item.innerHTML == "Empty") {
             if(Util.getItem() == "Cargo") {
@@ -202,6 +207,7 @@ class Space {
         }
     }
     
+    // Generate a color gradient depending on which items are scored on that space
     setColor() {
         if(this.item.innerHTML == "Empty") {
             this.item.style.backgroundImage = "-webkit-linear-gradient(top,"+Util.notScored+","+Util.notScored+" 50%,"+Util.notScored+" 50%,"+Util.notScored+" 100%)";
@@ -268,7 +274,7 @@ function setHAB(level) {
     }
 
     if(eval(lookFor + " == -1") && level > -1) {
-        //Check for invalid click
+        // Check for invalid click
         if(Util.getCSS(Util.getId(lookFor+level), "opacity") == 0) return;
 
         let buttons = Util.getClass(lookFor);
@@ -277,14 +283,14 @@ function setHAB(level) {
         Util.enableButton(Util.getId(lookFor+"Cancel"), "cancel");
         eval(lookFor + " = " + level);
 
-        //Check for preload to sandstorm logic
+        // Check for preload to sandstorm logic
         if(lookFor == "habStart" && habLeave == -1) {
             if(habStart == 1) Util.disableButton(Util.getId("habLeave2"), "full");
             if(habStart == 2) Util.disableButton(Util.getId("habLeave1"), "full");
         }
     }
     if(eval(lookFor + " > -1") && level == -1) {
-        //Check for preload to sandstorm logic
+        // Check for preload to sandstorm logic
         if(lookFor == "habStart" && habLeave == -1) {
             if(habStart == 1) Util.enableButton(Util.getId("habLeave2"), "full");
             if(habStart == 2) Util.enableButton(Util.getId("habLeave1"), "full");
@@ -296,7 +302,7 @@ function setHAB(level) {
         Util.disableButton(Util.getId(lookFor+"Cancel"), "cancel");
         eval(lookFor + " = " + level);
 
-        //Check again for preload to sandstorm logic
+        // Check again for preload to sandstorm logic
         if(lookFor == "habLeave" && habLeave == -1) {
             if(habStart == 1) Util.disableButton(Util.getId("habLeave2"), "full");
             if(habStart == 2) Util.disableButton(Util.getId("habLeave1"), "full");
@@ -317,7 +323,7 @@ function setItem(item) {
     }
 
     if(currentItem == "" && item != "") {
-        //Check for invalid click
+        // Check for invalid click
         if(Util.getCSS(Util.getId(lookFor+item), "opacity") == 0) return;
 
         let buttons = Util.getClass(lookFor);
@@ -325,15 +331,17 @@ function setItem(item) {
         Util.enableButton(Util.getId(lookFor+item), "tab");
         Util.enableButton(Util.getId(lookFor+"Cancel"), "cancel");
         currentItem = item;
-        //Edit the appearance of the spaces
+
+        // Edit the appearance of the spaces
         Util.enableHolding();
-        //Add to the appropriate pickup variable
+
+        // Add to the appropriate pickup variable
         if(currentMode != "preload") {
             let pickup = item.slice(0,1).toLowerCase() + item.slice(1);
             eval(pickup + "++");
         }
 
-        //Handle preload to main game logic
+        // Handle preload to main game logic
         if(currentMode == "preload") {
             let buttons = Util.getClass("itemMain");
             buttons.forEach(button => Util.disableButton(button, "full"));
@@ -353,7 +361,8 @@ function setItem(item) {
             buttons.forEach(button => Util.enableButton(button, "full"));
             Util.disableButton(Util.getId("itemMainCancel"), "cancel");
             currentItem = "";
-            //Edit the appearance of the spaces
+
+            // Edit the appearance of the spaces
             Util.disableHolding();
         }
     }
@@ -368,7 +377,7 @@ function switchRocketLevel() {
     let displays = Util.getClass("rocketDisplay");
     displays.forEach(display => display.innerHTML = str+display.innerHTML.slice(len));
 
-    //Handle spaces
+    // Handle spaces
     switch(rocketLevel) {
         case "low": 
             Util.disableSpaces([2, 3, 4, 5, 8, 9, 10, 11]);
@@ -402,15 +411,15 @@ function switchScale(type, value) {
 function switchMode(newMode) {
     currentMode = newMode;
 
-    //Disable all buttons
+    // Disable all buttons
     let buttons = Util.getClass("bottomButtons");
     buttons.forEach(button => Util.disableButton(button, "bottom"));
 
-    //Enable specific button
+    // Enable specific button
     let target = buttons[newMode]; //Get an item with a particular ID
     Util.enableButton(target, "bottom");
 
-    //Disable all screen items
+    // Disable all screen items
     let preload = Util.getClass("preload");
     preload.forEach(item => item.style.display = "none");
     let sandstorm = Util.getClass("sandstorm");
@@ -421,7 +430,7 @@ function switchMode(newMode) {
     Util.getId("playfield").style.display = "none";
     Util.getId("spaceSet").style.display = "none";
 
-    //Enable certain screen items per mode
+    // Enable certain screen items per mode
     if(currentMode == "preload") {
         preload.forEach(item => item.style.display = "block");
         Util.disableHolding();
