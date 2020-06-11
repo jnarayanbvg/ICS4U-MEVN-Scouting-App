@@ -429,6 +429,8 @@ function switchMode(newMode) {
     Util.getId("miscTab").style.display = "none";
     Util.getId("playfield").style.display = "none";
     Util.getId("spaceSet").style.display = "none";
+    Util.getId("spaceSet").style.display = "none";
+
 
     // Enable certain screen items per mode
     if(currentMode == "preload") {
@@ -445,9 +447,11 @@ function switchMode(newMode) {
     }
     if(currentMode == "miscellaneous") {
         Util.getId("miscTab").style.display = "block";
+        Util.getId("home").style.display = "block";
     } else {
         Util.getId("playfield").style.display = "block";
         Util.getId("spaceSet").style.display = "table";
+        Util.getId("home").style.display = "none";
     }
 }
 

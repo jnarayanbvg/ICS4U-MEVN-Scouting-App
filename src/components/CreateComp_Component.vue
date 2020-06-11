@@ -27,7 +27,7 @@ export default {
     checkForm(name) {
       if(!document.getElementById("createFlexBox").checkValidity()) return;
       this.$emit('create-comp', name);
-      this.setForm();
+      this.name = "";
     }
   }
 };

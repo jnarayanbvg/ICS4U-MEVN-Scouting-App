@@ -446,12 +446,16 @@ button {
   transition-timing-function: ease, ease;
   transition-delay: 0s, 0s;
 }
-.container_app .flexBox .topButtons#flip {
+.container_app .flexBox .topButtons#flip, .container_app .flexBox .topButtons#home {
   height: 56px;
   width: 96px;
   margin: 0px 32px;
   font-size: 15px;
   background-color: #3b3b3b;
+}
+.container_app .flexBox .topButtons#flip#home, .container_app .flexBox .topButtons#home#home {
+  display: none;
+  background: #e4a265;
 }
 .container_app .flexBox .topButtons#red {
   background-color: #f53a3a;

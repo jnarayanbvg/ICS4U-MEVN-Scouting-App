@@ -62,6 +62,7 @@ button {
         $button-text: #ffffff;
         $cancel-black: #161616;
         $shadow-black: #333333;
+        $button-go-home: #e4a265;
 
         background-image: url('../images/space.png');
         position: absolute;
@@ -129,12 +130,17 @@ button {
                 @include box-shadow(0px, 0px, 16px, -2px, $shadow-black);
                 @include transition((background-color font-size), (0.15s 0.15s), (ease ease), (0s 0s));
 
-                &#flip {
+                &#flip, &#home {
                     height: 56px;
                     width: 96px;
                     margin: 0px 32px;
                     font-size: 15px;
                     background-color: $button-gray-unclicked;
+
+                    &#home {
+                        display: none;
+                        background: $button-go-home;
+                    }
                 }
 
                 //Initial state

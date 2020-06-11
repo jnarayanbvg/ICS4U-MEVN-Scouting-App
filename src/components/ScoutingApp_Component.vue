@@ -19,7 +19,7 @@
         </div>
         <div class="flexBox">
           <button
-            class="topButtons"
+            class="topButtons preload"
             id="red"
             v-on:click="js.setFieldColor('red')"
             type="button"
@@ -27,7 +27,7 @@
             Red Alliance
           </button>
           <button
-            class="topButtons"
+            class="topButtons preload"
             id="flip"
             v-on:click="js.flipSides()"
             type="button"
@@ -35,7 +35,18 @@
             Flip<br />Field
           </button>
           <button
-            class="topButtons"
+            class="topButtons preload"
+            v-on:click="goHome();"
+            id="home"
+            type="button"
+            :to="{
+              name: 'home'
+            }"
+          >
+            Go<br />Home
+          </button>
+          <button
+            class="topButtons preload"
             id="blue"
             v-on:click="js.setFieldColor('blue')"
             type="button"
@@ -455,11 +466,7 @@
                 id="rocketDisplay0"
                 v-on:click="js.switchRocketLevel()"
                 type="button"
-              >
-                Low
-                <div class="emptySpace"></div>
-                Level
-              </button>
+              >Low<div class="emptySpace"></div>Level</button> <!-- Must keep on one line for js formatting -->
 
               <!-- Bottom Rocket -->
               <button
@@ -527,11 +534,7 @@
                 id="rocketDisplay1"
                 v-on:click="js.switchRocketLevel()"
                 type="button"
-              >
-                Low
-                <div class="emptySpace"></div>
-                Level
-              </button>
+              >Low<div class="emptySpace"></div>Level</button>  <!-- Must keep on one line for js formatting -->
 
               <!-- Cargo Ship -->
               <button
@@ -804,6 +807,8 @@ export default {
 
     // Gather, interpret, and submit the form values
     async checkForm() {
+      if(!confirm("Are you sure you submit this scouting data? This action cannot be undone")) return false;
+
       let arr = ["allianceColor", 
         "habLeave", "habClimb", 
         "sandstormCargo", "sandstormPanel", 
@@ -845,6 +850,12 @@ export default {
       
       // Redirect straight to the team's page so it can calculate an accurate average for the database
       this.$router.push({ name: 'team', params: { competition: this.vals.competition, team: Math.max(0, this.vals.teamNumber) }});
+    },
+
+    goHome() {
+      if(confirm("Are you sure you want to leave this page?") && confirm("All scouting data will be lost if you leave without submitting")) {
+        this.$router.push({ name: 'home' });
+      }
     }
     
   }
