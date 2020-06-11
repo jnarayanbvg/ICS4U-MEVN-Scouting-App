@@ -311,7 +311,6 @@ function setHAB(level) {
 
         let buttons = Util.getClass(lookFor);
         buttons.forEach(button => Util.disableButton(button, "full"));
-        console.log(buttons);
         Util.enableButton(Util.getId(lookFor+level), "tab");
         Util.enableButton(Util.getId(lookFor+"Cancel"), "cancel");
         eval(lookFor + " = " + level);
