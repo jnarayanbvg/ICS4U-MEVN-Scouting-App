@@ -1,4 +1,4 @@
-# ICS4U 2020 ISP - 2019 FRC Deep Space Scouting App
+# ICS4U MEVN 2020 ISP - 2019 FRC Deep Space Scouting App
 
 ## Intro
 Hi! As a project for my grade 11 ICS4U course, I created this Scouting and Strategy App for the 2019 FRC season "Destionation: Deep Space". As Scouting and Strategy Department Head of rookie team Alt-F4 (7558) that season, I independently developed a very strong scouting app we used throughout our competiton and which generated interest from various veteran teams in the community. That project was created using PHP and a MySQL database on HostGator and took well over 100 hours to program. This project recreates many of the same features, as well as some new ones, using a hosted MongoDB database (storing three document types: comps, matches, and averages) with a Vue front-end framework implementing Express and using Node.js -- this took around 40 hours to create, so it is thus a scaled-down version of the original app. None of the code for this project was taken from the old Deep Space app: everything was either entirely recreated or heavily adapted with more sophisticated programming.
