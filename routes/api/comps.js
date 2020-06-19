@@ -46,10 +46,13 @@ router.delete('/:id', async (req, res) => {
 
 // Helper method to access the database
 async function loadCompsCollection() {
-    const client = await mongodb.MongoClient.connect('mongodb+srv://jnarayan:mongodbpass@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority', {
+    const pass = require('../../config/keys.js').mongoPass;
+    const client = await mongodb.MongoClient.connect(`mongodb+srv://jnarayan:${pass}@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
+
+    console.log(process.env.NODE_ENV);
 
     return client.db('ScoutingApp').collection('comps');
 }

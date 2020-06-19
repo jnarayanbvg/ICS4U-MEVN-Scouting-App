@@ -81,10 +81,14 @@ router.delete('/:comp', async (req, res) => {
 
 // Helper method to access the database
 async function loadMatchesCollection() {
-    const client = await mongodb.MongoClient.connect('mongodb+srv://jnarayan:mongodbpass@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority', {
+    const pass = require('../../config/keys.js').mongoPass;
+    const client = await mongodb.MongoClient.connect(`mongodb+srv://jnarayan:${pass}@scoutingapp-9cfq1.mongodb.net/test?retryWrites=true&w=majority`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
+
+    console.log(process.env.PORT);
+    console.log(process.env.TEST);
 
     return client.db('ScoutingApp').collection('matches');
 }
